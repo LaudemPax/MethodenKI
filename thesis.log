@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.5.9)  30 MAY 2022 12:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.5.13)  17 JUN 2022 12:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"/home/aman-hp/Documents/hs-augsburg/SS2022/Methoden DER KI/Portfolio/thesis.tex"
-(/home/aman-hp/Documents/hs-augsburg/SS2022/Methoden DER KI/Portfolio/thesis.tex
+**"/home/aman/Documents/HS Augsburg/Technische Informatik/SS2022/Methoden KI/repo/thesis.tex"
+(/home/aman/Documents/HS Augsburg/Technische Informatik/SS2022/Methoden KI/repo/thesis.tex
 LaTeX2e <2021-11-15> patch level 1
-L3 programming layer <2022-02-24> (./wissdoc.cls
+L3 programming layer <2022-04-10> (./wissdoc.cls
 Document Class: wissdoc 2010/01/06 I8 - Wissenschaftliches Dokument
 (/usr/share/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2021/10/04 v1.4n Standard LaTeX document class
@@ -341,10 +341,10 @@ File: lstlang1.sty 2020/03/24 1.8d listings language file
 
 Writing index file thesis.idx
 (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2022-02-07 L3 backend support: PDF output (pdfTeX)
+File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count292
 \l__pdf_internal_box=\box62
-) (./thesis.aux (./deckblatt.aux) (./kapitel/kap_2.aux))
+) (./thesis.aux (./deckblatt.aux) (./kapitel/kap_1.aux) (./kapitel/kap_2.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 158.
@@ -406,7 +406,7 @@ LaTeX Info: Redefining \nameref on input line 158.
 
  (./deckblatt.tex
 TextBlockOrigin set to 20mm x 30mm
-<logos/hsa_informatik_logo_lq.pdf, id=15, 963.6pt x 542.025pt>
+<logos/hsa_informatik_logo_lq.pdf, id=23, 963.6pt x 542.025pt>
 File: logos/hsa_informatik_logo_lq.pdf Graphic file (type pdf)
 <use logos/hsa_informatik_logo_lq.pdf>
 Package pdftex.def Info: logos/hsa_informatik_logo_lq.pdf  used on input line 11.
@@ -434,47 +434,58 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
  <./logos/hsa_informatik_logo_lq.pdf>] (./thesis.toc
-LaTeX Font Info:    Trying to load font information for TS1+aer on input line 2.
-LaTeX Font Info:    No file TS1aer.fd. on input line 2.
-
-
-LaTeX Font Warning: Font shape `TS1/aer/b/n' undefined
-(Font)              using `TS1/cmr/m/n' instead
-(Font)              for symbol `textparagraph' on input line 2.
-
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 4.
 )
 \tf@toc=\write5
 \openout5 = `thesis.toc'.
 
+
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.209 \include{kapitel/kap_2.tex}
+l.209 \include{kapitel/kap_1.tex}
                                   [1
 
 
 
 ]
-\openout2 = `kapitel/kap_2.aux'.
+\openout2 = `kapitel/kap_1.aux'.
 
- (./kapitel/kap_2.tex [2
+ (./kapitel/kap_1.tex [2
 
 
 ]
 Kapitel 1.
-) [3] (./thesis.bbl
+) [3]
+\openout2 = `kapitel/kap_2.aux'.
 
-LaTeX Font Warning: Font shape `TS1/aer/m/sl' undefined
+ (./kapitel/kap_2.tex [4
+
+
+
+
+]
+Kapitel 2.
+LaTeX Font Info:    Trying to load font information for TS1+aer on input line 10.
+LaTeX Font Info:    No file TS1aer.fd. on input line 10.
+
+LaTeX Font Warning: Font shape `TS1/aer/m/n' undefined
 (Font)              using `TS1/cmr/m/n' instead
-(Font)              for symbol `textparagraph' on input line 1.
+(Font)              for symbol `textbullet' on input line 10.
 
+) [5] (./thesis.bbl
 
 Package Fancyhdr Warning: \headheight is too small (17.07164pt): 
- Make it at least 27.75398pt.
+ Make it at least 25.27927pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[4
+[6
 
 
 
@@ -482,26 +493,26 @@ Package Fancyhdr Warning: \headheight is too small (17.07164pt):
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [5] (./thesis.aux (./deckblatt.aux) (./kapitel/kap_2.aux))
+) [7] (./thesis.aux (./deckblatt.aux) (./kapitel/kap_1.aux) (./kapitel/kap_2.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: FF9791E826FAAC1911B73E3DADAE5384;795.
+(rerunfilecheck)             Checksum: AC8AB7DF13F82AECC41E65438DA5638C;1129.
  ) 
 Here is how much of TeX's memory you used:
- 12401 strings out of 478276
- 192989 string characters out of 5853014
- 683322 words of memory out of 5000000
- 30365 multiletter control sequences out of 15000+600000
- 493216 words of font info for 69 fonts, out of 8000000 for 9000
+ 12472 strings out of 478238
+ 194824 string characters out of 5850456
+ 682935 words of memory out of 5000000
+ 30450 multiletter control sequences out of 15000+600000
+ 498368 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,77p,622b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm2074.pfb>
-Output written on thesis.pdf (6 pages, 126467 bytes).
+ 75i,11n,77p,624b,344s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on thesis.pdf (8 pages, 151024 bytes).
 PDF statistics:
- 91 PDF objects out of 1000 (max. 8388607)
- 66 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 30 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 112 PDF objects out of 1000 (max. 8388607)
+ 85 compressed objects within 1 object stream
+ 14 named destinations out of 1000 (max. 500000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
