@@ -3,5 +3,35 @@
 \subsection{8er Puzzle (Sliding block puzzle)}
 
 \begin{itemize}
-    \item Hochgradig kombinatorisches NP-vollständiges Problem. Oft genutzt als Standardtest für neue Suchalgorithmen. 
+    \item Hochgradig kombinatorisches NP-vollständiges Problem. Oft genutzt als Standardtest für neue Suchalgorithmen.
 \end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/8er-puzzle.png}
+    \caption{8er puzzle Start- und Zielzustand}
+    \label{fig:8er-puzzle}
+\end{figure}
+
+\begin{itemize}
+    \item Zustände: Lokalität der 8 Fliesen in eine der 9 Flächen plus eine freie Kachel
+    \item Operatoren: Blank nach Links, Rechts, Auf, Ab 
+    \item Ziel-test: Blank-Kachel in der Mitte
+    \item Pfadkosten: jeder Schritt kostet eine Einheit
+\end{itemize}
+
+\subsection{Staubsauger-Roboter}
+
+Vieles an der Implementierung dieses Roboters muss abstrahiert werden:
+\begin{itemize}
+    \item World States: Umfassen alle Aspekte der reelen Welt
+    \item Problem States: Nur Aspekte der relevant für das Problem sind. Die Modellierung von diesen Aspekten erfolgt meist in Form \textbf{symbolisher} Beschreibungen. 
+    \item Erstens müssen die möglichen World States als Problem States dargestellt werden:
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/roomba-world-to-problem-states.png}
+    \caption{Abbildung World States auf Problem States}
+    \label{fig:roomba-abbildung}
+\end{figure}

@@ -844,6 +844,16 @@ INPUT ./kapitel/2/kap_2.3.tex
 INPUT kapitel/2/kap_2.3.tex
 INPUT ./kapitel/2/kap_2.3.tex
 INPUT kapitel/2/kap_2.3.tex
+INPUT ./figures/8er-puzzle.png
+INPUT ./figures/8er-puzzle.png
+INPUT figures/8er-puzzle.png
+INPUT ./figures/8er-puzzle.png
+INPUT ./figures/8er-puzzle.png
+INPUT ./figures/roomba-world-to-problem-states.png
+INPUT ./figures/roomba-world-to-problem-states.png
+INPUT figures/roomba-world-to-problem-states.png
+INPUT ./figures/roomba-world-to-problem-states.png
+INPUT ./figures/roomba-world-to-problem-states.png
 INPUT ./thesis.bbl
 INPUT thesis.bbl
 INPUT ./thesis.bbl

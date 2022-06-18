@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.6.2)  18 JUN 2022 12:33
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.6.2)  18 JUN 2022 12:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -406,7 +406,7 @@ LaTeX Info: Redefining \nameref on input line 158.
 
  (./deckblatt.tex
 TextBlockOrigin set to 20mm x 30mm
-<logos/hsa_informatik_logo_lq.pdf, id=43, 963.6pt x 542.025pt>
+<logos/hsa_informatik_logo_lq.pdf, id=48, 963.6pt x 542.025pt>
 File: logos/hsa_informatik_logo_lq.pdf Graphic file (type pdf)
 <use logos/hsa_informatik_logo_lq.pdf>
 Package pdftex.def Info: logos/hsa_informatik_logo_lq.pdf  used on input line 11.
@@ -478,41 +478,53 @@ LaTeX Font Warning: Font shape `TS1/aer/m/n' undefined
 (Font)              using `TS1/cmr/m/n' instead
 (Font)              for symbol `textbullet' on input line 10.
 
-(./kapitel/2/kap_2.2.tex [5]) (./kapitel/2/kap_2.3.tex))
+(./kapitel/2/kap_2.2.tex [5]) (./kapitel/2/kap_2.3.tex
+<figures/8er-puzzle.png, id=98, 994.71625pt x 382.42876pt>
+File: figures/8er-puzzle.png Graphic file (type png)
+<use figures/8er-puzzle.png>
+Package pdftex.def Info: figures/8er-puzzle.png  used on input line 11.
+(pdftex.def)             Requested size: 341.94652pt x 131.4654pt.
+
 
 Package Fancyhdr Warning: \headheight is too small (17.07164pt): 
  Make it at least 25.27927pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[6] (./thesis.bbl
+[6 <./figures/8er-puzzle.png>]
+<figures/roomba-world-to-problem-states.png, id=109, 1278.7775pt x 452.69125pt>
+File: figures/roomba-world-to-problem-states.png Graphic file (type png)
+<use figures/roomba-world-to-problem-states.png>
+Package pdftex.def Info: figures/roomba-world-to-problem-states.png  used on input line 34.
+(pdftex.def)             Requested size: 341.94652pt x 121.04709pt.
+)) [7 <./figures/roomba-world-to-problem-states.png>] (./thesis.bbl [8
+
+
+
+]
 
 LaTeX Warning: Empty `thebibliography' environment on input line 3.
 
-) [7
-
-
-
-] (./thesis.aux (./deckblatt.aux) (./kapitel/kap_1.aux) (./kapitel/kap_2.aux))
+) [9] (./thesis.aux (./deckblatt.aux) (./kapitel/kap_1.aux) (./kapitel/kap_2.aux))
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: E85C77E7303507AC3F73498D3C0C8F53;2391.
+(rerunfilecheck)             Checksum: 3E23EF8A77AA28FB6328820783F2FC14;2575.
  ) 
 Here is how much of TeX's memory you used:
- 12503 strings out of 478238
- 195225 string characters out of 5850457
- 682935 words of memory out of 5000000
- 30461 multiletter control sequences out of 15000+600000
+ 12529 strings out of 478238
+ 195858 string characters out of 5850457
+ 683935 words of memory out of 5000000
+ 30478 multiletter control sequences out of 15000+600000
  502655 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,77p,609b,492s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmb10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on thesis.pdf (8 pages, 170390 bytes).
+Output written on thesis.pdf (10 pages, 482542 bytes).
 PDF statistics:
- 148 PDF objects out of 1000 (max. 8388607)
- 118 compressed objects within 2 object streams
- 23 named destinations out of 1000 (max. 500000)
- 86 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 169 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
+ 28 named destinations out of 1000 (max. 500000)
+ 104 words of extra memory for PDF output out of 10000 (max. 10000000)
 

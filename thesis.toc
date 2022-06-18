@@ -7,4 +7,5 @@
 \contentsline {subsection}{\numberline {2.2.2}Performanzma\IeC {\ss } berechnen}{6}{subsection.2.2.2}%
 \contentsline {section}{\numberline {2.3}Beispielformulierungen von Zielen und Problemen}{6}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}8er Puzzle (Sliding block puzzle)}{6}{subsection.2.3.1}%
-\contentsline {chapter}{Literaturverzeichnis}{7}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Staubsauger-Roboter}{7}{subsection.2.3.2}%
+\contentsline {chapter}{Literaturverzeichnis}{8}{figure.2.2}%
