@@ -26,7 +26,7 @@ Vieles an der Implementierung dieses Roboters muss abstrahiert werden:
 \begin{itemize}
     \item World States: Umfassen alle Aspekte der reelen Welt
     \item Problem States: Nur Aspekte der relevant für das Problem sind. Die Modellierung von diesen Aspekten erfolgt meist in Form \textbf{symbolisher} Beschreibungen. 
-    \item Erstens müssen die möglichen World States als Problem States dargestellt werden:
+    \item Zunächst müssen die möglichen World States als Problem States dargestellt werden:
 \end{itemize}
 
 \begin{figure}[h!]
@@ -36,3 +36,15 @@ Vieles an der Implementierung dieses Roboters muss abstrahiert werden:
     \label{fig:roomba-abbildung}
 \end{figure}
 
+\subsubsection{Stark vereinfachte Staubsaugerwelt}
+
+Eine sehr einfache Darstellung von einer Staubsaugerwelt hat zwei Orte. Jeder Ort kann entweder Staub enthalten oder nicht. Es gibt also 8 mögliche Zustände:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/staubsauger-vereinfacht.png}
+    \caption{Staubsauger Zustände}
+    \label{fig:roomba-simplified}
+\end{figure}
+
+Der Staubsauger kennt in diesem Fall 3 Operationen: Links, Rechts, Saugen und hat das Ziel, die Zustände S7 oder S8 zu erreichen.
