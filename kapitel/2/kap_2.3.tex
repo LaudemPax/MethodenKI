@@ -47,4 +47,14 @@ Eine sehr einfache Darstellung von einer Staubsaugerwelt hat zwei Orte. Jeder Or
     \label{fig:roomba-simplified}
 \end{figure}
 
-Der Staubsauger kennt in diesem Fall 3 Operationen: Links, Rechts, Saugen und hat das Ziel, die Zustände S7 oder S8 zu erreichen.
+Der Staubsauger kennt in diesem Fall 3 Operationen: Links, Rechts, Saugen und hat das Ziel, die Zustände S7 oder S8 zu erreichen, wo es keinen Staub mehr gibt.
+
+\newpage
+In diesem einfachen Fall können die Lösung mit Hilfe eines endlichen Automaten gefunden werden:
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/roomba-fsm.png}
+    \caption{Staubsauger Pfadsucheautomat}
+    \label{fig:roomba-fsm}
+\end{figure}
