@@ -1,0 +1,45 @@
+\section{Klassifikation von Problemen}
+
+Es gibt viele Arten von Problemen und sie werden durch die Informationen des Lösers bestimmt. 
+
+\paragraph{1. Probleme mit Einfach Zuständen}
+
+Für den Problemlöser ist klar, in welchem Zustand er sich befindet und was seine möglichen Aktionen bewirken werden. Wie bereits im Roomba-Beispiel (Kap. \ref{section:roomba}) erwähnt, kann dies als endlicher Zustandsautomat modelliert werden.
+
+\paragraph{2. Probleme mit Mehrfach-Zuständen}
+
+Der genaue Zustand, in dem sich der Problemlöser befindet, ist nicht bekannt, und der Problemlöser weiß nicht, was seine Aktionen bewirken werden.
+
+Anhand des Roomba-Beispiels: In dem Extremfall dass der Roomba keine Sensoren hat, kann er als mehrfaches Problem modelliert werden. In einem solchen Fall kann der Startzustand einer der Zustände S1 bis S8 sein (siehe Abb. \ref{fig:roomba-simplified}).
+
+Eine mögliche Lösung besteht darin, die Menge der aktuell möglichen Zustände zu verwenden, um die Aktionen des Lösers zu bestimmen:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/roomba-mehrfach.states.png}
+    \caption{Staubsaugerwelt als Mehrfach-Problem}
+    \label{fig:roomba-mehrfach-statemachine}
+\end{figure}
+
+\paragraph{3. Zufall-Probleme}
+
+Der Löser hat keine vollständige Kenntnis einer sich ständig verändernden Welt. Er kann nur die lokale Umgebung wahrnehmen.
+
+Auch hier wieder das Roomba-Beispiel: Der Roboter befindet sich im Zustand S1 oder S3 und kann die Aktionen: Saugen, nach rechts fahren, Saugen ausführen. 
+
+Der Roboter saugt und bewegt sich dann nach rechts. Wenn er aber sich vor der Bewegung im Zustand S3 befand, geht er zum Zustand S8 über. Er versucht dann zu saugen aber die Aktion schlägt fehl, da in dem Zustand kein Staub vorhanden ist.
+
+Um dieses Problem zu lösen, benötigt der Roboter einen Sensor, der das Vorhandensein von Staub erkennt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/roomba-zufall.png}
+    \caption{Roomba Zufallproblem}
+    \label{fig:roomba-zufall}
+\end{figure}
+
+\paragraph{4. Explorations-Probleme}
+
+Der Löser hat keine Kenntnis von der Welt und muss seine Umgebung erkunden, um die möglichen Zustände und die Auswirkungen seiner Aktionen zu erfahren.
+
+Ein gutes Beispiel dafür ist der Marsrover. Der Rover muss zunächst Daten sammeln, um seine Umgebung kennenzulernen und eine Karte zu erstellen. Mit dieser Karte kann es dann erfolgreich die Pfadfindung durchführen.

@@ -21,7 +21,7 @@
 \end{itemize}
 
 \subsection{Staubsauger-Roboter}
-
+\label{section:roomba}
 Vieles an der Implementierung dieses Roboters muss abstrahiert werden:
 \begin{itemize}
     \item World States: Umfassen alle Aspekte der reelen Welt
@@ -40,7 +40,7 @@ Vieles an der Implementierung dieses Roboters muss abstrahiert werden:
 
 Eine sehr einfache Darstellung von einer Staubsaugerwelt hat zwei Orte. Jeder Ort kann entweder Staub enthalten oder nicht. Es gibt also 8 mögliche Zustände:
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/staubsauger-vereinfacht.png}
     \caption{Staubsauger Zustände}
@@ -52,7 +52,7 @@ Der Staubsauger kennt in diesem Fall 3 Operationen: Links, Rechts, Saugen und ha
 \newpage
 In diesem einfachen Fall können die Lösung mit Hilfe eines endlichen Automaten gefunden werden:
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{figures/roomba-fsm.png}
     \caption{Staubsauger Pfadsucheautomat}
