@@ -12,3 +12,14 @@ Ein Suchraum wird normalerweise als grafische Karte dargestellt. Diese Karten kö
 \end{figure}
 
 Je nach verwendetem Gittermuster werden unterschiedliche Suchgraphen basierend auf der Anzahl der Nachbarn jeder Zelle im Gitter gebildet. Zum Beispiel: Eine dreieckige Zelle hat sechs Nachbarn, eine quadratische Zelle hat 4 (oder 8, wenn Diagonalen erlaubt sind) und eine sechseckige Zelle hat 6.
+
+\subsection{Charakterisierung von Suchproblemen in Graphen}
+
+Um ein Suchproblem in einem Graphen darzustellen, ist es wichtig, einen \textbf{Startzustand~S}, einen gewünschten \textbf{Endzustand Z} und die \textbf{möglichen Aktionen zu definieren, um von einem Zustand zum anderen zu gelangen}.
+
+Um diese Suchproblemlogik anzuwenden, in einem gerichteten Graphen G:-
+\begin{itemize}
+    \item Zustände: Knoten im Graph G
+    \item Anfangs- und Zielzustand: ausgezeicenete Knoten in G
+    \item Zustandsübergänge: Entspricht dem Passieren von Kanten in G
+\end{itemize}
