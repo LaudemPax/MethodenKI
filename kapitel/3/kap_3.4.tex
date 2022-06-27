@@ -1,0 +1,93 @@
+\section{Arten von Suchverfahren}
+
+Es gibt viele Möglichkeiten, eine Wegfindungssuche durchzuführen. Diese nächsten Abschnitte werden darauf eingehen.
+
+\subsection{Breitensuche in expliziten Graphen}
+\label{section:breitensuche}
+Breitensuche ist auf Englisch ``breadth first search''. Für diesen Algorithmus werden für jeden Knoten zusätzliche Daten benötigt: \textbf{noch nicht gesucht} (weiß dargestellt), \textbf{entdeckt, aber noch nicht verarbeitet } (grau dargestellt), \textbf{verarbeitet} (schwarz dargestellt). 
+
+\paragraph{Überblick über den Ablauf:}
+
+\begin{enumerate}
+    \item Wähle einen Startknoten aus dem Graphen und legen Sie diesen in die Warteschlange, Q. Alle Knoten in Q sind grau markiert.
+    \item Solange es Elemente in Q gibt, markiere alle Nachbarn der Elemente grau und füge diese der Warteschlange Q hinzu. 
+    \item Nachdem alle Nachfolger eines Knotens grau markiert wurden, markiere den Knoten schwarz und entferne ihn aus der Warteschlange. Prüfen Sie, während Sie die Nachfolgerknoten grau markieren, ob der zu markierende Knoten der Zielknoten ist.s
+    \item Wiederhole Schritt 2 und Schritt 3, bis die Warteschlange Q leer ist.
+\end{enumerate}
+
+\paragraph{Komplexitätsbetrachtung}
+
+Speicherbedarf und Zeitbedarf sind exponentiell. Dies führt dazu, dass große Graphen unlösbar sind und sogar relativ kleine Graphen zu lange brauchen, um praktikabel zu sein (z.B Graphen Tiefe 12 brauch 35 Jahre Rechenzeit).
+
+\subsection{Uniforme Kostensuche}
+
+Bei diesem Suchalgorithmus wird die Breitensuche so verändert, dass auch die \textbf{Kosten der Nachbarknoten} berücksichtigt werden. Da die Kosten zweier benachbarter Knoten normalerweise bereits bekannt sind, kann \textbf{die Warteschlange in einen Heap umstrukturiert werden}, der in \textbf{aufsteigender Reihenfolge der Pfadkosten} sortiert ist. Auf diese Weise wird gehofft, dass der kürzeste Weg vom Startknoten zum Zielknoten gefunden wird.
+
+\subsection{Modifizierte Uniforme Kostensuche / Dijkstra}
+
+Um eine optimale Lösung für ein Wegsucheproblem zu finden, ist es notwendig, alternative Pfade parallel zu konstruieren. Wenn sich diese Pfade am selben Punkt treffen, kann der \textbf{kürzeste Pfad beibehalten werden}, während der Rest aus dem Suchbaum entfernt wird, um die kürzeste Gesamtroute zu finden.
+
+Wenn ein Pfad zum Zielknoten gefunden wird, werden alle \textbf{anderen parallelen Pfade fortgesetzt}, es sei denn, ihre Kosten übersteigen den bereits gefundenen Pfad. Dies führt zu einer besseren Effizienz bei der Suche nach dem kürzesten Weg. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/kap3/dijkstra.png}
+    \caption{Dijkstra-Algorithmus Pfadsuche}
+    \label{fig:graph-dijkstra}
+\end{figure}
+
+Dieser Algorithmus ist in Abbildung \ref{fig:graph-dijkstra} demonstriert. Anhand der Abbildung kann man sehen, wie die beiden Routen von v0 nach vi verglichen werden und die Kosten verglichen werden, um nur die kürzere Route beizubehalten.
+
+\subsection{Ablauf eines Graphen mit Tiefensuche}
+
+Im Gegensatz zur Traversierung mit Breitensuche verläuft die Traversierung mit Tiefensuche auf möglichst langen Wegen und führt die Weiß-Grau-Schwarz-Markierung (siehe Abschnitt \ref{section:breitensuche}) durch. Dieser Algorithmus wird normalerweise rekursiv implementiert.
+
+\paragraph{Ablauf von Tiefensuche}
+
+\begin{enumerate}
+    \item Wähle einen Startknoten \( v_s \). Markiere den Knoten als grau ein.
+    \item Für jeden Nachbarknoten \( v_k \) von \( v_s \), der weiß markiert ist, führe folgendes durch:
+    \begin{enumerate}
+        \item Füge \( v_k \) zum Stack hinzu
+        \item Markiere \( v_k \) als grau
+        \item Falls \( v_k \) Nachbarn hat, führe Schritt (2) rekursiv aus
+        \item Wenn \( v_k \) keine Nachbarn hat oder seine Nachbarn schwarz markiert sind, markiere \( v_k \) schwarz und entferne \( v_k \) vom Stack
+    \end{enumerate}
+    \item Der Algorithmus endet, sobald der Stack leer ist.
+\end{enumerate}
+
+\paragraph{Komplexitätsbetrachtung}
+
+Nur benachbarte Knoten des aktuellen Suchpfads werden auf dem Stack gespeichert. Dies bedeutet viel weniger Knotenerweiterungen im Vergleich zur Breitensuche, was zu weniger Speicherverbrauch führt. Die Zeitkomplexität ist jedoch ebenso wie die Brreitensuche exponentiell.
+
+\subsection{Tiefensuche und Backtracking-Algorithmen}
+
+In realen Anwendungen beinhaltet eine Lösung die Verwendung vieler verschiedener Komponenten. Die endgültige Lösung verwendet daher normalerweise viele Teillösungen, die möglicherweise nicht richtig erweitert werden können (z.B: erreicht die Teillösung eine Sackgasse). In diesen Fällen muss die Teillösung durch eine weniger komplexe Lösung ersetzt werden.
+
+\paragraph{Genereller Ablauf von einem Backtracking-Algorithmus}
+
+Gegeben sind ein Array ``SolutionComponents'', das alle Werte der endgültigen Lösung enthält, und die Funktionen ``FirstTrialValue()'', ``NextTrialValue()'' und ``CheckValid()''.
+
+\begin{enumerate}
+    \item Der ersten Komponente wird der erste Versuchswert gegeben:\\~\\
+    \lstinline{SolutionComponents[0] = FirstTrialValue(0)}~\\
+    \item Die Gültigkeit der Lösung wird überprüft:\\~\\
+    \lstinline{CheckValid(SolutionComponents)}~\\
+    \item Wenn die bisherige Lösung gültig ist, fahren Sie mit dem nächsten Wert fort (i = 1, 2, 3...) und überprüfe den Wert erneut\\~\\
+    \lstinline{SolutionComponents[i] = FirstTrialValue(i)}~\\
+    \lstinline{CheckValid(SolutionComponents)}~\\
+    \item Wenn der CheckValid-Funktion an einem bestimmten Punkt false zurückgibt, versuche es mit den nächsten Werten. Wenn alle Werte ebenfalls falsch zurückgeben, führe ein Backtracking durch, indem Sie i um i reduzieren und den nächsten Wert für dieses i versuchen.Erhöhen Sie dann i wieder um 1 und probieren Sie alle Werte aus.
+    \item Schritt 4 wird so oft wie nötig wiederholt. Für den Fall, dass i null erreicht und es keine Versuchswerte mehr für i = 0 gibt, gibt es keine mögliche Lösung.
+\end{enumerate}
+
+\subsection{Limitierte Tiefensuche}
+
+Es ist möglich, die Nachteile der Tiefensuche zu vermeiden, indem man eine maximale Tiefe des Pfades einstellt. Das macht die Suche vollstädnig aber nicht immer optimal. Um diese Idee zu erweitern, kann eine iterative Tiefensuche versucht werden. 
+
+\subsection{Iterative Tiefensuche}
+
+Bei dieser Methode wird die Tiefe mit jeder Iteration erhöht, um sicherzugehen, dass eine Lösung gefunden wird.
+
+\subsection{Bidirektionale Suche}
+
+Anstatt nur vom Startknoten aus zu beginnen, führen Sie eine Suche vom Start- und vom Zielknoten aus durch. Wenn sich die beiden Verfahren in der Mitte treffen, ist eine Lösung gefunden.

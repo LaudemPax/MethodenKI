@@ -1,12 +1,24 @@
 \section{Wegsuche als systemstisches Ablaufen von Graphen}
 
-Bei der Wegfindung mit Hilfe eines Graphen müssen ein \textbf{Startknoten} und eine \textbf{Funktion zum Testen}, ob der Zielknoten erreicht wurde, definiert werden. Mit Hilfe des Startknotens und dieser Funktion kann eine Folge von Knoten gefunden werden, die die Testfunktion erfüllen können. Wichtig ist, dass die für die Sequenz ausgewählten Knoten \textbf{benachbarte Knoten sind, die durch Kanten verbunden} sind.
+Bei der Wegfindung mit Hilfe eines Graphen müssen ein \textbf{Startknoten} und eine \textbf{Funktion zum Testen}, ob der Zielknoten erreicht wurde, definiert werden. Mit Hilfe des Startknotens und dieser Funktion kann eine Folge von Knoten gefunden werden, die die Testfunktion erfüllen künnen. Wichtig ist, dass die für die Sequenz ausgewählten Knoten \textbf{benachbarte Knoten sind, die durch Kanten verbunden} sind.
+
+\subsection{Expliziter Graphen und sukzessive Expansion}
+
+Es ist wichtig, zwischen einem expliziten Graphen und einem ``gedachten'' Graphen als Repräsentation eines Suchraums für Lösungen zu unterscheiden.
+
+\paragraph{Expliziter Graphen}
+
+Eine explizite Darstellung der Knoten und Kanten ist verfügbar (z.B Adjazentmatrix). Dies ist nur für kleinere Knotenmengen praktikabel und die meisten Probleme erfordern keine vollständige Repräsentation des Suchgraphen.
+
+\paragraph{Sukzessive Expansion}
+
+Diagramm ist verfügbar, aber nicht vollständig explizit. Der Suchprozess erfolgt durch Knotenerweiterung, indem Knoten für Knoten vorgegangen wird.
 
 \subsection{Generelle Wegfindungsstrategie}
 
-Zyklen und Mehrfachbesuche sind zu vermeiden, da sie den Suchbaum exponentiell wachsen lassen können. Generell sollte man keinen bereits benutzten Weg nochmal gehen, keine Wege mit Zyklen kreieren, einen bereits besuchten oder ausgebauten Zustand nicht besuchen oder erzeugen.
+Zyklen und Mehrfachbesuche sind zu vermeiden, da sie den Suchbaum exponentiell wachsen lassen können. Generell sollte man keinen bereits benutzten Weg nochmal gehen, keine Wege mit Zyklen kreieren, einen bereits besuchten oder ausgebauten Zustand nicht nochmal besuchen oder erzeugen.
 
-\subsection{Generelle Bewertung von Suchverfahren}
+\subsection{Generelle Bewertung von S uchverfahren} 
 
 Bewertungskriterien eines Pfadfindungsprozesses sind wie folgt:
 
