@@ -1,2 +1,32 @@
 \section{Wegsuche als systemstisches Ablaufen von Graphen}
 
+Bei der Wegfindung mit Hilfe eines Graphen müssen ein \textbf{Startknoten} und eine \textbf{Funktion zum Testen}, ob der Zielknoten erreicht wurde, definiert werden. Mit Hilfe des Startknotens und dieser Funktion kann eine Folge von Knoten gefunden werden, die die Testfunktion erfüllen können. Wichtig ist, dass die für die Sequenz ausgewählten Knoten \textbf{benachbarte Knoten sind, die durch Kanten verbunden} sind.
+
+\subsection{Generelle Wegfindungsstrategie}
+
+Zyklen und Mehrfachbesuche sind zu vermeiden, da sie den Suchbaum exponentiell wachsen lassen können. Generell sollte man keinen bereits benutzten Weg nochmal gehen, keine Wege mit Zyklen kreieren, einen bereits besuchten oder ausgebauten Zustand nicht besuchen oder erzeugen.
+
+\subsection{Generelle Bewertung von Suchverfahren}
+
+Bewertungskriterien eines Pfadfindungsprozesses sind wie folgt:
+
+\paragraph{Korrektheit}
+
+Es ist wichtig, dass die Wegfindungslösung tatsächlich eine Lösung des Problems ist.
+
+\paragraph{Vollständigkeit}
+
+Existiert eine Lösung, terminiert der Algorithmus nach endlicher Zeit und generiert eine Lösung.
+
+\paragraph{Optimalität}
+
+Die optimalste Lösung wird gefunden, wenn mehrere möglich sind.
+
+\paragraph{Zeitkomplexität}
+
+Die Zeit, die im worst-case/average-case benötigt wird, um eine optimale Lösung zu finden.
+
+\paragraph{Speicherkomplexität}
+
+Wie viel Speicher, die im worst-case/average-case benötigt wird.
+
