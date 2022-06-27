@@ -1,0 +1,34 @@
+\section{KI-Suchverfahren}
+
+Es gibt zwei Klassen von Suchverfahren: \textbf{blinde Suchverfahren} und \textbf{KI-Suchverfahren}. Blinde Suchverfahren sind auf einem bestimmten Schema basiert, das unabhängig von dem jeweiligen Problem ist. Einige Beispiele hierfür sind die in den vorangegangenen Kapiteln behandelten Verfahren wie Breitensuche, Tiefensuche, Biridketionale Suche usw. 
+
+KI-Suchverfahren hingegen nutzen problemspezifisches Vorwissen zur Eingrenzung des Suchraums. Es handelt sich um informierte heuristische Suchverfarhen.
+
+\textbf{Blinde Suchverfahren} erfordern, dass eine Lösung durch systematische und erschöpfende Suche in einem Suchgraphen gefunden wird, was ineffizient und kein problemspezifisches Wissen nutzt.
+
+\textbf{Informierte Suchprozesse} hingegen nutzen problemspezifische Eigenschaften, um die Effizienz der Knotenexpansion zu verbessern.
+
+\subsection{Greedy Search}
+
+Die Greedy-Suche ist eine modifizierte Breitensuche (siehe Abschnitt \ref{section:breitensuche}), bei der nur die Knoten mit den geringsten Kosten in die Warteschlange aufgenommen werden. 
+
+\paragraph{Ablauf von Greedy Search}
+
+Wenn die Kosten des aktuellen Knotens zum Zielknoten unbekannt sind, \textbf{müssen diese Kosten geschätzt werden}, und dann wird der Nachbar mit den geringsten Kosten ausgewählt. Die Funktion, die diese Kosten schätzt, wird \textbf{heuristische Funktion} genannt.
+
+Der Unterschied zwischen Greedy Search und Uniform Cost Search (siehe Abschnitt \ref{section:uniform-cost-search}) besteht darin, dass bei der Greedy Search \textbf{die Kosten von einem Knoten zum Zielknoten} berechnet werden und nicht von einem Knoten zum anderen.
+
+\paragraph{Eigenschaften von Greedy Search}
+
+Greedy Search bietet tendenziell schnelle Lösungen, die oft, aber nicht immer, der optimale Weg sind. 
+
+Greedy Search ist ähnlich wie die Tiefensuche mit Backtracking, nicht vollständig, und erfordert eine gute Heuristik für eine bessere Güte des Verfahrens.
+
+\subsection{Der A* Algorithmus}
+
+
+
+\subsection{Pfadplannung mit A*}
+
+\subsection{Pfadplannung in Computerspielen}
+
