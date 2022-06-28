@@ -25,7 +25,7 @@ Greedy Search bietet tendenziell schnelle Lösungen, die oft, aber nicht immer, d
 Greedy Search ist ähnlich wie die Tiefensuche mit Backtracking, nicht vollständig, und erfordert eine gute Heuristik für eine bessere Güte des Verfahrens.
 
 \subsection{Der A* Algorithmus}
-
+\label{section:a-star}
 Der A*-Algorithmus ist ein neuer Ansatz, der auf Greedy Search (Abbschnitt~\ref{section:greedy-search}) und dem Dijkstra-Algorithmus~(Abbschnitt~\ref{section:dijkstra}) aufbaut. A* arbeitet basierend auf der Funktion:
 
 \[f(n) = g(n) + h(n)\]
@@ -37,3 +37,25 @@ Ws ist auch möglich, die Gewichtung der Komponenten der A*-Kostenfunktion zu änd
 \[f(n) = \alpha * g(n) +  \beta * h(n)\]
 
 Wenn \(\beta\) viel größer als \(\alpha\) ist, dann nähert sich die Suche einer Greedy Search. Andersrum ist es ähnlich wie bei einer Bretiensuche.
+
+\subsection{Pfadplannung in Computerspielen}
+
+Pathing-Algorithmen werden in Spielen häufig zur Navigation von Figuren in der virtuellen Welt verwendet. In frühen 3D-Spielen wurde dies durch Wegpunkte erreicht. NPCs können sich nur durch Wegpunkte bewegen und der Pfad wird mit dem A*-Algorithmus (Abbschnitt~\ref{section:a-star}) berechnet (Abb.~\ref{fig:game-navigation-waypoitns}).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/kap3/games-navigation-waypoints.png}
+    \caption{Spielnavigation mit Wegpunkten}
+    \label{fig:game-navigation-waypoitns}
+\end{figure}
+
+Dieser Ansatz mit Wegpunkten schränkt jedoch die Bewegung der Spielfiguren stark ein. Dieser Ansatz mit Wegpunkten schränkt jedoch die Bewegung der Spielfiguren stark ein. Ein besserer Ansatz ist die Verwendung von Polygon-Netze.
+
+Bereiche, in denen sich die Figuren frei bewegen können, werden als Polygone dargestellt, und diese Bereiche sind durch Knoten miteinander verbunden. Bei diesem Ansatz können sich die Figuren freier bewegen, und der Ansatz kann weiterhin mit bekannten Algorithmen wie A* berechnet werden.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/kap3/waypoints vs polygon.png}
+    \caption{Spielnavigation mit Polygon-Meshes vs Wegpunkte}
+    \label{fig:game-navigation-navmesh}
+\end{figure}
