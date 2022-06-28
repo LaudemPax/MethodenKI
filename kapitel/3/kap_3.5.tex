@@ -30,9 +30,10 @@ Der A*-Algorithmus ist ein neuer Ansatz, der auf Greedy Search (Abbschnitt~\ref{
 
 \[f(n) = g(n) + h(n)\]
 
-Wobie \(f(n)\) die geschätzten Kosten der billigsten Lösung ist, \(g(n)\) die Kosten für die Bewegung von der Ausgangszelle zur aktuellen Zelle, und \(h(n)\) die geschätzten Kosten für die Bewegung von der aktuellen Zelle zur Zielzelle. Mit der Funktion \(f(n)\) werden die Kosten berechnet, und der Rest des Algorithmus läuft wie bei Greedy Serach ab.
+Wobie \(f(n)\) die geschätzten Kosten der billigsten Lösung ist, \(g(n)\) die Kosten für die Bewegung von der Ausgangszelle zur aktuellen Zelle, und \(h(n)\) die geschätzten Kosten für die Bewegung von der aktuellen Zelle zur Zielzelle. Mit der Funktion \(f(n)\) werden die Kosten berechnet, und der Rest des Algorithmus läuft wie bei einer Breitensuche ab. Um eine optimale Lösung zu erzielen, sollte die heuristische Funktion \(h(n)\) die Entfernung zum Ziel nicht überschätzen. 
 
-\subsection{Pfadplannung mit A*}
+Ws ist auch möglich, die Gewichtung der Komponenten der A*-Kostenfunktion zu ändern:-
 
-\subsection{Pfadplannung in Computerspielen}
+\[f(n) = \alpha * g(n) +  \beta * h(n)\]
 
+Wenn \(\beta\) viel größer als \(\alpha\) ist, dann nähert sich die Suche einer Greedy Search. Andersrum ist es ähnlich wie bei einer Bretiensuche.
