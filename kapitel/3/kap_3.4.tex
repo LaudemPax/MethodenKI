@@ -24,7 +24,7 @@ Speicherbedarf und Zeitbedarf sind exponentiell. Dies führt dazu, dass große Gra
 Bei diesem Suchalgorithmus wird die Breitensuche so verändert, dass auch die \textbf{Kosten der Nachbarknoten} berücksichtigt werden. Da die Kosten zweier benachbarter Knoten normalerweise bereits bekannt sind, kann \textbf{die Warteschlange in einen Heap umstrukturiert werden}, der in \textbf{aufsteigender Reihenfolge der Pfadkosten} sortiert ist. Auf diese Weise wird gehofft, dass der kürzeste Weg vom Startknoten zum Zielknoten gefunden wird.
 
 \subsection{Modifizierte Uniforme Kostensuche / Dijkstra}
-
+\label{section:dijkstra}
 Um eine optimale Lösung für ein Wegsucheproblem zu finden, ist es notwendig, alternative Pfade parallel zu konstruieren. Wenn sich diese Pfade am selben Punkt treffen, kann der \textbf{kürzeste Pfad beibehalten werden}, während der Rest aus dem Suchbaum entfernt wird, um die kürzeste Gesamtroute zu finden.
 
 Wenn ein Pfad zum Zielknoten gefunden wird, werden alle \textbf{anderen parallelen Pfade fortgesetzt}, es sei denn, ihre Kosten übersteigen den bereits gefundenen Pfad. Dies führt zu einer besseren Effizienz bei der Suche nach dem kürzesten Weg. 

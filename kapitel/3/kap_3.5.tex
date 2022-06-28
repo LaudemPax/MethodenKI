@@ -9,7 +9,7 @@ KI-Suchverfahren hingegen nutzen problemspezifisches Vorwissen zur Eingrenzung d
 \textbf{Informierte Suchprozesse} hingegen nutzen problemspezifische Eigenschaften, um die Effizienz der Knotenexpansion zu verbessern.
 
 \subsection{Greedy Search}
-
+\label{section:greedy-search}
 Die Greedy-Suche ist eine modifizierte Breitensuche (siehe Abschnitt \ref{section:breitensuche}), bei der nur die Knoten mit den geringsten Kosten in die Warteschlange aufgenommen werden. 
 
 \paragraph{Ablauf von Greedy Search}
@@ -26,7 +26,11 @@ Greedy Search ist ähnlich wie die Tiefensuche mit Backtracking, nicht vollständi
 
 \subsection{Der A* Algorithmus}
 
+Der A*-Algorithmus ist ein neuer Ansatz, der auf Greedy Search (Abbschnitt~\ref{section:greedy-search}) und dem Dijkstra-Algorithmus~(Abbschnitt~\ref{section:dijkstra}) aufbaut. A* arbeitet basierend auf der Funktion:
 
+\[f(n) = g(n) + h(n)\]
+
+Wobie \(f(n)\) die geschätzten Kosten der billigsten Lösung ist, \(g(n)\) die Kosten für die Bewegung von der Ausgangszelle zur aktuellen Zelle, und \(h(n)\) die geschätzten Kosten für die Bewegung von der aktuellen Zelle zur Zielzelle. Mit der Funktion \(f(n)\) werden die Kosten berechnet, und der Rest des Algorithmus läuft wie bei Greedy Serach ab.
 
 \subsection{Pfadplannung mit A*}
 
