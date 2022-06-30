@@ -6,3 +6,4 @@
 
 - Chapter 3 - WIP, Vertiefung -> Implement A* with different heuristics -> not done
 
+- Chapter 4 - WIP -> Vertiefung -> Implement MinMax Algo with tictactoe

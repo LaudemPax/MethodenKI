@@ -1,0 +1,27 @@
+\section{Monte Carlo Tree-Search}
+
+In großen Suchräumen wie Schach oder Go ist der MiniMax-Algorithmus weniger geeignet, da zu viele Knoten erweitert werden müssten. Die Idee von Mote Carlo Tree Search (MCTS) ist, dass ein Suchbaum wie in MiniMax ebenfalls generiert wird, aber anstatt alle möglichen Positionen zu erweitern, werden die Züge durch zufällige Züge über (sehr) viele Spiele erweitert.
+
+\subsection{Ablauf des MCTS-Algorithmus}
+
+Die folgenden Schritte werden wiederholt durchgeführt:-
+
+Die folgenden Schritte werden so lange wiederholt, bis der Alhorithmus zum Abbrechen aufgefordert wird:
+
+\begin{enumerate}
+    \item \textbf{Selection}. Max beginnt bei der Wurzel, um einen günstigen Zug zu wählen. Wenn noch keine Informationen vorliegen, wird ein zufälliger Zug gewählt.
+    \item \textbf{Expansion}. Wenn ein ausgewählter untergeordneter Knoten nicht der Endzustand ist, werden alle möglichen Nachfolger hinzugefügt und einer ausgewählt.
+    \item \textbf{Simulation}. Ab dem ausgewählten Knotenpunkt wird das Spiel gespielt, bis es mit einem Sieg, einer Niederlage oder einem Remis endet.
+    \item \textbf{Backpropagation}. Übertrage die Ergebnisse des Spiels von den Endknoten zurück zum Wurzel und aktualisiere die Knoten auf dem Pfad.
+\end{enumerate}
+
+Der daraus resultierende Suchbaum sieht in etwa so aus wie in der Abbildung~\ref{fig:monte-carlo-tree-example}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.65\textwidth]{figures/kap4/monte-carlo-tree-example.jpeg}
+    \caption{Beispiel für einen Monte-Carlo-Suchbaum}
+    \label{fig:monte-carlo-tree-example}
+\end{figure}
+
+Jeder Knoten hat einen Wert von \(Siege/Spiele\). Mit diesem Wert kann der beste Knoten basierend auf einem hohen Verhältnis von Gewinnen zu gespielten Spielen ausgewählt werden.
