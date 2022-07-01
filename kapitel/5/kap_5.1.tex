@@ -1,0 +1,93 @@
+\section{Lösen von Constrain-Problemen}
+
+\paragraph{Allgemeines Constraint Solving Problem}
+
+Bei einer gegebenen Menge von Variablen innerhalb eines bestimmten Wertebereichs und einer Menge von Beschränkungen erlaubter Kombinationen der Variablenwerte wird nach einer konkreten Anordnung der Variablen gesucht, die alle Beschränkungen erfüllen kann.
+
+\paragraph{Constraint Solving Problem als Suche}
+
+Solche Probleme können als Suchproblem dargestellt werden, wobei:
+\begin{itemize}
+    \item \textbf{Suchraum:} Menge von Variablen und derren Domänen
+    \item \textbf{Anfangszustand:} Alle Variables sind noch unbelegt
+    \item \textbf{Zielzustand:} alle Variablen belegt und Constraints erfüllt
+    \item \textbf{Zieltest:} Überprüfe, ob alle Variablen die Constraints erfüllen
+\end{itemize}
+
+\subsection{Ansätze zür Lösung von Constraint Solving Problemen}
+
+\paragraph{Ansatz 1: Generiere und Teste}
+
+Generiere Kombinationen von Werten für die Variablen basierend auf ihren Domänen und teste, ob die Bedingungen erfüllt sind. Wiederhole so oft wie nötig.
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \(x_1\) & \(x_2\) & \(x_3\) & \textbf{Test} \\ \hline
+    1           & 1           & 1           & nein          \\ \hline
+    1           & 1           & 2           & nein          \\ \hline
+    1           & 2           & 1           & nein          \\ \hline
+    1           & 2           & 2           & nein          \\ \hline
+    2           & 1           & 1           & nein          \\ \hline
+    2           & 1           & 2           & nein          \\ \hline
+    2           & 2           & 1           & ja            \\ \hline
+    \end{tabular}
+    \caption{\label{tab:generate-and-test} Ergebnis des Generierens und Testens}
+\end{table}
+
+\paragraph{Ansatz 2: Tiefensuche mit Backtracking}
+
+Die Werte für die Variablen werden systematisch generiert, um nicht alle möglichen Kombinationen generieren zu müssen.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \(x_1\) & \(x_2\) & \(x_3\) & \textbf{Test} \\ \hline
+    1           & 1           & 1           & nein          \\ \hline
+    1           & 1           & 2           & nein          \\ \hline
+    1           & 2           & 2           & nein          \\ \hline
+    1           & 2           & 1           & nein          \\ \hline
+    2           & 2           & 1           & ja            \\ \hline
+    \end{tabular}
+    \caption{\label{tab:deepsearch-and-backtracking} Ergebnis von Tiefensuche und Backtracking}
+\end{table}
+
+Durch den Einsatz von Heuristiken und anwendungsspezifischen Merkmalen kann die Lösung von Constraint-Problemen effizienter gestaltet werden. Unter Verwendung von Constraints kann der Zustandsraum umstrukturiert werden, um die Constraints zum leichteren Lösen des Problems auszunutzen.
+
+\subsection{Optimierung der Lösung von Constraint Problemen}
+
+Die folgenden Optimierungen lassen sich anhand eines konkreten Beispiels besser erklären. Ein Beispiel für ein Problem mit Cosntraints ist die Einfärbung von Staaten in Australien mit drei Farben, so dass benachbarte Staaten niemals dieselbe Farbe haben.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/kap5/australia-map.png}
+    \caption{Karte der Staaten von Australien}
+    \label{fig:constraints-australia-states}
+\end{figure}
+
+\paragraph{Anwendung von Constraint Netzen}
+
+Ein Netz kann erstellt werden, wenn Probleme binäre Beschränkungen haben. Die Variablen sind die Knoten und die Kanten verbinden die Knoten mit Nebenbedingungen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/kap5/australia-constraint-net.png}
+    \caption{Constraints-Netz}
+    \label{fig:constraint-net-australia}
+\end{figure}
+
+Das Constraints Netz kann in Heuristiken verwendet werden, um die Nutzung der Tiefensuche mit Backtracking zu verbessern.
+
+\paragraph{Abalauf von Tiefensuche mit Backtracking zur Lösung von Constraint Problemen}
+
+Mit Hilfe einer \textbf{Degree Heuristik}, bei der mit der Variable begonnen wird, die die meisten Constraints aufweist, kann die Suche optimiert werden. Based on the Constraint Netz in Abb.~\ref{fig:constraint-net-australia}, können wir sehen, dass SA die meisten Einschränkungen hat und die Suche damit beginnen sollte. Danach wird die Suche wie eine typische Tiefensuche (siehe Abschnitt~\ref{section:depth-search-backtracking}) fortgesetzt:-
+
+\begin{enumerate}
+    \item In jedem Schritt wird einer Variablen ein Wert zugeordnet.
+    \item Wenn die Variable nicht mehr so erweitert werden kann, dass sie den Beschränkungen entspricht, wird ein Backtracking durchgeführt.
+\end{enumerate}
+
+Eine weitere Heuristik, die verwendet werden kann, ist die Minimum-Remaining-Value-Heuristik. 
