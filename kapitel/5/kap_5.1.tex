@@ -90,4 +90,21 @@ Mit Hilfe einer \textbf{Degree Heuristik}, bei der mit der Variable begonnen wir
     \item Wenn die Variable nicht mehr so erweitert werden kann, dass sie den Beschränkungen entspricht, wird ein Backtracking durchgeführt.
 \end{enumerate}
 
-Eine weitere Heuristik, die verwendet werden kann, ist die Minimum-Remaining-Value-Heuristik. 
+Eine weitere Heuristik, die verwendet werden kann, ist die \textbf{Minimum-Remaining-Value-Heuristik}. Bei dieser Heuristik wird die Variable ausgewählt, die die kleinste Anzahl möglicher Werte hat. 
+
+Abgesehen von der Auswahl der Variablen, der ein Wert zugewiesen werden soll, ist es auch möglich, das Beschränkungsnetz zu verwenden, um den Wert für eine Variable auszuwählen, der andere Variablen am wenigsten einschränken würde. Dies ist als \textbf{Least-Constraining-Value Heuristik} bekannt. Dazu schaut man sich mit dem Constraint Mesh an, mit welchen anderen Variablen eine Variable verbunden ist und welche möglichen Werte es für diese Variablen noch gibt. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/kap5/least-constraining-value-heuristic.png}
+    \caption{Least-Constraining-Value Heuristik}
+    \label{fig:least-constraining-value-australia}
+\end{figure}
+
+Angenommen, der Algorithmus versucht anhand des Australien-Färbebeispiels, eine Farbe für Q auszuwählen. Da NT in diesem Fall bereits grün ist, kann Q nur rot oder blau sein, aber da die Wahl von Rot es für SA unmöglich macht (weil WA auch schon rot ist), wird die Farbe Blau für Q gewählt (siehe Abb. \ref{fig:least-constraining-value-australia}).
+
+\subsection{Constraint Propagation}
+
+Die Idee der Constraint-Fortpflanzung besteht darin, dass, bevor einer Variablen ein Wert zugewiesen wird, zuerst die Berechnung der Auswirkung dieses Werts auf alle anderen Constraints ausgeführt werden muss. 
+
+Der einfachste Weg, dies zu erreichen, ist die Anwendung der Idee der Kantenkonsistenz. Kante A bis Kante B ist genau dann konsistent, wenn für jeden Wert von A mindestens ein zulässiger Wert für B vorhanden ist. Wenn Werte auf diese Weise eliminiert werden, können inkonsistente Werte aus den Domänen der Knoten entfernt werden
