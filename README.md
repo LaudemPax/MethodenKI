@@ -6,4 +6,8 @@
 
 - Chapter 3 - WIP, Vertiefung -> Implement A* with different heuristics -> not done
 
-- Chapter 4 - WIP -> Vertiefung -> Implement MinMax Algo with tictactoe
+- Chapter 4 - done -> Vertiefung -> Implement MinMax Algo with tictactoe
+
+- Chapter 5 - done -> Vertiefung -> Implement a simple constraint solver using Tiefensuche mit Backtracking for the Australia colour problem
+
+
