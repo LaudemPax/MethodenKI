@@ -10,4 +10,4 @@
 
 - Chapter 5 - done -> Vertiefung -> Implement a simple constraint solver using Tiefensuche mit Backtracking for the Australia colour problem
 
-
+- Chapter 6 - done -> Vertiefung no idea
