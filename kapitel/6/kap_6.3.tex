@@ -1,0 +1,58 @@
+\section{Ansätze zur Wissensverarbeitung}
+
+Eine wichtige Komponente eines wissensbasierten Systems ist die Inferenzmaschine, die verwendet wird, um unsere Antworten auf Fragen zu finden. Es gibt viele Ansätze für die Implementierung einer solchen Maschine zur Verarbeitung von vorhandenem Wissen.
+
+\paragraph{Prinzip der Wissensabstraktion}
+
+Diese Methode wird als induktive Inferenz bezeichnet: Ableitung allgemeiner Aussagen aus Spezialfällen. z.B:
+
+\begin{itemize}
+    \item Beobachtung: Studenten Hans und Fritz haben ein Laptop
+    \item Schlussfolgerung: Alle Studenten haben Laptops
+\end{itemize}
+
+\paragraph{Prinzip von Wissen über Wissensintegrität}
+
+Diese Methode wird als deduktive Inferenz bezeichnet: Durch Erkennung von Regeln und Invarianzen aus formalen Beschreibungen wird explizites Wissen explizit gemacht. z.B:
+
+\begin{itemize}
+    \item Beobachtung: Aussage A ist wahr und Aussage B ist wahr.
+    \item Schlussfolgerung: Auch die Aussage A oder B ist wahr.
+\end{itemize}
+
+\paragraph{Prinzip von Wissen über Kausalzusammenhänge}
+
+Diese Methode wird als abduktive Inferenz bezeichnet: Die Ursachen werden aus Beobachtungen abgeleitet: A ist der Grund dafür, dass B passiert ist, wenn also B beobachtet wird, ist A passiert. z.B:
+
+\begin{itemize}
+    \item Beobachtung: Licht ist an.
+    \item Schlussfolgerung: Lichtschalter ist auf Position ``Ein''.
+\end{itemize}
+
+\paragraph{Wissen über Analogien}
+
+Diese Methode wird als analoge Inferenz bezeichnet: Neue Erkenntnisse werden aus bereits bekannten abgeleitet. z.B:
+
+\begin{itemize}
+    \item Beobachtung: durch ein dickes Rohr kann viel Wasser fließen.
+    \item Schlussfolgerung: durch ein dickes Kabel kann viel Strom fließen.
+\end{itemize}
+
+\paragraph{Prinzip der Verwendung von empirischem Wissen}
+
+Diese Methode wird als probabilistische Inferenz bezeichnet: Schlussfolgerung, dass eine Wirkung eintritt, basierend auf der Wahrscheinlichkeit, dass sie aufgrund der Situation eintritt. z.B:
+
+\begin{itemize}
+    \item Wenn 100 Personen im Raum sind, kann man davon ausgehen, dass mindestens zwei von ihnen denselben Geburtstag haben.
+\end{itemize}
+
+\paragraph{Prinzip der Verwendung von unscharfem Wissen}
+
+Diese Methode wird als Fuzzy-Inferenz bezeichnet: Schlussfolgerungen auf der Grundlage der Wahrscheinlichkeit, dass ein Objekt zu einer Menge gehört. z.B:
+
+\begin{itemize}
+    \item Hans ist vierzig Jahre alt. Alte Menschen sind weise.
+    \item Zugehörigkiet Hans zur Menge der jungen Menschen: 0.6
+    \item Zugehörigkiet Hans zur Menge der alten Menschen: 0.4
+    \item Ask: Ist Hans Weise? Antwort: Na ja, geht so
+\end{itemize}
