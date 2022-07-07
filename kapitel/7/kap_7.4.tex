@@ -1,0 +1,11 @@
+\section{Konfliktauflösung von Regelsystemen}
+
+In vielen Fällen sind mehrere Regeln anwendbar, so dass sich die Frage stellt, welche Regeln man anwenden sollte. Die Antwort auf diese Frage hängt von der Reihenfolge der Regeln in der Regelbasis ab. In kommutativen Systemen kann eine schlechte Wahl der Regeln zu langen Lösungen führen. In nicht-kommutativen Systemen kann die Schwierigkeit der Suche aufgrund der Rückverfolgung exponentiell sein. 
+
+\paragraph{Ansatz 1: Heuristische Regelauswahl}
+
+Wie bei den meisten Suchproblemen können Heuristiken den Prozess effizienter machen. Ein gängiger Ansatz besteht darin, sich an der Häufigkeit der verwendeten Regel zu orientieren, d. h. jede Regel darf nur einmal verwendet werden. Ansonsten kann es von Vorteil sein, Regeln zu bevorzugen, die auf den neuesten generierten Daten beruhen. Schließlich ist es auch möglich, eine Implementierung zu erstellen, die auf spezifischen Merkmalen des Problems basiert. Das bedeutet, dass Regeln, die mehr mit dem aktuellen Problem zu tun haben, bevorzugt werden.
+
+\paragraph{Ansatz 2: Meta-Regeln}
+
+Metaregeln sind Regeln über Regeln. In diesem Fall wäre ein Ansatz, Regeln über die Auswahl von Regeln in Form von Regeln zu bilden. Einige Meta-Regeln wären zum Beispiel: Regeln mit billigeren Verfahren gegenüber teuren Verfahren bevorzugen, Regeln mit weniger gefährlichen Ansätzen gegenüber gefährlicheren Ansätzen bevorzugen, Regeln von Experten gegenüber Anfängern bevorzugen.

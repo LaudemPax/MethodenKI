@@ -1,0 +1,20 @@
+\section{Zustandsraumdarstellung eines Wissensverarbeitungsproblems}
+
+Die vier wichtigsten Komponenten für so ein System, die man kennen muss, sind Fakten, Regeln und Anfragen. 
+
+\textbf{Fakten} sind Einträge in der Fakten- oder Datenbasis. Für jedes Problem beginnt das System mit einer Beschreibung des gesamten bekannten Wissens über eine Problemstellung. 
+
+\textbf{Regeln} werden verwendet, um einen Lösungsschritt zu erzeugen. Mit Hilfe von Regeln werden neue Fakten berücksichtigt und einige frühere verworfen. Das bedeutet, dass die Faktenbasis durch die Anwendung von Regeln verändert wird.
+
+\textbf{Anfragen}, die als Prädikate konstruiert sind, beschreiben die Bedingungen, die ein Problem umgeben. Wenn das Prädikat in der Datenbasis gefunden wird (nachdem Fakten einige Regeln durchlaufen haben), ist das Problem gelöst.  
+
+Eine Übersicht über die Beziehungen zwischen diesen drei Komponenten ist in Abbildung~\ref{fig:xps-relationships} dargestellt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{figures/kap7/state-space-of-xps.png}
+    \caption{Beziehung zwischen Fakten, Regeln und Abfragen}
+    \label{fig:xps-relationships}
+\end{figure}
+
+Dabei ist es wichtig zu beachten, dass der Zustandsraum nicht definiert, wie ein Problem mit den Regeln gelöst werden kann. Hierfür ist eine Suchfunktion erforderlich.

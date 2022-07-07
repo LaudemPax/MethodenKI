@@ -1,0 +1,23 @@
+\section{Kompilierung von Regelbasen}
+
+Ein naiver Ansatz für eine Regelinterpreneter-Implementierung wäre, in jeder Schleife alle Elemente in einer Datenbasis zu vergleichen. Dies wäre langsam und ineffizient. Dieser Prozess kann durch zwei Methoden effizienter gestaltet werden: Begrenzung der zu verarbeitenden Einträge und Begrenzung der zu verarbeitenden Bedingungen.
+
+Um die Anzahl der Einträge pro Schleife zu begrenzen, ist es möglich, die Ergebnisse eines Vergleichs zu speichern und nur die Änderungen in der Datenbasis auf neue oder entfernte Regeln zu prüfen. Beim zweiten Ansatz können ähnliche Tests nur einmal verarbeitet werden, da die Bedingungen für Regeln oft nicht disjunkt sind.
+
+\paragraph{Ansatz eines Rate-Algorithmus zur Regelbasenkompilierung}
+
+Regeln werden in ein Netz aus Codestücken umgewandelt, die Bedingungen darstellen. Ähnliche Codestücke werden kombiniert, um sicherzustellen, dass sie höchstens einmal verarbeitet werden. Ein Beispiel für ein Regelnetz ist in Abbildung~\ref{fig:xps-rule-mesh} dargestellt, und die Kombination dieses Netzes ist in Abbildung~\ref{fig:xps-rule-mesh-combined} zu sehen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/kap7/rule-mesh.png}
+    \caption{Beispiel eines Regelnetzes}
+    \label{fig:xps-rule-mesh}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/kap7/combined-rule-mesh.png}
+    \caption{Kombinierte Regelnetze}
+    \label{fig:xps-rule-mesh-combined}
+\end{figure}
