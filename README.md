@@ -10,6 +10,8 @@
 
 - Chapter 5 - done -> Vertiefung -> Implement a simple constraint solver using Tiefensuche mit Backtracking for the Australia colour problem
 
-- Chapter 6 - done -> Vertiefung no idea
+- Chapter 6 - done -> add "the biter lessons" into summary (link from resource page)
 
 - Chapoter 7 done -> Vertiefung: no clue lol
+
+- Chapter 8 not really done but kein Bock mehr -> maybe revisit after everything else?

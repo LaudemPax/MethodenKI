@@ -1,0 +1,42 @@
+\section{Ausdrucksstärke Logiksprachen}
+
+Die Aussagenlogik funktioniert in einigen Fällen, ist aber auf die Modellierung von Fakten beschränkt. Dies kann zu kompliziert werden, wenn alle strukturellen Beziehungen explizit als Fakten dargestellt werden müssen. Mit Aussagenlogik gibt es keine Quantifizierung, keine Relationen und keine Funktionen. Logikprache muss also erweitert werden, um aussagekräftiger zu sein.
+
+\subsection{Prädikatenlogik 1. Stufe}
+
+Die logische Sprache wird um Prädikate (boole'schen Funktionen), Variablen und Quantoren (ermöglicht es, über eine Menge von Objekten mit Hilfe einer Variablen zu sprechen) erweitert.
+
+Prädikatenlogik 1. Stufe (First Order Logic) beschreibt Objekte, ihre Eigenschaften und ihre Beziehungen zueinander. Es gibt bei Prädikatenlogik auch eine Unterscheidung zwischen Syntax und Semantik.
+
+\paragraph{Syntax: Lexikalischer Teil}
+
+\begin{itemize}
+    \item Konstanten-Symbole: TRUE, FALSE, A, B, Hans, Paul\dots
+    \item Variablen-Symbole: x, y, \dots
+    \item Funktions-Symbole: plus, minus, mul, Vater\_von\dots
+    \item Prädikaten-Symbole: student, hat\_Computer, P, Q\dots
+    \item Logische Verknüpfungen: \(\vee \wedge \neg \Leftrightarrow \Rightarrow \)
+    \item Quantoren: \(\exists , \forall\)
+    \item Gleicheit: \(=\)
+\end{itemize}
+
+\paragraph{Syntax: Struktureller Teil}
+
+\begin{itemize}
+    \item \textbf{Terme:} Konstaten-Symbole, \( f(t_1, t_2, t_3, \dots, t_n) \) wenn \(f\) eine Funktionsymbol und \(t_1\) bis \(t_n\) Terme sind.
+    \item \textbf{Atomare Formel:} \(P(t_1, t_2, t_3, \dots, t_n)\) wenn Prädikatensymbol \(P\) und \(t_1\) bis \(t_n\) Terme sind.
+    \item \textbf{Komplexe Formel:} jede atomare Formel ist eine Formel. Wenn R und S Formeln sind und x ein Variablen-Symbol dann sind folgende Formeln: \(R\), \(\neg R\), \(R \wedge S\), \(R \vee S\). \(R \Rightarrow S\), \(\exists x: R\), \(\forall x:R\)
+\end{itemize}
+
+\paragraph{Beispiele von Sachverhalten-Formulierung in Prädikatenlogik}
+
+\begin{itemize}
+    \item Alle Kinder lieben Eiscreme: \(\forall x:Kind(x) \Rightarrow liebt\_Eiscreme(x)\)
+    \item Es gibt einen Baum der Nadeln hat: \(\exists x:Baum(x) \wedge hat\_Nadeln(x)\)
+    \item Die Mutter einer Person ist dessen weibliches Elternteil: 
+    \[\forall x \forall y : Mutter(x,y) \Leftrightarrow (weiblich(x) \wedge Elternteil(x,y))\]
+\end{itemize}
+
+\subsection{Semantik der Prädikatenlogik}
+
+Es wird eine Interpretationsfunktion verwendet, die der Aussagelogik ähnelt, aber komplexer ist. Der Wahrheitsgehalt einer Formel wird durch die Struktur, \(S = (U,I)\) bestimmt, wobei U das ``Universum'' (beobachteter Gegenstandsbereich) und I die Interpretationsabbildung (die Bestandteile einer Formel, die die Objekte und Relationen im Gegenstandsbereich abbildet) sind.
