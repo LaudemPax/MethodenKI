@@ -1,0 +1,48 @@
+\section{Wissensrepräsentation und wissensbasierte Verarbeitung auf der Grundlage formaler Logik}
+
+Es gibt Fälle, in denen Schlussfolgerungen aus Fakten, Gegenständen oder Zusammenhängen gezogen werden müssen. Zum Beispiel manchmal Fragen wie: Hat Objekt A Merkmal B? Oder ist A mit B verwandt? müssen beantwortet werden.   Dies kann mit einem System geschehen, das formale Logik verwendet.
+
+Die Idee, die hinter der Funktionsweise eines Logiksystems steht, ist die Definition der anwendungsspezifischen Fakten (durch eine Logiksprache) und die anschließende Einspeisung dieser Definition in einen allgemeinen anwendungsunabhängigen Verarbeitungsmechanismus. Der Verarbeitungsmechanismus generiert dann eine Lösung auf der Grundlage der definierten Fakten. Dieser Verarbeitungsmechanismus erfolgt durch logische Schlussfolgerungen und wird auch als Inferenzmechanismus bezeichnet. 
+
+\subsection{Syntax und Semantik einer Logiksprache}
+
+Um Fakten und Zusammenhänge zu definieren, ist eine formale Sprache notwendig. Die Syntax einer Logiksprache definiert, welche Zeichenketten korrekt ausgedrückt werden (auch bekannt als Terme, Sätze, Ausdrücken oder Formeln).
+
+Bei der Semantik geht es darum, wie die Sprache definiert, unter welchen Umständen ein Ausdruck wahr ist.  Semantik legt fest, wie die Sprache definiert, unter welchen Umständen ein Ausdruck in der gegebenen "Welt" wahr ist.
+
+Die Aussagenlogik beschreibt Beziehungen zwischen Ausdrücken, die wahr oder falsch sein können, und abstrahiert von der natürlichen Sprachstruktur der Aussage.
+
+\paragraph{Syntax der Aussagenlogik}
+
+Die in der formalen Sprache ausgedrückte Aussagenlogik hat eine lexikalische und eine sturkturelle Komponente. Die lexikalische Komponente besteht aus grundlegenden Symbolen wie Konstanten (TRUE, FALSE), Satzsymbolen (A, B, C), logischen Verknüpfungssymbolen (\(\wedge \vee \neg \Leftrightarrow \Rightarrow\)) und Klammern. Die Strukturkomponente besteht aus Regeln, die syntaktisch korrekte Sätze (Aussagen) bilden. Ein Beispiel für einen Satz ist: \(A \vee \neg B \vee C \wedge D\) was bedeutet: ``A oder nicht B oder C und D''.
+
+\paragraph{Semantik aussagenlogischer Ausdrücke}
+
+Die Semantik (d.h. die Bedeutung) eines aussagenlogischen Ausdrucks wird als eine Interpretation bezeichnet. Eine Interpretation ist eine Abbildung,\(I\), die Sätze auf ihre Wahrheitswerte abbildet.
+
+\subsection{Begriffe der Aussagenlogik-Syntax}
+
+\paragraph{Literale}
+
+Eine aussagenlogische Variable ist als positives Literal bekannt (z.B:~\(A\)), und negierte sind als negative Literale bekannt (z.B:~\(\neg A\)).
+
+\paragraph{Klausel}
+
+Eine Formel, die aus einer Disjunktion von n Literalen besteht, ist eine Klausel (z.B:~\(A \vee \neg B \vee C \wedge D\)). 
+
+\paragraph{Konjunktive Normalform}
+
+Eine Formel, die aus einer Konjunktion von Klauseln besteht, hat die konjunktive Normalform (z.B:~\((A \vee \neg B \vee C \wedge D) \wedge (A \vee C \wedge E) \wedge \neg F\)).
+
+\subsection{Belegung, Modell und Erfüllbarkeit}
+
+Gegeben sei \(\phi\) ein Satz, \(\sigma\) eine Belegung für die Aussagevariablen in \(\phi\) und \(I\) eine Interpretationsfunktion mit \(I(\phi) = TRUE\). Dann ist:
+
+\begin{itemize}
+    \item \(\phi\) gültig unter der Belegung \(\sigma\)
+    \item \(\sigma\) ist ein Modell von \(\phi\).
+\end{itemize}
+
+Notation dafür wäre \(\sigma \models \phi\).
+
+Gegeben sei \(\phi\) ein Satz dann ist \(\phi\) erfüllbar genau dann wenn \(\phi\) mindestens ein Modell hat. Eine Menge von \(F\) Formeln ist erfüllbar genau dann wenn eine Belegung \(\sigma\) existiert, unter der alle Formeln \(\phi_i\) aus \(F\) gültig sind.    

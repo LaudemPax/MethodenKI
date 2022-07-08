@@ -1,0 +1,25 @@
+\section{Lösen von SAT-Problemen mit SAT-Solver}
+
+SAT-Probleme bedeuten boolesche Erfüllbarkeitsprobleme. Solche Probleme können mit einem SAT-Solver gelöst werde. Dies kann erfolgen, indem einfach boolesche Formeln \(\phi\) an einen SAT-Solver übergeben werden, der dann nach \(I(\phi)=TRUE\) auflöst.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/kap8/SAT-solver.png}
+    \caption{Verwendung eines SAT-Solvers}
+    \label{fig:using-sat-solver}
+\end{figure}
+
+Abbildung~\ref{fig:using-sat-solver} zeigt die Ausgabe der Variablen a,b,c mit der folgenden Formel:
+
+\[ \phi = (a \vee b \vee c) \wedge (a \Rightarrow \neg(a \wedge c)) \wedge (c \Rightarrow (a \wedge c \vee b \wedge c)) \wedge (\neg a \Rightarrow (\neg c \wedge b \vee \neg b \wedge c))\]
+
+Was die folgende Wahrheitstabelle ergibt:
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{figures/kap8/truth-table-SAT.png}
+    \caption{Wahrheitstabelle des SAT-Problems}
+    \label{fig:sat-solver-truthtable}
+\end{figure}
+
+Ein Beispiel für eine Anwendung eines SAT Solvers ist das Spiel Sudoku. Man kann die Einschränkungen der Sudoku-Felder mit einer Logiksprache definieren und dann einen SAT-Solver verwenden, um ein Modell zu finden, das das Problem lösen kann.
