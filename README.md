@@ -15,3 +15,7 @@
 - Chapoter 7 done -> Vertiefung: no clue lol
 
 - Chapter 8 not really done but kein Bock mehr -> maybe revisit after everything else?
+
+- Chapter 9 done -> Vertiefung: no clue lol
+
+- Chapter 10 otw

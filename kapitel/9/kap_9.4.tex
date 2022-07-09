@@ -1,1 +1,21 @@
-\section{}
+\section{Plan-Domain-Definition-Language}
+
+Wie beim Problemlösen ist auch bei der Planung die Problemformulierung entscheidend. Um die Leistung von Planern zu vergleichen und Modellierungsarbeiten wiederzuverwenden, wird eine standardisierte Modellierungssprache für die Planung angestrebt. Hier kommt die Plan Domain Definition Language (PDDL) ins Spiel. 
+
+Unter Verwendung von PDDL erfolgt die Modellierung, indem die Domäne in einer Datei, \textbf{domain.pddl}, und das Problem in einer anderen Datei, \textbf{problem.pddl}, beschrieben wird. \\
+
+\begin{lstlisting}[caption={Beispiel domain.pddl},captionpos=b]
+(define (domain <domain name>)
+    (:types location locatable - object ... ;;; welche Objektklassen
+    (:predicates (at ?obj - locatable ?loc - location) ;;; welche Prädikate
+    (:action LOAD-TRUCK :parameters ... ;;; welche Aktionen
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Beispiel problem.pddl},captionpos=b]
+(define (problem DLOG-2-2-2)
+    (:domain driverlog) ;;; Datei mit Domainenbeschreibung
+    (:objects driver1 ? driver ... ;;; welche konkrete Objekte
+    (:init (at driver1 s2) (at driver2 s2) ...     ;;; Startzustand
+    (:goal (and (at driver1 s1) (at truck1 s1) ... ;;; Zielzustand
+\end{lstlisting}
+
