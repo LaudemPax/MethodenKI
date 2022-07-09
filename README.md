@@ -1,6 +1,6 @@
 # OVERVIEW
 
-- Chapter 1 - Skipped
+- Chapter 1 - Done
 
 - Chapter 2 - Done, Vertiefung -> Wumpus -> Done
 
