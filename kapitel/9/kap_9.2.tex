@@ -1,0 +1,24 @@
+\section{Planen als logische Inferenz}
+
+\paragraph{Klassisches KI-PLanen: Blocks World}
+
+``Blocks World'' ist ein klassisches Beispiel, wenn es um Planung mit KI geht. In der Welt der Blöcke gibt es einige identifizierbare Blöcke, A, B, C, \dots, die nebeneinander liegen oder übereinander gestapelt sind. Es gibt auch einen Greifer, der einen Block aufnehmen kann, solange kein anderer Block auf dem zu aufnehmenden Block gestapelt ist.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/kap9/blocks-world.png}
+    \caption{Darstellung von Blocks World}
+    \label{fig:blocks-world}
+\end{figure}
+
+Da die Startpositionen und die Zielkonfiguration der Blöcke im Stil der Prädikatenlogik 1. Stufe (siehe Kapitel~\ref{section:pl1}) als Konjunktion von Eigenschaften gegeben sind, wird eine Folge von Aktionen für den Greifer gesucht, die die Konfigurationsänderung von der Startposition zur Zielposition bewirken kann.
+
+\paragraph{Lösen mittels logische Inferenz}
+
+Eine Möglichkeit, eine Lösung für dieses Problem zu finden, ist das Planen als logische Inferenz. Die klassische Prädikatenlogik ist für dynamische Prozesse wie diesen nicht geeignet. Um dies zu umgehen, können Zustände, \(s\), als Objekte mit bestimmten Eigenschaften \(P(s)\) und \(Q(s)\) betrachtet werden. Aktion, A kann als eine Übergangsrelation \(A(s_i, s_k)\) gebildet werden, die den Zustand \(s_i\) auf \(s_k\) abbildet. Die Aktionen können dann als Regeln in der Form:
+
+\[(P(s_i) \wedge A(s_i, s_k)) => Q(s_k)\]
+
+Diese Art der Planung hat viele Vorteile: Die Formulierung des Problems kann sich in diesem Fall auf die Formulierung von Aktionen und den Ziel- und Startzustand beschränken und ein allgemeiner Theorembeweiser kann verwendet werden, um das Problem zu lösen, indem das durch die Inferenzschritte erzeugte Protokoll zurückverfolgt wird.
+
+Dieser Ansatz hat jedoch auch einige Nachteile. Nämlich die Tatsache, dass man eine Reihe von Problemen bewältigen muss, die mit der Verwendung eines Planoperators einhergehen. Diese Reihe von Problemen besteht im Wesentlichen darin, dass es nicht möglich ist, die Auswirkungen einer Handlung zu beschreiben, insbesondere in der realen Welt, wenn einige Handlungen fehlschlagen. Außerdem ist die Planerstellung nicht besonders effizient, da sie einen allgemeinen Löser verwendet.

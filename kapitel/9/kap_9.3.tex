@@ -1,0 +1,48 @@
+\section{STRIPS-Planer}
+
+STRIPS steht für ``Stanford Research Institute Problem Solver''. In STRIPS wird eine Planungsaufgabe als \((S, O, F)\) dargestellt, wobei \(S\) und \(F\) eine Menge von Prädikaten sind. \(S\) beschreibt den Startzustand, \(F\) den Zielzustand und \(O\) ist eine Menge von STRIPS-Operatorschemata.
+
+Ein STRIPS-Planoperator ist der Tripel \(Op = (P, D, A)\). \(P\) sind die Vorbedingungen (engl. Preconditions) die gelten müssen, damit Op auf eine Konstellation anwendbar ist. \(D\) ist die Menge der wegfallenden Fakten (Delete List) nach einer Ausführung von Op. \(A\) ist die Menge der neuen Fakten (Add List), die nach einer Ausführung von Op gelten.
+
+\paragraph{Beispiele für eine Operator-Schema mit Variablen}
+
+Ausführung von \(pickup(x)\), einen Block vom Tisch aufheben:
+
+\begin{itemize}
+    \item \(P:{OnTable(x), Clear(x), Handempty}\)
+    \item \(D:{Holding(x), Clear(y), Handempty}\)
+    \item \(A:{Holding(x)}\)
+\end{itemize}
+
+Ausführung von \(putdown(x)\), einen Block, den der Greifer gerade hält, auf den Tisch legen:
+
+\begin{itemize}
+    \item \(P:{Holding(x)}\)
+    \item \(D:{Holding(x)}\)
+    \item \(A:{OnTable(x), Clear(x), Handempty}\)
+\end{itemize}
+
+Ausführung von \(stack(x, y)\), was bedeutet, dass Block X auf Block Y gestapelt wird:
+
+\begin{itemize}
+    \item \(P:{Holding(x), Clear(y)}\)
+    \item \(D:{Holding(x), Clear(y)}\)
+    \item \(A:{Handempty, Clear(x), On(x,y)}\)
+\end{itemize}
+
+Ausführung von \(unstack(x, y)\), was bedeutet, dass Block x von der Oberseite von Block y aufgenommen wird:
+
+\begin{itemize}
+    \item \(P:{Handempty, Clear(x), On(x,y)}\)
+    \item \(D:{Handempty, Clear(x), On(x,y)}\)
+    \item \(A:{Holding(x), Clear(y)}\)
+\end{itemize}
+
+\paragraph{Ausführung einer Aktion mittels STRIPS}
+
+\begin{enumerate}
+    \item Unifiziere der Vorbedingungen der Aktion mit der aktuellen Zustandsbeschreibung.
+    \item Instantiiere die Add- und Delete-Listen mit dem gefundenen Unifikator.
+    \item Lösche die Atome der instantiierten Delete-Liste aus der aktuellen Zustandsbeschreibung.
+    \item Füge die Atome der Add-Liste der neuen Zustandsbeschreibung hinzu.
+\end{enumerate}
