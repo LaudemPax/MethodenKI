@@ -1,0 +1,38 @@
+\section{Bayes'schen Netze}
+
+Ein Bayes'schen Netz ist ein Graph, in dem Zufallsvariablen die Knoten und die bedingten Wahrscheinlichkeiten zwischen den Variablen die Kanten sind.
+
+\paragraph{Aufabau eines Bayes'schen Netzes}
+
+\begin{enumerate}
+    \item Um ein Bayes'sches Netz aufzubauen, müssen zunächst alle Zufallsvariablen und ihre Wertebereiche für eine bestimmte Anwendung identifiziert werden.
+    \item Alle Zufallsvariablen werden in einem Netzwerk so angeordnet, dass alle Klauselabhängigkeiten zwischen Variablen durch Kanten dargestellt werden.
+    \item Für Variablen, die nicht voneinander abhängig sind, soll eine a priori Wahrscheinlichkeitsverteilung bestimmt werden.
+\end{enumerate}
+
+Wenn eine Variable \(Y\) direkt von den Variablen \(X_1\) bis \(X_n\) abhängt, müssen die bedingten Wahrscheinlichkeiten für alle Werte von \(i\) bestimmt werden.
+
+\paragraph{Modellieren mit Bayes'schen Netzen}
+
+Um die Modellierung mit einem Bayes'schen Netz besser zu erklären, wird folgender Fall betrachtet:
+
+\textit{Wenn Hans anruft (H), oder wenn Maria anruft (M), dann gab es einen Alarm (A), der durch einen Einbruch (E), einen Sturm(S), oder durch beides (E und S) ausgelöst wurde, wobei folgende a-priori Wahrscheinlichkeitsverteilungen bekannt seien:}
+
+\begin{itemize}
+    \item \(P(E) = 0.02\), \(P(\neg E) = 0.98\) 
+    \item \(P(S) = 0.02\), \(P(\neg S) = 0.98\) 
+    \item \(P(A)\) in Abhängigkeit von S und E:
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    \textbf{x1} & \textbf{x2} & \textbf{x3} & \textbf{Test} \\ \hline
+    1           & 1           & 1           & nein          \\ \hline
+    1           & 1           & 2           & nein          \\ \hline
+    1           & 2           & 2           & nein          \\ \hline
+    1           & 2           & 1           & nein          \\ \hline
+    2           & 2           & 1           & ja            \\ \hline
+    \end{tabular}
+\end{table}
