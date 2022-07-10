@@ -26,14 +26,37 @@ Um die Modellierung mit einem Bayes'schen Netz besser zu erklären, wird folgende
 
 \begin{table}[H]
     \centering
-    \begin{tabular}{|l|l|l|l|}
-    \hline
-    \textbf{x1} & \textbf{x2} & \textbf{x3} & \textbf{Test} \\ \hline
-    1           & 1           & 1           & nein          \\ \hline
-    1           & 1           & 2           & nein          \\ \hline
-    1           & 2           & 2           & nein          \\ \hline
-    1           & 2           & 1           & nein          \\ \hline
-    2           & 2           & 1           & ja            \\ \hline
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{E} & \textbf{S} & \textbf{P(A)} \\ \hline
+        J          & J          & 0.98          \\ \hline
+        J          & N          & 0.92          \\ \hline
+        N          & J          & 0.3           \\ \hline
+        N          & N          & 0.001         \\ \hline
     \end{tabular}
+
+    \caption{P(H) in Abhängigkeit von S und E}
 \end{table}
 
+Weitere wichtige Beziehungen:
+
+\begin{minipage}[c]{0.5\textwidth}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{A} & \textbf{P(H)} & \textbf{P(\(\neg\)H)} \\ \hline
+        J          & 0.90          & 0.10                  \\ \hline
+        N          & 0.10          & 0.90                  \\ \hline
+    \end{tabular}
+    \captionof{table}{P(H) und P(\(\neg\)H)}
+\end{minipage}
+\begin{minipage}[c]{0.5\textwidth}
+    \centering
+    \begin{tabular}{|l|l|l|}
+        \hline
+        \textbf{A} & \textbf{P(M)} & \textbf{P(\(\neg\)M)} \\ \hline
+        J          & 0.60          & 0.40                  \\ \hline
+        N          & 0.40          & 0.60                  \\ \hline
+    \end{tabular}
+    \captionof{table}{P(M) und P(\(\neg\)M)}
+\end{minipage}
