@@ -1,0 +1,33 @@
+\section{Einschub: Wahrscheinlichkeitsrechnung}
+
+Sei A ein Ereignis, das eintreten oder nicht eintreten kann, lautet die Definition der Wahrscheinlichkeit \(P(A) \in [0, \dots, 1]\):
+
+\[ P(A) = \frac{\textnormal{Anzahl der Fälle in denen A eintritt (günstige Fälle)}}{\textnormal{Gesamtzahl der möglichen Fälle, in denen A eintreten kann}} \]
+
+Es gibt zwei Arten von Wahrscheinlichkeiten, \textbf{a priori Wahrscheinlichkeit} und \textbf{bedingte Wahrscheinlichkeit}. A priori Wahrscheinlichkeit, \(P(A)\) drückt aus, wie wahrscheinlich das Ereignis A eintreten wird. Bedingte Wahrscheinlichkeit, \(P(B | A)\), drückt aus, wie wahrscheinlich das Ereignis B in Abhängigkeit von der Wahrscheinlichkeit des Ereignisses A eintritt.
+
+\paragraph{Bedingte Wahrscheinlichkeit}
+
+Definition bedingte Wahrscheinlichkeit:
+
+\[P(B|A) = \frac{P(A \cap B)}{P(A)}\]
+
+sowie:
+
+\[P(A|B) = \frac{P(A \cap B)}{P(B)}\]
+
+Bei der Berechnung von Wahrscheinlichkeiten ist zu unterscheiden zwischen dem Fall, dass ein Ereignis von einem anderen abhängig ist, und dem Fall, dass die beiden Ereignisse unabhängig voneinander sind. 
+
+Die Wahrscheinlichkeit, zwei gleichfarbige Kugeln aus einer Urne mit gemischten Kugeln auszuwählen, ist ein klassisches Beispiel für einen Fall, in dem das Ereignis A, das die erste Kugel auswählt, sich direkt auf die Wahrscheinlichkeit von B auswirkt, eine zweite Kugel der gleichen Farbe auszuwählen. Andererseits ist die Wahrscheinlichkeit, zwei gleiche Augenzahlen zu würfeln, unabhängig vom ersten Wurf.
+
+\paragraph{Totale Wahrscheinlichkeit}
+
+Zerlegt man den Ereignisraum G in die paarweise disjunkte Mengen (disjunkt = sich gegenseitig ausschließende Ereignisse) \(A_1\) bis \(A_n\), und gilt für jedes \(A_i\) dass \(P(A_i) > 0\), so lässt sich für ein belibiges Ereignis B die Wahrscheinlichkeit \(P(B)\) berechnen durch:
+
+\[P(B) = \sum_{i=1}^{n} P(B \cap A_i) = \sum_{i=1}^{n} P(A_i) * P(B | A)\]
+
+\paragraph{Bayes'sche Formel}
+
+Seien \(A_1\) bis \(A_n\) eine disjunkte Zerlegung des Ereignisraums \(G\) und sei \(B\) mit \(P(B) \neq 0 \) ein bereits eingetretenes Ereignis. Dann kann man ein \(P(A_i | B)\) wie folgt berechnen:
+
+\[ P(A_i | B) = \frac{P(A_i) * P(B | A_i)}{\sum P(A_k) * P(B | A_k)} \textnormal{ für } 1 \le i \le n \textnormal{ und } 1 \le k \le n\]
