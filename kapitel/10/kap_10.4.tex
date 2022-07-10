@@ -20,7 +20,7 @@ Um die Modellierung mit einem Bayes'schen Netz besser zu erklären, wird folgende
 
 \begin{itemize}
     \item \(P(E) = 0.02\), \(P(\neg E) = 0.98\) 
-    \item \(P(S) = 0.02\), \(P(\neg S) = 0.98\) 
+    \item \(P(S) = 0.05\), \(P(\neg S) = 0.95\) 
     \item \(P(A)\) in Abhängigkeit von S und E:
 \end{itemize}
 
@@ -31,14 +31,14 @@ Um die Modellierung mit einem Bayes'schen Netz besser zu erklären, wird folgende
         \textbf{E} & \textbf{S} & \textbf{P(A)} \\ \hline
         J          & J          & 0.98          \\ \hline
         J          & N          & 0.92          \\ \hline
-        N          & J          & 0.3           \\ \hline
+        N          & J          & 0.30           \\ \hline
         N          & N          & 0.001         \\ \hline
     \end{tabular}
 
     \caption{P(H) in Abhängigkeit von S und E}
 \end{table}
 
-Weitere wichtige Beziehungen:
+Weitere relevante Beziehungen: \\
 
 \begin{minipage}[c]{0.5\textwidth}
     \centering
@@ -60,3 +60,23 @@ Weitere wichtige Beziehungen:
     \end{tabular}
     \captionof{table}{P(M) und P(\(\neg\)M)}
 \end{minipage}
+
+Mit diesen Informationen würde das bayessche Netzwerk wie folgt aussehen:
+
+\begin{figure}[H]
+    \centering
+\includegraphics[width=0.5\textwidth]{figures/kap10/bayesian-network.png}
+    \caption{Modellierung als Bayes'schen Netze}
+    \label{fig:bayesian-net}
+\end{figure}
+
+Und das Netzwerk mit den Wahrscheinlichkeitsverteilungen:
+
+\begin{figure}[H]
+    \centering
+\includegraphics[width=0.6\textwidth]{figures/kap10/bayesian-net-probabilities.png}
+    \caption{Modellierung als Bayes'schen Netze}
+    \label{fig:bayesian-net-probabilities}
+\end{figure}
+
+Wenn sich eine der a-priori Wahrscheinlichkeiten in einem der Knoten ändert, muss der gesamte Baum neu berechnet werden, um den Baum durch Propagation zu aktualisieren. Wenn zum Beispiel ein Einbruch erkannt wird, dann wird Einbruch\_Ja viel wahrscheinlicher. So kann man mit einem Bayes'schen Netz Inferenzen ziehen.
