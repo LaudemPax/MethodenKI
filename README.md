@@ -18,4 +18,4 @@
 
 - Chapter 9 done -> Vertiefung: no clue lol
 
-- Chapter 10 otw
+- Chapter 10 done -> Vertifeung_ no clue
