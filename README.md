@@ -14,10 +14,12 @@
 
 - Chapoter 7 done -> Vertiefung: no clue lol
 
-- Chapter 8 not really done but kein Bock mehr -> maybe revisit after everything else?
+- Chapter 8 done -> Vertiefung: no clue lol
 
 - Chapter 9 done -> Vertiefung: no clue lol
 
-- Chapter 10 done -> Vertifeung_ no clue
+- Chapter 10 done -> Vertifeung: no clue lol
 
 - Chapter 11 sorta done -> Vertiefung no clue, maybe extend 11.4 at the end
+
+- Chapter 12 otw -> Vertiefung stuff with the tools presetented. KNIME etc

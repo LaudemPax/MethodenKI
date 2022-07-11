@@ -1,0 +1,26 @@
+\section{Klassifikation mit Entscheidungsbäumen}
+
+\subsection{Erlernen einer Entscheidungs-Regel}
+\label{section:oneR}
+Gegeben sind \(m\) n-dimensionalte Datensätze \(d_i = [a_1, a_2, \ldots, a_n]\) einer relationalen Datenbank, die interpretiert werden als Argument-Wertepaare einer n-1 stelligen, 1-wertigen Funktion \(f(a_1, a_2, \ldots, a_{n-1})\). Es wird ein einfacher Klassifikator der Form \textbf{IF} \(a_r = w\) \textbf{THEN} \(a_n = k\) gesucht.
+
+Ein Ansatz dafür wäre, aus dem Trainingsdatensatz ein Attribut \(a_r\) zu bestimmen, das die beste Vorhersage für das Zielattribut \(a_n\) liefert, wenn das Attribut \(a_r\) den Wert \(k\) hat.
+
+\subsection{Erlernen einer Entscheidungs-Baums}
+
+Gegeben sind \(m\) n-dimensionalte Datensätze \(d_i = [a_1, a_2, \ldots, a_n]\) einer relationalen Datenbank, die interpretiert werden als Argument-Wertepaare einer n-1 stelligen, 1-wertigen Funktion \(f(a_1, a_2, \ldots, a_{n-1})\). Es wird ein aber diesmal eine baumartige Entscheidungsstruktur, der einem Datensatz \(d=[a_1, a_2, \ldots, a_{n-1}]\) der passende Wert des Zielattributs \(a_n\) zuordnet.
+
+Der aus den Beispieldaten erstellte Entscheidungsbaum sollte die Attribute so anordnen, dass: 
+
+\begin{itemize}
+    \item alle Beispieldatensätze korrekt klassifiziert werden können
+    \item die Anzahl der Entscheidungen auf ein Minimum beschränkt werden
+    \item neue Datensätze klassifiziert werden können indem diesen Entscheidungsbaum verwendet wird.
+\end{itemize}
+
+Zwei mögliche Strategien zum Aufbau eines Entscheidungsbaums sind:
+
+\begin{itemize}
+    \item \textbf{Strategie 1:} Von der Wurzel ausgehend wähle stets dasjenige Attribut \(a_i\) als nächstes Auswahlkriterium, welches von den verbleibenden Beispieldatensätzen die wenigsten ``fehlklassifiziert''. Das bedeutet, dass der zuvor in Kapitel \ref{section:oneR} beschriebene Ansatz rekursiv angewendet wird, um die Attribute für den Entscheidungsbaum auszuwählen.
+    \item \textbf{Strategie 2:} Aus der Wurzel des Baums wird das Attribut ausgewählt, das den größten Informationsgewinn hat. Bei dieser Methode wird eine Gleichung zur Berechnung des Informationsgewinns jedes Attributs (Informationstheorie Shanon 1948) rekursiv verwendet, um die Attribute und die Werte des Entscheidungsbaums auszuwählen.
+\end{itemize}

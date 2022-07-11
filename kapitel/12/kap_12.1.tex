@@ -1,0 +1,17 @@
+\section{Klassifikation}
+
+Unter Klassifizierung versteht man das Sortieren von Datensätzen in geeignete Klassen. Eine Funktion oder ein Programm, das dies ausführen kann, wird als Klassifikator bezeichnet. Die Idee beim maschinellen Lernen besteht darin, das Lernen anhand von Beispielen zu verwenden, um einen Klassifikator zu trainieren, der während seines Trainings noch nicht gesehene Objekte klassifizieren kann.
+
+Diese Art des Lernens ist eine Form von überwachtem Lernen, bei dem in der Lernphase positive und negative Beispiele gegeben werden. Die Erfahrungen aus der Lernphase werden dann in der Testphase genutzt, in der das Modell versucht, Beispiele zu klassifizieren, die es noch nicht im Trainingsdatensatz gesehen hat.
+
+Für die Klassifizierung wird ein Merkmal eines Datensatzes ausgewählt, das nach dessen möglichen Ausprägungen zur Klassifizierung verwendet wird. Dies ist als Zielmerkmal oder Zielattribut bekannt.
+
+\paragraph{Klassifizierungsworkflow}
+
+\begin{enumerate}
+    \item Festlegung der Lernaufgabe und der Datenquelle
+    \item Preprocessing: Der Datensatz wird in einen Trainingsdatensatz und einen Testdatensatz aufgeteilt. Der Trainingsdatensatz wird dann mit passendem Klassen-Label versehen.
+    \item Das Klassifizierte wird dann mit dem Trainingsdatensatz trainiert.
+    \item Das Modell wird mit dem Testdatensatz evaluiert.
+    \item Nach Tuning finalen Klassifikator anwenden.
+\end{enumerate}

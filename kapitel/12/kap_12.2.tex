@@ -1,0 +1,13 @@
+\section{Instanzen-basiertes Klassifizieren}
+
+Gegeben seien eine Menge von Beispieldatensätzen \(d_1 \ldots d_n\), eine Menge von Klassen \(C_1 \ldots C_m\), in die die Datensätze \(d_1 \ldots d_n\) unterteilt sind, und ein Datensatz \(d_{new}\). Es wird eine passende Klasse \(C_i\) für den neuen Datensatz \(d_{new}\) gesucht.
+
+Für diesen Fall kann ein Ansatz verwendet werden, der als ``k-nächste-Nachbarn-Verfahren'' bekannt ist. Unter Verwendung dieses Prozesses wird die Anzahl k der nächsten Nachbarn des neuen Datensatzes verwendet, um zu entscheiden, zu welcher Klasse der neue Datensatz gehört.
+
+\paragraph{Ablauf des k-nächste-Nachbarn-Verfahrens}
+
+\begin{enumerate}
+    \item Die Distanzen zwischen dem neuen Datensatz und den Beispieldatensätzen werden berechnet.
+    \item Die k nächsten Datenpunkte und ihre Klassen werden bestimmt.
+    \item Der neue Datensatz wird basierend auf der Mehrheitsklasse der k nächsten Nachbarn entschieden.
+\end{enumerate}
