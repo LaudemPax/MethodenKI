@@ -1,0 +1,34 @@
+\section{Lernfähigen Systeme}
+
+Ein lernfähiges System wertet aufbereitete Daten aus, um relevantes Wissen für die Durchführung einer Aufgabe zu extrahieren. Dieses Wissen wird im maschinellen Lernen als ``Modelle'' bezeichnet und entweder deklarativ (symbolisch), numerisch (subsymbolisch) oder prozedural (Programmcode) dargestellt.
+
+Das Lernziel ist, Aufgaben effizienter und mit weniger Fehlern zu lösen, wenn das Modell verfeinert wird. Es kann auch erwünscht sein, dass ein maschinelles Lernmodell neue Aufgaben übernehmen kann, indem es neue Begriffe und ihre Bedeutungen, neue Assoziationen und neue Kausalzusammenhänge lernt.
+
+\subsection{Überwachtes vs Unüberwachtes Lernen}
+
+Es gibt im Allgemeinen zwei Arten von maschinellem Lernen: überwachtes Lernen und unüberwachtes Lernen. 
+
+\textbf{Beim überwachten Lernen} wird zwischen einer Lernphase und einer Testphase unterschieden. In der Testphase existiert ein ``Lehrer'', der den Beispieldatensatz klassifiziert und den Prozess überwacht. Während des Lernens trainiert sich das Modell anhand des gelabelten Datensatzes des Lehrers, und während der Testphase verwendet das Modell dann einen noch nicht zuvor gesehenen Datensatz ohne Labels und muss zeigen, wie gut es die Daten klassifizieren kann.
+
+\textbf{Beim unüberwachten Lernen} lernt das Modell selbstständig. Dies kann durch Data Mining erfolgen, indem ein Modell mit Daten ``gefüttert'' und nach Mustern gesucht wird, oder indem positive oder negative ``Erfahrungen'' verwendet werden, um ein Modell zum Lernen zu bringen. Die Verwendung dieses Ansatzes mit Erfahrungen wird als bestärkendes Lernen bezeichnet, bei dem das Modell basierend auf den Ergebnissen seines Trainings positives oder negatives Feedback erhält. Das Modell ändert sich dann basierend auf dem Feedback.
+
+\subsection{Algorithmische Ansätze zum maschinellen Lernen}
+
+Es gibt einige Ansätze für maschinelles Lernen, die häufig verwendet werden:
+
+\begin{itemize}
+    \item \textbf{Induktive Lernansätze:} Anhand konkreter Beispiele wird der allgemeine Fall abgeschlossen. Ein gutes Beispiel ist das Lernen von Begriffen.
+    \item \textbf{Statistiche Ansätze:} Anhand konkreter Beispiele wird auf die Häufigkeit des wahrscheinlichsten Falles geschlossen. Beispiele: Klassifikation mit ``ZeroR'', ``Naive-Bayes''.
+    \item \textbf{Geometrische Ansätze:} Betrachte Datensätze als Punkte in einem mehrdimensionalen Koordinatenraum und finde Muster in den Positionen der Datenpunkte. Beispiele: Regression, Support-Vector-Machines.
+    \item \textbf{Informationstheoretische Ansätze:} Einen Datensatz so in Teilmengen aufteilen, dass sich die Teilmengen möglichst stark voneinander unterscheiden. Beispiele: EM-Clustering, Entscheidungsbaum-Lerner.
+    \item \textbf{Symbolisch vs  Subsymbolisch Ansätze:} 
+    \begin{itemize}
+        \item Symbolisch: Das erlernte Wissen wird symbolisch dargestellt, z. B.: eine Menge von Regeln, prädikatenlogische Formeln, Entscheidungsbäume etc.
+        \item Subsymbolisch/Nueronal: Wissen wird nicht symbolisch gespeichert. z.B: Nueronale Netze, man lernt numerische Gewichte-
+    \end{itemize}
+    \item \textbf{Pipeline Ansatz (klasssich):} Der Lernprozess wird in verschiedene Schritte unterteilt und mit speziellen Techniken bearbeitet.
+    \item \textbf{End-to-End learning/ black-box KI:} Der Lernprozess ist nicht in viele Schritte unterteilt. Stattdessen wird ein tiefes neurales Netz verwendet.
+    \item \textbf{Transfer Learning:} Unter Verwendung von Daten aus Quelle A soll eine Schlussfolgerung von Domäne B gefunden. Dies geschieht, wenn zu wenige Datensätze zum Trainieren für Domäne B vorhanden sind. Dies wird angewendet, indem ein geeigneter Indikator im Datensatz für A ausgewählt wird, der für Domäne B verwendet werden kann.
+    \item \textbf{Lernen durch Vergleichen, Auszählen und aufteilen von Datensätzen:} Der Algorithmus durchläuft den Datensatz und versucht mit einem deterministischen Programm, das Lernziel zu erreichen. Beispiele: Naive Bayes, Entscheidungsbaum-Lerner.
+    \item \textbf{Iterative Lernverfahren/ Lernen in Epochen:} Der Lernprozess durchläuft den Datensatz mehrmals, um das Modell iterativ zu verfeinern. Beispiele: Neuronale Netze, Q-Learning, Regressionsverfahren mit mehreren Variablen.
+\end{itemize}
