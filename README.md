@@ -19,3 +19,5 @@
 - Chapter 9 done -> Vertiefung: no clue lol
 
 - Chapter 10 done -> Vertifeung_ no clue
+
+- Chapter 11 sorta done -> Vertiefung no clue, maybe extend 11.4 at the end
