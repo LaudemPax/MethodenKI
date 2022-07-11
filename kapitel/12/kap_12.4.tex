@@ -1,0 +1,12 @@
+\section{Evaluation von Klassifikationen}
+
+Beim maschinellen Lernen ist die Bewertung ein wichtiger Schritt für die Auswahl eines Klassifizierungsalgorithmus. Diese Auswertung erfolgt anhand von Testdaten, die nicht für das Training verwendet wurden. Ein guter Indikator für die Güte eines Klassifikators ist die Anzahl der Testdatensätze, die der Klassifikator richtig und falsch klassifiziert hat. Dies lässt sich am besten durch eine Konfusionsmatrix veranschaulichen.
+
+\subsection{Evaluation mittels Konfusionsmatrix}
+
+Bei einer Klassifikationsaufgabe, bei der Datensätze von \(n\) Klassen \(K_1, \ldots, K_n\) klassifiziert werden, wird folgendes durchgeführt:
+\begin{enumerate}
+    \item Unter Verwendung der Klassen \(K_1, \ldots, K_n\) wird eine Matrix \(M\) konstruiert.
+    \item In den diagonalen Feldern (\(K_i, K_i\)) von M wird die Anzahl der korrekt klassifizierten Datensätze eingetragen.
+    \item In den Feldern (\(K_r, K_s\)) wobei \(r \neq s\) wird die Anzahl der falsch klassifizierten Datensätze eingetragen.
+\end{enumerate}
