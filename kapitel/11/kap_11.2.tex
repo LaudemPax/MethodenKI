@@ -1,0 +1,80 @@
+\section{Lernen auf der Grundlage von Daten}
+
+Beim maschinellen Lernen sind \textbf{Daten} grundsätzlich alle maschinenlesbaren digitalen Darstellungen von Informationen. Ein \textbf{Datensatz} ist eine Struktur in Form von \(d=[d1, ..., dn]\), die aus mehreren Daten erstellt wird. Eine Sammlung von Datensätzen, die von maschinellen Lernprogrammen verarbeitet werden sollen, werden als \textbf{Datenkorpus} bezeichnet.
+
+\subsection{Einführung in Datensätzen}
+
+\paragraph{Format eines Datensatzes}
+
+Das Format eines Datensatzes hängt von der Art der zu verarbeitenden Daten ab. Für Datensätze mit booleschen Typen, nominalen oder numerischen Typen oder Zeitstempeln sind die gebräuchlichsten Datenformate Comma Seperated Values (CSV), Attribute-Relation-File-Format (ARFF), LIPSVM und JSON.
+
+\paragraph{Arten von Merkmalen}
+
+Bei der Arbeit mit Datensätzen sind vor allem die im Datensatz gespeicherten Merkmale zu beachten. Es gibt verschiedene Arten von Merkmalen, und die Art beeinflusst die Art der Verarbeitung, die durchgeführt werden kann:
+
+\begin{itemize}
+    \item \textbf{Nominale Merkmale:} Merkmale, die für die Anwendung nicht in eine bedeutungstragende Orndnung gebracht werden konnten. Beispiele: Bool=\{True, False\}, Farbe=\{Rot, Grün, Blau\}, Geschlecht=\{w, m, d\}
+    \item \textbf{Ordinale (geordnete) Merkmale:} Merkmale, die für die Anwendung in eine bedeutungstragende Orndnung gebracht werden können. Beispiele: Wochentage=\{Mon, Di,  Mi, \ldots\}, Noten=\{sehr gut, gut, \ldots\}
+    \item \textbf{Numerische Merkmale:} Die Merkmale sind Zahlenwerte, die einen metrischen Abstand definieren können. Beispiele: Größe, Gewicht, Preis
+\end{itemize}
+
+\subsection{Bearbeiten mit Merkmalen}
+
+\paragraph{Vergleich von binären Merkmalen}
+
+Gegeben seien zwei Objekte X, Y mit binären Eigenschaften \(b_1, \ldots\, b_k\). Folgende Variablen werden verwendet:
+
+\begin{itemize}
+    \item \textbf{pp=} Anzahl positiver Merkmalen, die sich auf beide Objekte beziehen.
+    \item \textbf{pn=} Anzahl von Merkmalen, die sich positiv auf X, aber negativ auf Y beziehen.
+    \item \textbf{np=} Anzahl von Merkmalen, die sich negativ auf X, aber positiv auf Y beziehen.
+    \item \textbf{nn=} Anzahl negative Merkmalen, die sich auf beide Objekte beziehen.
+\end{itemize}
+
+Um den Abstand zwischen zwei Objekten zu berechnen, die diese binären Eigenschaften teilen, kann das Folgende verwendet werden:
+
+\emph{Hamming Distanz:}
+
+\[D_{Ham} (x,y) = pn + np\]
+
+\emph{Simple Matching Distanz:}
+
+\[D_{SMD} (x,y) = \frac{pn + np}{pp+pn+np+nn}\]
+
+\emph{Jaccard Distanz:}
+
+\[D_{JD} (x,y) = \frac{pn + np}{pp+pn+np}\]
+
+\paragraph{Vergleich von nominalen Merkmalen}
+
+Das Problem mit nominalen Merkmalen ist, dass es nicht möglich ist, sie sinnvoll in eine Rangfolge zu ordnen. Um dies zu lösen, kann die nominalen Merkmalen binarisiert werden, indem man für jeden möglichen Merkmalswert ein binäres Merkmal zuordnet.
+
+Zum Beispiel für den Familienstand von zwei Personen, \(P_1, P_2\), können drei boolesche Attribute zugeordnet werden:-
+
+\[ledig(P) -> \{TRUE, FALSE\}\]
+
+\[verheiratet(P) -> \{TRUE, FALSE\}\]
+
+\[geschieden(P) -> \{TRUE, FALSE\}\]
+
+Und jetzt können die gleichen Methoden für binäre Merkmale wiederverwendet werden.
+
+\paragraph{Vergleich von ordinalen Merkmalen}
+
+Für ordinale Merkmale \(m \in \{o_1, o_2, \ldots, o_m\}\) ist der Ansatz einfacher. Es müssen lediglich die Rangordnungen der Elemente ermittelt werden und als Differenz der Rangordnungen kann die Distanz berechnet werden:
+
+\[D_m(X_m, Y_m) = | Rang(X_m) - Rang(Y_m) |\]
+
+\paragraph{Vergleich von metrischen Merkmalen}
+
+Für diesen ist der Ansatz ähnlich wie bei nominalen Merkmalen, da die Differenz zwischen ihnen berechnet wird:
+
+\[D_m(X_m, Y_m) = | X_m - Y_m |\]
+
+\subsection{Auswahl von Merkmalen}
+
+Es ist wichtig, die richtigen Merkmale für die Aufgabe auszuwählen. Generell sollte man Merkmale wählen, die für alle beobachteten Objekte gelten, einfach und zuverlässig bestimmt werden können und für die jeweilige Aufgabe relevant sind.
+
+Für maschinelle Lernanwendungen ist es jedoch gut, so wenige Merkmale wie nötig zu verwenden, um die Komplexität des Modells zu reduzieren. Anhand eines Korrelationsquotienten ist es möglich, relevante Merkmalspaare in Datensätzen zu finden.
+
+Vor der Nutzung eines Datensatzes hilft es, eine sogenannte Datenbereinigung durchzuführen. Dazu sollte man Ausreißer oder unplausible Werte eliminieren, die Daten neu strukturieren, um sie an maschinelle Lernalgorithmen anzupassen und fehlende Werte zu behandeln.
