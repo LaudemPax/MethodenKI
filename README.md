@@ -22,4 +22,4 @@
 
 - Chapter 11 sorta done -> Vertiefung no clue, maybe extend 11.4 at the end
 
-- Chapter 12 otw -> Vertiefung stuff with the tools presetented. KNIME etc
+- Chapter 12 otw (just SVM left)-> Vertiefung stuff with the tools presetented. KNIME etc
