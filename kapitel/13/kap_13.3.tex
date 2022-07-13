@@ -1,0 +1,22 @@
+\section{Finden von Assoziationsregeln}
+
+Bei einer bestimmten Anzahl von n-dimensionalen Datensätzen in einer relationalen Datenbank werden die Zuordnungen von Attributen in Form von WENN-DANN-Regeln gesucht. Am besten lässt sich dies anhand eines konkreten Beispiels erläutern: der Warenkorbanalyse
+
+\paragraph{Warenkorbanalyse}
+
+Es stehen viele Produkte \(a_1, a_2, \ldots, a_n\) zur Auswahl. In einem Warenkorb ist jedes Produkt entweder vorhanden oder nicht. Eine \(m\) Anzahl von Warenkörben wird untersucht, um Assoziationsregeln in Form von:
+
+\[\textnormal{Wenn \(a_i\) im Korb dann auch \(a_k\)}\]
+
+Jeder der Warenkörbe wird als Datensatz (\(a_1, a_2, \ldots, a_n\)) dargestellt, wobei \(a_i\) der Platzhalter für ein Produkt ist. Alle möglichen Produktkombinationen werden gebildet und die Häufigkeit dieser Kombinationen in den Datensätzen gezählt.
+
+\paragraph{Bewertungskriterien für Regeln}
+
+Es gibt einige Bewertungskriterien, anhand derer festgestellt werden kann, ob eine Regel relevant ist:
+
+\begin{itemize}
+    \item \textbf{Support:} bestimme den Verhältnis zwischen der Häufigkeit des Auftretens eines Produkts in einer Kombination und der Anzahl der beobachteten Warenkörbe. \[support(a_i) = \frac{\#a_i}{m}\] \[support(a_i \rightarrow a_k) = \frac{\#(a_i, a_k)}{m}\] wobei \(\#a_i\) ist die Anzahl der Vorkommen von Produkt \(a_i\) in allen Datensätzen und \(\#(a_i, a_k)\) ist die Anzahl der Vorkommen der Kombination \((a_i, a_k)\) in allen Datensätzen
+    \item \textbf{Confidence}: Verhältnis des Auftretens der Kombination \((a_i ,a_k )\) zur Anzahl des Auftretens des Produkts \(a_i\) \[confidence(a_i \rightarrow a_k) = \frac{\#(a_i, a_k)}{\#a_i}\]
+    \item \textbf{Expected Confidence:} Verhältnis des Auftretens der Regelkonklusion \(ak\) zur Anzahl aller betracteten Warenkörbe. \[expected \textnormal{ } confidence(a_k) = \frac{\#a_k}{m}\]
+    \item \textbf{Lift:} Verhältnis der Confidence der Regel zum Support der Regel der Regel-Konklusion \[lift(a_i \rightarrow a_k) = \frac{confidence(a_i \rightarrow a_k)}{expected\_confidence(a_k)}\]
+\end{itemize}

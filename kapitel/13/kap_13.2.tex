@@ -12,5 +12,43 @@ Um ein Clustering zu erreichen, werden ähnliche Objekte zusammen gruppiert, währ
     \item In einem Datensatz wird nach der Mindestanzahl von Clustern gesucht.
     \item Objekte im selben Cluster müssen so ähnlich wie möglich sein.
     \item Objekte im selben Cluster müssen so ähnlich wie möglich sein.
-    \item Eventuell sollten die Cluster auch hierarchisch geordnet werden können
+    \item Eventuell sollten die Cluster auch hierarchisch geordnet werden können.
 \end{itemize}
+
+\subsection{Clusterbildungverfahren}
+
+Bei der Auswahl von Merkmalen sollen die Merkmalen, die für alle Objekte auch Merkmalsausprägungen aufweisen werden, die mit vertretbarem Aufwand ermittelt werden können.
+
+\paragraph{Typen von Merkmalen:}
+\begin{itemize}
+    \item Nominale Merkmale: z.B Namen, Farbe, \ldots
+    \item Ordinale (geordnete) Merkmale: z.B Wochentage, Schulnoten, \ldots
+    \item Metrische Merkmale: z.B Größe, Gewicht, Preis, \ldots
+\end{itemize}
+
+Die Clusteranalyse kann entweder hierarchisch oder durch Partitionierung angegangen werden. Beim hierarchischen Ansatz gibt es zwei Möglichkeiten: Top-Down, das mit einer Klasse beginnt, die später in mehrere Klassen aufgeteilt wird, oder Bottom-Up, das darin besteht, Klassen zusammenzufassen. Der Partitionierungsansatz gruppiert Objekte durch Umgruppierung. Jede Klasse hat einen vordefinierten "Kristallisationskern". Jedes neue Objekt wird anhand seiner Entfernung zum nächsten Kristallisationskern eingeordnet.
+
+\paragraph{Hierarchisches Clustering}
+
+Beim hierarchischen Clustering geht es einfach darum, den Abstand zwischen Datenpunkten zu bestimmen und Objektpaare mit minimalen Abständen zwischen ihnen zu finden. Dies wird kontinuierlich durchgeführt, bis eine Hierarchie aufgebaut ist.
+
+\begin{figure}[H]
+    \centering
+\includegraphics[width=0.9\textwidth]{figures/kap13/hierarchy-clustering.png}
+    \caption{Hierarchisches Clustering}
+    \label{fig:heirarchical-clustering}
+\end{figure}
+
+Beim hierarchischen Ansatz stellt sich die Frage, wie Klassen gruppiert werden können. Grundlage für dieses Verfahren ist die Bestimmung eines ?Klassenabstands?. Dies kann mit einigen Methoden erfolgen, z. B. mit der Next-Neighbour-Methode, mit der durchschnittlichen Entfernung zwischen Instanzen einer Klasse oder mit der Berechnung der Entfernung zwischen dem Mittelpunkt zweier Klassen.
+
+\paragraph{K-Means clustering}
+
+Für den Partitionierungsansatz gibt es ein Verfahren, der als ``K-Means-Clustering'' bekannt ist. Für diesen Ansatz wird die gewünschte Anzahl von Klassen, \(k\), angegeben, in die der Datensatz gruppiert werden soll. Gehe dann wie folgt vor:
+
+\begin{enumerate}
+    \item Für jeden Cluster wird ein Clusterschwerpunkt gewählt, der ein beliebiges Objekt oder keines der Objekte sein kann.
+    \item Dann wird für alle Objekte der Abstand zwischen dem Objekt und dem nächsten Cluster-Schwerpunkt berechnet. Jedes Objekt wird in dem Cluster eingeordnet, das den geringesten Abstand aufweist.
+    \item Die Clusterzentrierung für alle Cluster wird dann neu berechnet.
+    \item Die Schritte 2 und 3 werden wiederholt, bis die Clusterschwerpunkte stabil sind.
+\end{enumerate}
+
