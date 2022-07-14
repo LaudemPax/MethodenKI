@@ -1,0 +1,19 @@
+\section{Lernen durch positives und negatives Feedback}
+
+Das allgemeine Ziel eines Modells, das diese Art des Lernens durchläuft, ist, dass es entweder ``überlebt'' oder von erfolgreichen Reaktionen gewinnen. Das genauere Ziel des Modales ist es, eine Überlebens- oder Gewinnstrategie (engl. Policy) zu entwickeln, um die erhaltenen Belohnungen zu maximieren.
+
+Der Lerner weiß zunächst nichts darüber, was vor ihm liegt und was ihn vor der Exploration erwartet. Der Lernende muss sich also entscheiden, ob er einen neuen Zustand erkunden oder in einen bereits bekannten Zustand übergehen soll.
+
+\paragraph{Lernstrategiebeispiel:}
+
+\begin{enumerate}
+    \item Lerner befindet sich in einem Zustand \(s_i\) in einem \textbf{diskreten} Zustandsraum \(\Sigma\).
+    \item Der Lerner versucht dann, ein oder mehrere Ziele zu erreichen.
+    \item Im Zustand \(s_i\) kann der Lernende aus einer Reihe von auszuführenden Aktionen \(A=\{a_{i,1}, \ldots, a_{a,n}\}\) wählen.
+    \item Von der Ausführung der Aktion \(a_{i,k}\) bewegt sich der Lerner zum nächsten Zustand.
+    \item Im nächsten Zustand erhält der Lerner eine Belohnung oder Bestrafung, je nachdem, wie gut die Handlung dazu beigetragen hat, das Ziel zu erreichen.
+\end{enumerate}
+
+Dies wirft natürlich die Frage auf: Wie soll das Modell im Zustand \(s_i\) die beste Aktion, \(a\) auswählen? In diesem Fall wird nach der Funktion \(f^\pi\) gesucht, die basierend auf dem aktuellen Zustand \(s_i\) die beste Aktion \(a_{i,k}\) empfiehlt: \[f^\pi:\Sigma \rightarrow A \textnormal{ mit } f^\pi(s_i)=a_{i,k} \]
+
+In dieser Notation stellt \(\pi\) eine Abfolge von Aktionen (Strategie oder Policy) dar, die mit \(f^\pi\) bestimmt wird.
