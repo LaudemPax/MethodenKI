@@ -30,6 +30,12 @@ Der Wert von \(\gamma\) steuert, wie wichtig die Vorausschau auf das Ergebnis de
 
 Bei der erstmaligen Initialisierung der Werte der Q-Tabelle kann es vorteilhaft sein, diese auf Zufallswerte zu initialisieren. Auf diese Weise kann es sein, dass einige der Werte bereits nahe am idealen Wert der Annäherung liegen. Alternativ werden die Werte alle mit demselben festen Wert initialisiert.
 
-In der Q-learn-Regel soll der Term \(max_k\{Q(s_{i+k}, a_k)\}\) die am besten bewertete Aktion im Vorausschauen auswählen. Dies ist als ``greedy''-Ansatz bekannt und kann dazu führen, dass bessere globale Strategien übersehen werden. Um dies zu überwinden, wird \(\epsilon\textnormal{-soft}\) verwendet. Das bedeutet, dass in 1 bis \(\epsilon\) \% der Fälle, die gewählte Look-Ahead-Aktion zufällig ausgewählt wird.
+In der Q-learn-Regel soll der Term \(max_k\{Q(s_{i+k}, a_k)\}\) die am besten bewertete Aktion im Vorausschauen auswählen. Dies ist als ``greedy''-Ansatz bekannt und kann dazu führen, dass bessere globale Strategien übersehen werden. Um dies zu überwinden, wird \(\epsilon\textnormal{-soft}\) verwendet. Das bedeutet, dass in 1 bis \(\epsilon\) \% der Fälle, die gewählte Look-Ahead-Aktion zufällig ausgewählt wird. 
 
 \subsection{Bewertung von Q-Learning}
+
+Q-Lernen ist auch für Aufgaben praktisch, in denen der Zustandsraum unbekannt ist. In einem solchen Fall würde die Q-Tabelle nach und nach um neu entdeckte Zustände und Übergänge erweitert.
+
+Dieser Lernprozess kann auch bei nicht deterministischen Aufgaben eingesetzt werden. Die Belohnung kann dann beispielsweise davon abhängen, wie gut gewürfelt wurde. Dies macht die Q-Learning-Methode zu einem universellen Verfahren, da nur wenig Wissen über die Domäne erforderlich ist.
+
+Das Verfahren ist jedoch nicht ohne Probleme. Wenn der Zustandsraum erweitert wird, würde die Q-Tabelle exponentiell wachsen und schnell zu groß für ein explizites Speichern werden. Außerdem davon erfordert Q-Learning mehrere Läufe mit unterschiedlichen Parametern in der Q-Learn-Regel, was bedeutet, dass die Trainingszeiten lang sein können. Weiterhin ist das Lernverfahren nur dann praktikabel, wenn die Aktionen virtuell in einer simulierten Umgebung durchgeführt werden können.
