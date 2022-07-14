@@ -16,4 +16,11 @@ Der Lerner weiß zunächst nichts darüber, was vor ihm liegt und was ihn vor der E
 
 Dies wirft natürlich die Frage auf: Wie soll das Modell im Zustand \(s_i\) die beste Aktion, \(a\) auswählen? In diesem Fall wird nach der Funktion \(f^\pi\) gesucht, die basierend auf dem aktuellen Zustand \(s_i\) die beste Aktion \(a_{i,k}\) empfiehlt: \[f^\pi:\Sigma \rightarrow A \textnormal{ mit } f^\pi(s_i)=a_{i,k} \]
 
-In dieser Notation stellt \(\pi\) eine Abfolge von Aktionen (Strategie oder Policy) dar, die mit \(f^\pi\) bestimmt wird.
+In dieser Notation stellt \(\pi\) eine Abfolge von Aktionen (Strategie oder Policy) dar, die mit \(f^\pi\) bestimmt wird. \(f^\pi\) kann als eine Lookup-Tabelle implementiert werden. 
+
+Ein alternativer Ansatz wäre, die Erfolgsaussichten der Durchführung einer Aktion \(a_{i,k}\) in Zustand \(s_i\) zu bestimmen. Dafür gibt es zwei Varianten:
+
+\begin{itemize}
+    \item \textbf{Value-Funktion:} \(V^\pi(s) \rightarrow w \in IR\). Wenn die Policy \(\pi\) im Zustand \(s\) befolgt wird, wird die Belohnung \(w\) erhalten.
+    \item \textbf{Q-Funktion:} \(Q^\pi(s,a) \rightarrow w \in IR\). Wenn die Policy \(\pi\) im Zustand \(s\) befolgt wird, wird die Belohnung \(w\) erhalten. Der Vorteil des Q-Wertes ist, dass er als Entscheidungshilfe dient, um auszuwählen, welche verfügbare Aktion, \(a_{i,k}\) im Zustand \(s_i\).
+\end{itemize}

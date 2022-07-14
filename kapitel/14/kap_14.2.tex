@@ -1,0 +1,35 @@
+\section{Der Q-Learning Ansatz}
+
+Q-Learning ist ein Ansatz, um die optimale Policy \(\pi\) zu finden. Dies wird iterativ durchgeführt, um die Funktion \(Q^\pi(s,a) \rightarrow w \in IR\) zu approximieren. In jedem Iterationsschritt wird ein Zustand-Aktions-Paar in einer Tabelle gemäß der folgenden Q-Update-Regel aktualisiert:
+
+\[Q(s_{i_{new}}, a_{j_{new}}) = Q(s_{i_{old}}, a_{j_{old}}) + \alpha * (r(s_i, a_j) + \gamma * max_k\{Q(s_{i+k}, a_k)\} - Q(s_{i_{old}}, a_{j_{old}}))\]
+
+wobei \(\alpha\) die Lernrate, \(r\) die Belohnung im Zustand \(s_i\), wenn Aktion \(a_i\) ausgeführt wird, \(\gamma\) der ``Discount''-parameter zur Gewichtung des Look Ahead und \(Q\) die Look-Ahead-Funktion für zukünftige Belohnungen sind.
+
+Die Aktionszustandspaare werden in einer Tabelle gespeichert, die als \textbf{Q-Tabelle} bekannt ist, die meist als geschachteltes Array implementiert ist. Die Q-Tabelle wird während des Lernprozesses iterativ aktualisiert, um eine Tabelle mit aussagekräftigen Werten für jede Aktion basierend auf dem aktuellen Zustand zu erhalten.
+
+Q-Learning erfordert viel Aufwand, aber es hat sich gezeigt, dass, wenn die Anzahl der Iterationen gegen unendlich wird, die durch Q-Learning gefundene Richtlinie zur optimalen Strategie für die gegebenen Zustandsaktionspaare konvergiert.
+
+In der Praxis ist es jedoch nicht möglich, ewig zu trainieren, daher sind Abbruchkriterien erforderlich: Abbruch nach definierter Anzahl von ITerationen, Abbruch wenn nur noch kleine Änderungen beim Update erzielt werden oder Abbruch, die bis dato gelernter Strategie das Problem annähernd löst.
+
+Unter Verwendung der erlernten Q-Tabelle wird die beste Aktion für jeden Zustand basierend auf der Aktion mit dem höchsten Q-Wert ausgewählt. So wird Q-learning durchgeführt.
+
+\subsection{Steuerung des Lernverfahrens}
+
+Abgesehen von der Anzahl der Epochen können die in der Q-Update-Regel enthaltenen Parameter \(\alpha\) und \(\alpha\) den Lernprozess beeinflussen.
+
+\paragraph{Lernrate, \(\alpha\)}
+
+Der Wert von \(\alpha\) muss zwischen 1 und 0 liegen. Ein zu großer Wert (\(\alpha \sim 1\)) könnte dazu führen, dass die Q-Funktion zu grob angenähert wird. Wählen Sie einen zu kleinen Alpha-Wert, (\(\alpha \sim 0\)), dann benötigt der Trainingsprozess mehr Zeit.
+
+\paragraph{Discountfaktor, \(\gamma\)}
+
+Der Wert von \(\gamma\) steuert, wie wichtig die Vorausschau auf das Ergebnis der Regel ist. Ohne Look-Ahead würden nur lokale Bewertungen berücksichtigt und keine globale Strategie gelernt. Daher wird normalerweise ein Wert von 0,8 bis 0,95 gewählt. Wenn der Wert jedoch zu groß ist, kann dies den Belohnungswert überschatten, was nicht erwünscht ist.
+
+\subsection{Rolle des Zufalls beim Q-Learning}
+
+Bei der erstmaligen Initialisierung der Werte der Q-Tabelle kann es vorteilhaft sein, diese auf Zufallswerte zu initialisieren. Auf diese Weise kann es sein, dass einige der Werte bereits nahe am idealen Wert der Annäherung liegen. Alternativ werden die Werte alle mit demselben festen Wert initialisiert.
+
+In der Q-learn-Regel soll der Term \(max_k\{Q(s_{i+k}, a_k)\}\) die am besten bewertete Aktion im Vorausschauen auswählen. Dies ist als ``greedy''-Ansatz bekannt und kann dazu führen, dass bessere globale Strategien übersehen werden. Um dies zu überwinden, wird \(\epsilon\textnormal{-soft}\) verwendet. Das bedeutet, dass in 1 bis \(\epsilon\) \% der Fälle, die gewählte Look-Ahead-Aktion zufällig ausgewählt wird.
+
+\subsection{Bewertung von Q-Learning}
