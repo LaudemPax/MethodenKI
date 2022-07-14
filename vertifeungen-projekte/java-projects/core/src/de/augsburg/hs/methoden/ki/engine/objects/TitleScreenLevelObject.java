@@ -12,6 +12,11 @@ public class TitleScreenLevelObject extends GameObject {
     }
 
     @Override
+    protected void create() {
+
+    }
+
+    @Override
     public void update(float delta) {
 
     }

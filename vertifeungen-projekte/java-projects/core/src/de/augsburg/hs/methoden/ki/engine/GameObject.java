@@ -18,8 +18,11 @@ public abstract class GameObject {
         this.position = position;
     }
 
-    public void step(float delta) {
+    protected abstract void create();
+
+    public void step(float delta, SpriteBatch batch) {
         this.update(delta);
+        this.render(batch);
     }
 
     protected abstract void update(float delta);
