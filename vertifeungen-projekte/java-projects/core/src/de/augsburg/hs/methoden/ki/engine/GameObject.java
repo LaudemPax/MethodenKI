@@ -6,8 +6,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class GameObject {
 
-    private Sprite sprite;
-    private Vector2 position;
+    protected Sprite sprite;
+    protected Vector2 position;
 
     public GameObject(Sprite sprite) {
         this(sprite, new Vector2(0,0));
@@ -29,6 +29,27 @@ public abstract class GameObject {
 
     protected void render(SpriteBatch batch){
         sprite.draw(batch);
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
+    public void setPosition(float x, float y) {
+        this.position.x = x;
+        this.position.y = y;
+    }
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+    }
+
+    public Sprite getSprite() {
+        return sprite;
     }
 
 }
