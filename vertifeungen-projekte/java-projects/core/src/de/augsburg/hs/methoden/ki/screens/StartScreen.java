@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import de.augsburg.hs.methoden.ki.MainGame;
 import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
-import de.augsburg.hs.methoden.ki.engine.objects.StartScreenLevelObject;
+import de.augsburg.hs.methoden.ki.actors.StartScreenLevelActor;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ public class StartScreen extends AbstractScreen {
 
     private final int MARGIN = 20;
 
-    private ArrayList<StartScreenLevelObject> levelObjects;
+    private ArrayList<StartScreenLevelActor> levelActors;
 
     public StartScreen(MainGame game) {
         super(game);
@@ -23,14 +23,14 @@ public class StartScreen extends AbstractScreen {
 
     @Override
     public void create() {
-        levelObjects = new ArrayList<>();
-        levelObjects.add(new StartScreenLevelObject("Kapitel 3: A* Pfadsuche", new AStarPathfindingScreen(game)));
-        levelObjects.add(new StartScreenLevelObject("Kapitel 4: MinMax Algo", null));
-        levelObjects.add(new StartScreenLevelObject("Kapitel 5: Constraints", null));
+        levelActors = new ArrayList<>();
+        levelActors.add(new StartScreenLevelActor("Kapitel 3: A* Pfadsuche", new AStarPathfindingScreen(game)));
+        levelActors.add(new StartScreenLevelActor("Kapitel 4: MinMax Algo", null));
+        levelActors.add(new StartScreenLevelActor("Kapitel 5: Constraints", null));
 
         int screenWidth = Gdx.graphics.getWidth();
 
-        int widthOfObjects = 2 * MARGIN + StartScreenLevelObject.WIDTH;
+        int widthOfObjects = 2 * MARGIN + StartScreenLevelActor.WIDTH;
         int objectsPerRow = screenWidth / widthOfObjects;
         if(objectsPerRow < 1) objectsPerRow = 1;
 
@@ -38,24 +38,24 @@ public class StartScreen extends AbstractScreen {
         int totalWidthOfRow = 0;
         int lastYPosition = 0;
 
-        for(int i = 1; i <= levelObjects.size(); i++) {
-            StartScreenLevelObject obj = levelObjects.get(i - 1);
+        for(int i = 1; i <= levelActors.size(); i++) {
+            StartScreenLevelActor obj = levelActors.get(i - 1);
 
             int xPosition = totalWidthOfRow + MARGIN;
             int yPosition = lastYPosition + MARGIN;
 
             // OpenGL has its cooridnates on the bottom left corner
             int invertedYPosition = Gdx.graphics.getHeight() - yPosition;
-            invertedYPosition -= StartScreenLevelObject.HEIGHT;
+            invertedYPosition -= StartScreenLevelActor.HEIGHT;
 
             obj.setPosition(xPosition, invertedYPosition);
 
             // each row
             if((i % objectsPerRow) > 0 || i == 1){
-                totalWidthOfRow += MARGIN + StartScreenLevelObject.WIDTH;
+                totalWidthOfRow += MARGIN + StartScreenLevelActor.WIDTH;
             } else {
                 totalWidthOfRow = 0;
-                lastYPosition += MARGIN + StartScreenLevelObject.HEIGHT;
+                lastYPosition += MARGIN + StartScreenLevelActor.HEIGHT;
             }
         }
 
@@ -64,15 +64,15 @@ public class StartScreen extends AbstractScreen {
 
     @Override
     public void update(float delta) {
-        for(StartScreenLevelObject object : levelObjects) {
-            object.update(delta);
+        for(StartScreenLevelActor actor : levelActors) {
+            actor.update(delta);
         }
     }
 
     @Override
     protected void draw(SpriteBatch batch) {
-         for(StartScreenLevelObject object : levelObjects) {
-            object.render(batch);
+         for(StartScreenLevelActor actor : levelActors) {
+            actor.render(batch);
          }
     }
 
@@ -97,9 +97,9 @@ public class StartScreen extends AbstractScreen {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
                 Vector3 mousePosition = camera.unproject(new Vector3(screenX, screenY, 0));
 
-                for(StartScreenLevelObject obj : levelObjects) {
-                    if(isMouseWithinObjectBounds(mousePosition, obj)){
-                        game.setScreen(obj.getTargetScreen());
+                for(StartScreenLevelActor actor : levelActors) {
+                    if(isMouseWithinLevelActorBounds(mousePosition, actor)){
+                        game.setScreen(actor.getTargetScreen());
                     }
                 }
 
@@ -120,8 +120,8 @@ public class StartScreen extends AbstractScreen {
             public boolean mouseMoved(int screenX, int screenY) {
                 Vector3 mousePosition = camera.unproject(new Vector3(screenX, screenY, 0));
 
-                for(StartScreenLevelObject obj : levelObjects) {
-                    obj.setOnHover(isMouseWithinObjectBounds(mousePosition, obj));
+                for(StartScreenLevelActor actor : levelActors) {
+                    actor.setOnHover(isMouseWithinLevelActorBounds(mousePosition, actor));
                 }
 
                 return false;
@@ -134,10 +134,10 @@ public class StartScreen extends AbstractScreen {
         });
     }
 
-    private boolean isMouseWithinObjectBounds(Vector3 mousePos, StartScreenLevelObject object) {
-        Vector2 position = object.getPosition();
-        boolean mouseInXBounds = (mousePos.x > position.x  && (mousePos.x < position.x + StartScreenLevelObject.WIDTH));
-        boolean mouseInYBounds = (mousePos.y > position.y && (mousePos.y < position.y + StartScreenLevelObject.HEIGHT));
+    private boolean isMouseWithinLevelActorBounds(Vector3 mousePos, StartScreenLevelActor actor) {
+        Vector2 position = actor.getPosition();
+        boolean mouseInXBounds = (mousePos.x > position.x  && (mousePos.x < position.x + StartScreenLevelActor.WIDTH));
+        boolean mouseInYBounds = (mousePos.y > position.y && (mousePos.y < position.y + StartScreenLevelActor.HEIGHT));
         return mouseInXBounds && mouseInYBounds;
     }
 }

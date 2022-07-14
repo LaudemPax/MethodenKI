@@ -1,18 +1,14 @@
-package de.augsburg.hs.methoden.ki.engine.objects;
+package de.augsburg.hs.methoden.ki.actors;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
-import de.augsburg.hs.methoden.ki.engine.GameObject;
+import de.augsburg.hs.methoden.ki.engine.Actor;
 
-public class StartScreenLevelObject extends GameObject {
+public class StartScreenLevelActor extends Actor {
 
     private String levelName;
 
@@ -32,7 +28,7 @@ public class StartScreenLevelObject extends GameObject {
 
     private boolean onHoverFlag = false;
 
-    public StartScreenLevelObject(String levelName, AbstractScreen targetScreen){
+    public StartScreenLevelActor(String levelName, AbstractScreen targetScreen){
         super(new Sprite());
         this.levelName = levelName;
         this.targetScreen = targetScreen;

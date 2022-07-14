@@ -4,16 +4,16 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class GameObject {
+public abstract class Actor {
 
     protected Sprite sprite;
     protected Vector2 position;
 
-    public GameObject(Sprite sprite) {
+    public Actor(Sprite sprite) {
         this(sprite, new Vector2(0,0));
     }
 
-    public GameObject(Sprite sprite, Vector2 position) {
+    public Actor(Sprite sprite, Vector2 position) {
         this.sprite = sprite;
         this.position = position;
 
