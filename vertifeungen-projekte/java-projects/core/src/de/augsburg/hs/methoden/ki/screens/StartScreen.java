@@ -3,6 +3,7 @@ package de.augsburg.hs.methoden.ki.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import de.augsburg.hs.methoden.ki.MainGame;
 import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
@@ -23,15 +24,9 @@ public class StartScreen extends AbstractScreen {
     @Override
     public void create() {
         levelObjects = new ArrayList<>();
-        levelObjects.add(new StartScreenLevelObject("test 1"));
-        levelObjects.add(new StartScreenLevelObject("test 2"));
-        levelObjects.add(new StartScreenLevelObject("test 3"));
-        levelObjects.add(new StartScreenLevelObject("test 4"));
-        levelObjects.add(new StartScreenLevelObject("test 5"));
-        levelObjects.add(new StartScreenLevelObject("test 6"));
-        levelObjects.add(new StartScreenLevelObject("test 7"));
-        levelObjects.add(new StartScreenLevelObject("test 8"));
-        levelObjects.add(new StartScreenLevelObject("test 9"));
+        levelObjects.add(new StartScreenLevelObject("Kapitel 3: A* Pfadsuche", new AStarPathfindingScreen(game)));
+        levelObjects.add(new StartScreenLevelObject("Kapitel 4: MinMax Algo", null));
+        levelObjects.add(new StartScreenLevelObject("Kapitel 5: Constraints", null));
 
         int screenWidth = Gdx.graphics.getWidth();
 
@@ -100,6 +95,14 @@ public class StartScreen extends AbstractScreen {
 
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+                Vector3 mousePosition = camera.unproject(new Vector3(screenX, screenY, 0));
+
+                for(StartScreenLevelObject obj : levelObjects) {
+                    if(isMouseWithinObjectBounds(mousePosition, obj)){
+                        game.setScreen(obj.getTargetScreen());
+                    }
+                }
+
                 return false;
             }
 
@@ -115,11 +118,10 @@ public class StartScreen extends AbstractScreen {
 
             @Override
             public boolean mouseMoved(int screenX, int screenY) {
-
                 Vector3 mousePosition = camera.unproject(new Vector3(screenX, screenY, 0));
 
                 for(StartScreenLevelObject obj : levelObjects) {
-                    obj.updateMousePosition(mousePosition.x, mousePosition.y);
+                    obj.setOnHover(isMouseWithinObjectBounds(mousePosition, obj));
                 }
 
                 return false;
@@ -130,5 +132,12 @@ public class StartScreen extends AbstractScreen {
                 return false;
             }
         });
+    }
+
+    private boolean isMouseWithinObjectBounds(Vector3 mousePos, StartScreenLevelObject object) {
+        Vector2 position = object.getPosition();
+        boolean mouseInXBounds = (mousePos.x > position.x  && (mousePos.x < position.x + StartScreenLevelObject.WIDTH));
+        boolean mouseInYBounds = (mousePos.y > position.y && (mousePos.y < position.y + StartScreenLevelObject.HEIGHT));
+        return mouseInXBounds && mouseInYBounds;
     }
 }
