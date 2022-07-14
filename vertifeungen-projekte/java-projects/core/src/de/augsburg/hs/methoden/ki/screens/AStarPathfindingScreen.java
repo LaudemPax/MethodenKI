@@ -2,9 +2,9 @@ package de.augsburg.hs.methoden.ki.screens;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import de.augsburg.hs.methoden.ki.MainGame;
-import de.augsburg.hs.methoden.ki.engine.GameScreen;
+import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
 
-public class AStarPathfindingScreen extends GameScreen {
+public class AStarPathfindingScreen extends AbstractScreen {
 
 
     public AStarPathfindingScreen(MainGame game) {

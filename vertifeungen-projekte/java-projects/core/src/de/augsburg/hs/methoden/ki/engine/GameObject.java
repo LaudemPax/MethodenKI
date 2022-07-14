@@ -16,6 +16,8 @@ public abstract class GameObject {
     public GameObject(Sprite sprite, Vector2 position) {
         this.sprite = sprite;
         this.position = position;
+
+        create();
     }
 
     protected abstract void create();
