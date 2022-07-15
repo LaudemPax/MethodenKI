@@ -235,11 +235,18 @@ public class AStarPathfindingScreen extends AbstractScreen {
     }
 
     private void solvePathfindingTask() {
-
+        System.out.println("SOLVING TASK");
         CellNodeScorer nodeScorer = new CellNodeScorer();
         CellTargetScorer targetScorer = new CellTargetScorer();
 
         RouteFinder<CellNode> finder = new RouteFinder<>(cellNodeGraph, nodeScorer, targetScorer);
+
+        System.out.println("SOLVED!");
+        List<CellNode> route = finder.findRoute(startNode, targetNode);
+
+        for(CellNode node: route) {
+            String formatedCoordinates = String.format("(%f,%f)", node.getCoordinates().x, node.getCoordinates().y);
+        }
     }
 
     private void initializeInputListener () {
@@ -250,6 +257,7 @@ public class AStarPathfindingScreen extends AbstractScreen {
 
                 if(keycode == Input.Keys.ENTER) {
                     System.out.println("Find path!");
+                    solvePathfindingTask();
                 } else if(keycode == Input.Keys.SPACE) {
                     System.out.println("Randomize!");
                     clearPathfindingTask();
