@@ -72,7 +72,7 @@ public class StartScreen extends AbstractScreen {
     @Override
     protected void draw(SpriteBatch batch) {
          for(StartScreenLevelActor actor : levelActors) {
-            actor.render(batch);
+            actor.draw(batch);
          }
     }
 

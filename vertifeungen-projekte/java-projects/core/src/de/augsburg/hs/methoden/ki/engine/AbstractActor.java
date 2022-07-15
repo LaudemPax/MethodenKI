@@ -1,19 +1,29 @@
 package de.augsburg.hs.methoden.ki.engine;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
-public abstract class Actor {
+public abstract class AbstractActor {
 
     protected Sprite sprite;
     protected Vector2 position;
 
-    public Actor(Sprite sprite) {
+    public AbstractActor() {
+        this(new Sprite(), new Vector2(0,0));
+    }
+
+    public AbstractActor(Sprite sprite) {
         this(sprite, new Vector2(0,0));
     }
 
-    public Actor(Sprite sprite, Vector2 position) {
+    public AbstractActor(Vector2 position) {
+        this(new Sprite(), position);
+    }
+
+    public AbstractActor(Sprite sprite, Vector2 position) {
         this.sprite = sprite;
         this.position = position;
 
@@ -22,14 +32,11 @@ public abstract class Actor {
 
     protected abstract void create();
 
-    public void step(float delta, SpriteBatch batch) {
-        this.update(delta);
-        this.render(batch);
+    protected void update(float delta) {
+        sprite.setPosition(position.x, position.y);
     }
 
-    protected abstract void update(float delta);
-
-    protected void render(SpriteBatch batch){
+    protected void draw(SpriteBatch batch){
         sprite.draw(batch);
     }
 
@@ -54,4 +61,8 @@ public abstract class Actor {
         return sprite;
     }
 
+    public void loadSpriteFromAssets(String path) {
+        Texture texture = new Texture(Gdx.files.internal(path));
+        setSprite(new Sprite(texture));
+    }
 }

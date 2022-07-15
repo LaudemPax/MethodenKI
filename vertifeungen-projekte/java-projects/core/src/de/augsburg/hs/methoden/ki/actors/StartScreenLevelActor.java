@@ -6,9 +6,9 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
-import de.augsburg.hs.methoden.ki.engine.Actor;
+import de.augsburg.hs.methoden.ki.engine.AbstractActor;
 
-public class StartScreenLevelActor extends Actor {
+public class StartScreenLevelActor extends AbstractActor {
 
     private String levelName;
 
@@ -29,7 +29,6 @@ public class StartScreenLevelActor extends Actor {
     private boolean onHoverFlag = false;
 
     public StartScreenLevelActor(String levelName, AbstractScreen targetScreen){
-        super(new Sprite());
         this.levelName = levelName;
         this.targetScreen = targetScreen;
     }
@@ -57,7 +56,7 @@ public class StartScreenLevelActor extends Actor {
     }
 
     @Override
-    public void render(SpriteBatch batch) {
+    public void draw(SpriteBatch batch) {
 
         batch.end();
 
