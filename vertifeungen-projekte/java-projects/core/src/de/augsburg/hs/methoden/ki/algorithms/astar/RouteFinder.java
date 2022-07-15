@@ -1,8 +1,5 @@
 package de.augsburg.hs.methoden.ki.algorithms.astar;
 
-import de.augsburg.hs.methoden.ki.algorithms.Graph;
-import de.augsburg.hs.methoden.ki.algorithms.GraphNode;
-
 import java.util.*;
 
 public class RouteFinder<T extends GraphNode>  {

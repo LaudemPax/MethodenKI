@@ -1,7 +1,5 @@
 package de.augsburg.hs.methoden.ki.algorithms.astar;
 
-import de.augsburg.hs.methoden.ki.algorithms.GraphNode;
-
 public class RouteNode <T extends GraphNode> implements Comparable<RouteNode>{
 
     private final T current;

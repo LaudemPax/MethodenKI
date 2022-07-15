@@ -2,13 +2,12 @@ package de.augsburg.hs.methoden.ki.actors.startscreen;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
 import de.augsburg.hs.methoden.ki.engine.AbstractActor;
 
-public class StartScreenLevelActor extends AbstractActor {
+public class StartScreenButtonActor extends AbstractActor {
 
     private String levelName;
 
@@ -28,7 +27,7 @@ public class StartScreenLevelActor extends AbstractActor {
 
     private boolean onHoverFlag = false;
 
-    public StartScreenLevelActor(String levelName, AbstractScreen targetScreen){
+    public StartScreenButtonActor(String levelName, AbstractScreen targetScreen){
         this.levelName = levelName;
         this.targetScreen = targetScreen;
     }

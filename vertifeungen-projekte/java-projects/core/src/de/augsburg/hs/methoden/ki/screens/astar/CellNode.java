@@ -1,8 +1,7 @@
 package de.augsburg.hs.methoden.ki.screens.astar;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
-import de.augsburg.hs.methoden.ki.algorithms.GraphNode;
+import de.augsburg.hs.methoden.ki.algorithms.astar.GraphNode;
 
 public class CellNode implements GraphNode {
     private final Vector2 coordinates;

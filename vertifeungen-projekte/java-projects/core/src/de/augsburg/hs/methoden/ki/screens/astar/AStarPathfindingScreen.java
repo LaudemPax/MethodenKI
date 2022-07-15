@@ -12,8 +12,8 @@ import com.badlogic.gdx.math.Vector2;
 import de.augsburg.hs.methoden.ki.MainGame;
 import de.augsburg.hs.methoden.ki.actors.astar.AStarAgent;
 import de.augsburg.hs.methoden.ki.actors.astar.AStarTarget;
-import de.augsburg.hs.methoden.ki.algorithms.Graph;
-import de.augsburg.hs.methoden.ki.algorithms.GraphNode;
+import de.augsburg.hs.methoden.ki.algorithms.astar.Graph;
+import de.augsburg.hs.methoden.ki.algorithms.astar.GraphNode;
 import de.augsburg.hs.methoden.ki.algorithms.astar.RouteFinder;
 import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
 
@@ -57,6 +57,11 @@ public class AStarPathfindingScreen extends AbstractScreen {
         font.getData().setScale(2f);
 
         solvedRoute = new ArrayList<>();
+
+        CELL_ROWS = Gdx.graphics.getHeight() / CELL_SIZE;
+        CELL_COLUMNS = Gdx.graphics.getWidth() / CELL_SIZE;
+
+        generatePathfindingTask();
     }
 
     @Override
@@ -69,14 +74,6 @@ public class AStarPathfindingScreen extends AbstractScreen {
     @Override
     public void hide() {
         Gdx.input.setInputProcessor(null);
-    }
-
-    @Override
-    public void create() {
-        CELL_ROWS = Gdx.graphics.getHeight() / CELL_SIZE;
-        CELL_COLUMNS = Gdx.graphics.getWidth() / CELL_SIZE;
-
-        generatePathfindingTask();
     }
 
     private void generatePathfindingTask() {
@@ -331,6 +328,8 @@ public class AStarPathfindingScreen extends AbstractScreen {
                 } else if(keycode == Input.Keys.SPACE) {
                     clearPathfindingTask();
                     generatePathfindingTask();
+                } else if(keycode == Input.Keys.ESCAPE) {
+                    game.goToStartScreen();
                 }
 
                 return false;

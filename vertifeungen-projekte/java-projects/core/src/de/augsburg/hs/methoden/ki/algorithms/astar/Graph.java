@@ -1,4 +1,4 @@
-package de.augsburg.hs.methoden.ki.algorithms;
+package de.augsburg.hs.methoden.ki.algorithms.astar;
 
 import java.util.Map;
 import java.util.Set;

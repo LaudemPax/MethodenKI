@@ -11,7 +11,7 @@ import de.augsburg.hs.methoden.ki.MainGame;
 
 import java.util.ArrayList;
 
-public abstract class AbstractScreen extends ScreenAdapter {
+public class AbstractScreen extends ScreenAdapter {
 
     protected MainGame game;
     protected SpriteBatch batch;
@@ -28,8 +28,6 @@ public abstract class AbstractScreen extends ScreenAdapter {
         this.camera = game.getCamera();
         actors = new ArrayList<>();
         clearColor = new Color(0,0,0,1);
-
-        this.create();
     }
 
     @Override
@@ -39,8 +37,6 @@ public abstract class AbstractScreen extends ScreenAdapter {
         this.draw(batch);
         this.postDraw(batch);
     }
-
-    public abstract void create();
 
     public void update(float delta) {
         for(AbstractActor actor : actors) {

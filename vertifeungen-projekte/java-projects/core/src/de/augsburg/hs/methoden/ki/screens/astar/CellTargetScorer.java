@@ -1,7 +1,7 @@
 package de.augsburg.hs.methoden.ki.screens.astar;
 
 import com.badlogic.gdx.math.Vector2;
-import de.augsburg.hs.methoden.ki.algorithms.GraphNode;
+import de.augsburg.hs.methoden.ki.algorithms.astar.GraphNode;
 import de.augsburg.hs.methoden.ki.algorithms.astar.Scorer;
 
 /***
