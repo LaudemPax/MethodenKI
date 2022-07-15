@@ -9,6 +9,8 @@ public class AStarAgent extends AbstractActor {
 
     public AStarAgent(Vector2 position) {
         super(position);
+
+        setDrawCentered(true);
     }
 
     @Override

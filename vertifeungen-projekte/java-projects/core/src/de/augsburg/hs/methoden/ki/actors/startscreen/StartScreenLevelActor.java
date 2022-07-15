@@ -1,4 +1,4 @@
-package de.augsburg.hs.methoden.ki.actors;
+package de.augsburg.hs.methoden.ki.actors.startscreen;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

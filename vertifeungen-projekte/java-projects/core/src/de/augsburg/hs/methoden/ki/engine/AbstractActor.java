@@ -11,6 +11,8 @@ public abstract class AbstractActor {
     protected Sprite sprite;
     protected Vector2 position;
 
+    protected boolean isDrawCentered = false;
+
     public AbstractActor() {
         this(new Sprite(), new Vector2(0,0));
     }
@@ -37,6 +39,12 @@ public abstract class AbstractActor {
     }
 
     protected void draw(SpriteBatch batch){
+        if(isDrawCentered){
+            float adjustedX = sprite.getX() + (sprite.getWidth()/2f);
+            float adjustedY = sprite.getY() + (sprite.getHeight()/2f);
+            sprite.setPosition(adjustedX, adjustedY);
+        }
+
         sprite.draw(batch);
     }
 
@@ -64,5 +72,13 @@ public abstract class AbstractActor {
     public void loadSpriteFromAssets(String path) {
         Texture texture = new Texture(Gdx.files.internal(path));
         setSprite(new Sprite(texture));
+    }
+
+    public boolean isDrawCentered() {
+        return isDrawCentered;
+    }
+
+    public void setDrawCentered(boolean drawCentered) {
+        isDrawCentered = drawCentered;
     }
 }

@@ -7,11 +7,16 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import de.augsburg.hs.methoden.ki.MainGame;
 import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
-import de.augsburg.hs.methoden.ki.actors.StartScreenLevelActor;
+import de.augsburg.hs.methoden.ki.actors.startscreen.StartScreenLevelActor;
 import de.augsburg.hs.methoden.ki.screens.astar.AStarPathfindingScreen;
 
 import java.util.ArrayList;
 
+/***
+ *
+ * Start screen shows a few buttons which go to other screens when clicked
+ *
+ */
 public class StartScreen extends AbstractScreen {
 
     private final int MARGIN = 20;
