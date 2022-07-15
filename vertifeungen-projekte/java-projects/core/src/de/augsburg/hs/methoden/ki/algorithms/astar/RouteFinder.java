@@ -17,12 +17,16 @@ public class RouteFinder<T extends GraphNode>  {
     }
 
     public List<T> findRoute(T from, T to) {
+
+        // priority queue uses comparator to get the best entry
         Queue<RouteNode> openSet = new PriorityQueue<>();
-        Map<T, RouteNode<T>> allNodes = new HashMap<>();
+
+
+        Map<T, RouteNode<T>> visitedNodes = new HashMap<>();
 
         RouteNode<T> start = new RouteNode<>(from, null, 0d, targetScorer.computeCost(from, to));
         openSet.add(start);
-        allNodes.put(from, start);
+        visitedNodes.put(from, start);
 
         while (!openSet.isEmpty()) {
             RouteNode<T> next = openSet.poll();
@@ -31,26 +35,33 @@ public class RouteFinder<T extends GraphNode>  {
                 RouteNode<T> current = next;
                 do {
                     route.add(0, current.getCurrent());
-                    current = allNodes.get(current.getPrevious());
+                    current = visitedNodes.get(current.getPrevious());
                 } while (current != null);
                 return route;
             }
-            graph.getConnections(next.getCurrent()).forEach(connection -> {
-                RouteNode<T> nextNode = allNodes.getOrDefault(connection, new RouteNode<>(connection));
-                allNodes.put(connection, nextNode);
+            graph.getConnections(next.getCurrent()).forEach(connectedNode -> {
 
-                double newScore = next.getRouteScore() + nextNodeScorer.computeCost(next.getCurrent(), connection);
+                // create a new RouteNode Object for each connected Node
+                RouteNode<T> nextNode = visitedNodes.getOrDefault(connectedNode, new RouteNode<>(connectedNode));
+
+                // add it to the nodes we've visited
+                visitedNodes.put(connectedNode, nextNode);
+
+                // calculate the new score of the route
+                double newScore = next.getRouteScore() + nextNodeScorer.computeCost(next.getCurrent(), connectedNode);
                 if (newScore < nextNode.getRouteScore()) {
+                    // if the route score is cheaper than the current route
+                    // (without looking at the heuristic!) update the route
+                    // and add it to the open set
                     nextNode.setPrevious(next.getCurrent());
                     nextNode.setRouteScore(newScore);
-                    nextNode.setEstimatedScore(newScore + targetScorer.computeCost(connection, to));
+                    nextNode.setEstimatedScore(newScore + targetScorer.computeCost(connectedNode, to));
                     openSet.add(nextNode);
                 }
             });
-
-            throw new IllegalStateException("No route found");
         }
 
+        // no route found!
         return null;
     }
 }

@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Vector3;
 import de.augsburg.hs.methoden.ki.MainGame;
 import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
 import de.augsburg.hs.methoden.ki.actors.StartScreenLevelActor;
+import de.augsburg.hs.methoden.ki.screens.astar.AStarPathfindingScreen;
 
 import java.util.ArrayList;
 
