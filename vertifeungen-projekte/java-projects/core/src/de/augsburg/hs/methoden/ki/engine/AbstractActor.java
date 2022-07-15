@@ -40,8 +40,8 @@ public abstract class AbstractActor {
 
     protected void draw(SpriteBatch batch){
         if(isDrawCentered){
-            float adjustedX = sprite.getX() + (sprite.getWidth()/2f);
-            float adjustedY = sprite.getY() + (sprite.getHeight()/2f);
+            float adjustedX = sprite.getX() - (sprite.getWidth()/2f);
+            float adjustedY = sprite.getY() - (sprite.getHeight()/2f);
             sprite.setPosition(adjustedX, adjustedY);
         }
 

@@ -8,8 +8,11 @@ import de.augsburg.hs.methoden.ki.algorithms.astar.Scorer;
  */
 public class CellNodeScorer implements Scorer<CellNode> {
 
+    double costWeightage = 100;
+
     @Override
     public double computeCost(CellNode from, CellNode to) {
-        return from.getCost() + to.getCost();
+
+        return (from.getCost() + to.getCost()) * costWeightage;
     }
 }

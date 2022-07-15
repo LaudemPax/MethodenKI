@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
 import de.augsburg.hs.methoden.ki.MainGame;
 import de.augsburg.hs.methoden.ki.actors.astar.AStarAgent;
 import de.augsburg.hs.methoden.ki.actors.astar.AStarTarget;
@@ -18,7 +17,6 @@ import de.augsburg.hs.methoden.ki.algorithms.GraphNode;
 import de.augsburg.hs.methoden.ki.algorithms.astar.RouteFinder;
 import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
 
-import javax.xml.soap.Node;
 import java.util.*;
 
 public class AStarPathfindingScreen extends AbstractScreen {
@@ -44,6 +42,10 @@ public class AStarPathfindingScreen extends AbstractScreen {
 
     private Graph cellNodeGraph;
 
+    private List<CellNode> solvedRoute;
+
+    private boolean noPathFlag = false;
+
     public AStarPathfindingScreen(MainGame game) {
         super(game);
 
@@ -51,7 +53,10 @@ public class AStarPathfindingScreen extends AbstractScreen {
         shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
 
         font = new BitmapFont();
-        font.getData().setScale(0.5f);
+        font.setColor(new Color(1,0,0,1));
+        font.getData().setScale(2f);
+
+        solvedRoute = new ArrayList<>();
     }
 
     @Override
@@ -95,6 +100,8 @@ public class AStarPathfindingScreen extends AbstractScreen {
 
     private void clearPathfindingTask() {
         actors.removeAll(actors);
+        solvedRoute.removeAll(solvedRoute);
+        noPathFlag = false;
     }
 
     private void generateGraph() {
@@ -134,6 +141,20 @@ public class AStarPathfindingScreen extends AbstractScreen {
         batch.begin();
     }
 
+    @Override
+    protected void draw(SpriteBatch batch) {
+        super.draw(batch);
+
+        if(solvedRoute.size() > 0) {
+            drawSolvedRoute();
+        }
+
+        if(noPathFlag) {
+            font.draw(batch, "No traversable route found!"
+                    , 10, Gdx.graphics.getHeight() - 300);
+        }
+    }
+
     /***
      * Draws the grid onto the background
      */
@@ -163,6 +184,30 @@ public class AStarPathfindingScreen extends AbstractScreen {
 
         shapeRenderer.end();
         Gdx.gl.glLineWidth(1);
+    }
+
+    private void drawSolvedRoute() {
+        batch.end();
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(new Color(1,0,1,1));
+
+        for (int i = 1; i < solvedRoute.size(); i++) {
+            Vector2 lineStart = solvedRoute.get(i).getCoordinates();
+            Vector2 lineEnd = solvedRoute.get(i-1).getCoordinates();
+
+            // adjust to show center of tile
+            float adjustedStartX = lineStart.x;
+            float adjustedStartY = lineStart.y;
+            float adjustedEndX = lineEnd.x;
+            float adjustedEndY = lineEnd.y;
+
+            shapeRenderer.rectLine(new Vector2(adjustedStartX, adjustedStartY), new Vector2(adjustedEndX, adjustedEndY),2);
+        }
+
+        shapeRenderer.end();
+
+        batch.begin();
     }
 
     private void drawTerrainCells() {
@@ -235,17 +280,41 @@ public class AStarPathfindingScreen extends AbstractScreen {
     }
 
     private void solvePathfindingTask() {
-        System.out.println("SOLVING TASK");
+
+        System.out.println("=========================================================");
+        System.out.println("Solving for:");
+        System.out.println(String.format("Start coordinates: (%f,%f)"
+                , startNode.getCoordinates().x, startNode.getCoordinates().y));
+        System.out.println(String.format("End coordinates: (%f,%f)"
+                , targetNode.getCoordinates().x, targetNode.getCoordinates().y));
+        System.out.println("Nodes: " + nodeSet.size());
+        System.out.println("Node connections: " + connections.size());
+        System.out.println("=========================================================");
+
         CellNodeScorer nodeScorer = new CellNodeScorer();
         CellTargetScorer targetScorer = new CellTargetScorer();
-
         RouteFinder<CellNode> finder = new RouteFinder<>(cellNodeGraph, nodeScorer, targetScorer);
 
-        System.out.println("SOLVED!");
         List<CellNode> route = finder.findRoute(startNode, targetNode);
 
-        for(CellNode node: route) {
-            String formatedCoordinates = String.format("(%f,%f)", node.getCoordinates().x, node.getCoordinates().y);
+        if(route != null) {
+            solvedRoute.addAll(route);
+
+            CellNode solvedStartNode = solvedRoute.get(0);
+            CellNode solvedEndNode = solvedRoute.get(solvedRoute.size() - 1);
+
+            System.out.println("=========================================================");
+            System.out.println("Solved");
+            System.out.println("Route size: " + solvedRoute.size());
+            System.out.println(String.format("Solved start coordinates: (%f,%f)"
+                    , solvedStartNode.getCoordinates().x, solvedStartNode.getCoordinates().y));
+            System.out.println(String.format("Solved end coordinates: (%f,%f)"
+                    , solvedEndNode.getCoordinates().x, solvedEndNode.getCoordinates().y));
+            System.out.println("Nodes: " + nodeSet.size());
+            System.out.println("=========================================================");
+        } else {
+            noPathFlag = true;
+            System.out.println("No path found!");
         }
     }
 
@@ -256,10 +325,10 @@ public class AStarPathfindingScreen extends AbstractScreen {
             public boolean keyDown(int keycode) {
 
                 if(keycode == Input.Keys.ENTER) {
-                    System.out.println("Find path!");
-                    solvePathfindingTask();
+                    if(solvedRoute.size() < 1) {
+                        solvePathfindingTask();
+                    }
                 } else if(keycode == Input.Keys.SPACE) {
-                    System.out.println("Randomize!");
                     clearPathfindingTask();
                     generatePathfindingTask();
                 }
