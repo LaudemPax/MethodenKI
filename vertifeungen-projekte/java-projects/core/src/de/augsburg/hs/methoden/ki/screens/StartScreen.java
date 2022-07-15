@@ -28,6 +28,18 @@ public class StartScreen extends AbstractScreen {
     }
 
     @Override
+    public void show() {
+        super.show();
+
+        initializeInputProcessor();
+    }
+
+    @Override
+    public void hide() {
+        Gdx.input.setInputProcessor(null);
+    }
+
+    @Override
     public void create() {
         levelActors = new ArrayList<>();
         levelActors.add(new StartScreenLevelActor("Kapitel 3: A* Pfadsuche", new AStarPathfindingScreen(game)));
@@ -65,7 +77,7 @@ public class StartScreen extends AbstractScreen {
             }
         }
 
-        setupInputProcessor();
+        initializeInputProcessor();
     }
 
     @Override
@@ -82,7 +94,7 @@ public class StartScreen extends AbstractScreen {
          }
     }
 
-    private void setupInputProcessor() {
+    private void initializeInputProcessor() {
         Gdx.input.setInputProcessor(new InputProcessor() {
             @Override
             public boolean keyDown(int keycode) {
