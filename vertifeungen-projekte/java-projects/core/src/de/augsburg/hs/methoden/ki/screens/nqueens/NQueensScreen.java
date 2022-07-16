@@ -22,7 +22,8 @@ public class NQueensScreen extends Screen {
 
     private final int MINIMUM_N = 4;
 
-    private final int MAXIMUM_N = 28;
+    // hard to see which queen is where after n = 18
+    private final int MAXIMUM_N = 27;
 
     private int nQueens = MINIMUM_N;
 
