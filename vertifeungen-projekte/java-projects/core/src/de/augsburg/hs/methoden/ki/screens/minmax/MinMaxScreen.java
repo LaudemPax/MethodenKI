@@ -1,10 +1,13 @@
 package de.augsburg.hs.methoden.ki.screens.minmax;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import de.augsburg.hs.methoden.ki.MainGame;
@@ -37,8 +40,16 @@ public class MinMaxScreen extends Screen {
 
     private final TicTacToe AI_MOVE_TYPE = TicTacToe.MAX;
 
+    private boolean gameOverFlag = false;
+
+    private BitmapFont font;
+
     public MinMaxScreen(MainGame game) {
         super(game);
+
+        font = new BitmapFont();
+        font.setColor(new Color(1,0,0,1));
+        font.getData().setScale(3);
 
         VIEWPORT_WIDTH = (int) camera.viewportWidth;
         VIEWPORT_HEIGHT = (int) camera.viewportHeight;
@@ -58,6 +69,9 @@ public class MinMaxScreen extends Screen {
         // array to translate grid cell to coordinates
         gridCoordinates = new Vector2[3][3];
         generateGridCoordinates();
+
+        // 50% chance of the AI starting first
+        doChanceOfAiMovesFirst();
     }
 
     private void generateGridCoordinates() {
@@ -118,6 +132,15 @@ public class MinMaxScreen extends Screen {
         batch.begin();
     }
 
+    @Override
+    protected void draw(SpriteBatch batch) {
+        super.draw(batch);
+
+        if(gameOverFlag) {
+            font.draw(batch, "GAME OVER", VIEWPORT_WIDTH/2f - 120, VIEWPORT_HEIGHT/2f + 20);
+        }
+    }
+
     private void drawTicTacToeGrid() {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -146,10 +169,29 @@ public class MinMaxScreen extends Screen {
     private void executeGameRound(TicTacToeMove playerMove) {
         doPlayerMove(playerMove);
 
-        TicTacToeMove aiMove = miniMax.findBestMove(grid);
-        doAiMove(aiMove);
+        // someone wins
+        if(checkIsGameOver()) {
+            gameOverFlag = true;
+            return;
+        }
+
+        doAiMove(getBestAiMove());
+
+        // someone wins
+        if(checkIsGameOver()) {
+            gameOverFlag = true;
+            return;
+        }
     }
 
+    private TicTacToeMove getBestAiMove() {
+        TicTacToeMove aiMove = miniMax.findBestMove(grid);
+        if(aiMove.column < 0 || aiMove.row < 0) {
+            aiMove = getAiContingencyMove();
+        }
+
+        return  aiMove;
+    }
     private void doPlayerMove(TicTacToeMove move) {
         if(grid [move.row][move.column] == TicTacToe.EMPTY) {
             grid[move.row][move.column] = PLAYER_MOVE_TYPE;
@@ -166,10 +208,56 @@ public class MinMaxScreen extends Screen {
         }
     }
 
+    private boolean checkIsGameOver() {
+        return miniMax.evaluateWinCondition(grid) != 0 || miniMax.isGridFull(grid);
+    }
+
+    private void resetGame() {
+        actors.removeAll(actors);
+        grid = miniMax.generateEmptyGrid();
+        gameOverFlag = false;
+        doChanceOfAiMovesFirst();
+    }
+
+    /**
+     * In case a good move is not found, since MiniMax
+     * acts based on the assumption the player plays
+     * optimally, play a random move.
+     * @return
+     */
+    private TicTacToeMove getAiContingencyMove() {
+
+        int randomRow = 0;
+        int randomColumn = 0;
+
+        do {
+            randomRow = MathUtils.random(2);
+            randomColumn = MathUtils.random(2);
+        } while(grid[randomRow][randomColumn] != TicTacToe.EMPTY);
+
+        return new TicTacToeMove(randomRow,randomColumn);
+    }
+
+    /**
+     * 50% chance of the AI starting first
+     */
+    private void doChanceOfAiMovesFirst() {
+        if(MathUtils.random(1.0f) >= 0.5) {
+            doAiMove(getBestAiMove());
+        }
+    }
+
     private void setupInputProcessor() {
         Gdx.input.setInputProcessor(new InputProcessor() {
             @Override
             public boolean keyDown(int keycode) {
+
+                if(keycode == Input.Keys.SPACE) {
+                    resetGame();
+                } else if(keycode == Input.Keys.ESCAPE) {
+                    game.goToStartScreen();
+                }
+
                 return false;
             }
 
@@ -186,11 +274,11 @@ public class MinMaxScreen extends Screen {
             @Override
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
-                Vector3 mousePos = camera.unproject(new Vector3(screenX, screenY, 0));
-                System.out.printf("Clicked at (%f, %f)%n", mousePos.x, mousePos.y);
-                TicTacToeMove move = coordinatesToTicTacToeMove(mousePos.x, mousePos.y);
-                System.out.printf("Grid pos (row,col): (%d,%d)", move.row, move.column);
-                executeGameRound(move);
+                if(!gameOverFlag) {
+                    Vector3 mousePos = camera.unproject(new Vector3(screenX, screenY, 0));
+                    TicTacToeMove move = coordinatesToTicTacToeMove(mousePos.x, mousePos.y);
+                    executeGameRound(move);
+                }
 
                 return false;
             }

@@ -22,7 +22,7 @@ public class TicTacToeMiniMax {
         return grid;
     }
 
-    private boolean isGridFull(TicTacToe[][] grid) {
+    public boolean isGridFull(TicTacToe[][] grid) {
         boolean isFull = true;
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++){
@@ -36,7 +36,7 @@ public class TicTacToeMiniMax {
         return isFull;
     }
 
-    private int evaluateWinCondition(TicTacToe[][] grid) {
+    public int evaluateWinCondition(TicTacToe[][] grid) {
 
         // check each row for win
         for(int row = 0; row < 3; row++){
@@ -84,14 +84,16 @@ public class TicTacToeMiniMax {
         int bestVal = -1000;
         TicTacToeMove bestMove = new TicTacToeMove(-1,-1);
 
+        System.out.println("=========================== Finding best move ===========================");
+
         for(int i = 0; i < 3; i++) {
-            for(int j = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
                 if(grid[i][j] == TicTacToe.EMPTY) {
 
                     // Make the move
                     grid[i][j] = TicTacToe.MAX;
 
-                    // compute evalueation
+                    // compute evaluation
                     int moveVal = minimax(grid, false);
 
                     // undo move
@@ -103,6 +105,8 @@ public class TicTacToeMiniMax {
                         bestMove.column = j;
                         bestVal = moveVal;
                     }
+
+                    System.out.printf("Move (row=%d, column=%d) score: %d\n", i, j, moveVal);
 
                 }
             }
@@ -130,8 +134,9 @@ public class TicTacToeMiniMax {
            return 0;
         }
 
+        int best;
         if(isMax) {
-            int best = -1000;
+            best = -1000;
 
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < 3; j++) {
@@ -141,7 +146,7 @@ public class TicTacToeMiniMax {
                         grid[i][j] = TicTacToe.MAX;
 
                         // call recursively, change player
-                        best = Math.max(best, minimax(grid, !isMax));
+                        best = Math.max(best, minimax(grid, false));
 
                         // undo the move
                         grid[i][j] = TicTacToe.EMPTY;
@@ -149,10 +154,8 @@ public class TicTacToeMiniMax {
                 }
             }
 
-            return best;
-
         } else {
-            int best = 1000;
+            best = 1000;
 
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < 3; j++) {
@@ -162,7 +165,7 @@ public class TicTacToeMiniMax {
                         grid[i][j] = TicTacToe.MIN;
 
                         // call recursively, change player
-                        best = Math.min(best, minimax(grid, !isMax));
+                        best = Math.min(best, minimax(grid, true));
 
                         // undo the move
                         grid[i][j] = TicTacToe.EMPTY;
@@ -170,8 +173,8 @@ public class TicTacToeMiniMax {
                 }
             }
 
-            return best;
         }
+        return best;
     }
 
 
