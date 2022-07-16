@@ -26,6 +26,8 @@ public class MinMaxScreen extends Screen {
 
     private CellOptions[][] grid;
 
+    private final Vector2[][] gridCoordinates;
+
     private TicTacToeMiniMax miniMax;
 
     public MinMaxScreen(MainGame game) {
@@ -45,6 +47,42 @@ public class MinMaxScreen extends Screen {
 
         // array to store which shape is where
         grid = miniMax.generateEmptyGrid();
+
+        // array to translate grid cell to coordinates
+        gridCoordinates = new Vector2[3][3];
+        generateGridCoordinates();
+    }
+
+    private void generateGridCoordinates() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                float coordX = i * CELL_WIDTH + CELL_WIDTH / 2f;
+                float coordY = i * CELL_HEIGHT - CELL_HEIGHT / 2f;
+
+                gridCoordinates[i][j] = new Vector2(coordX, coordY);
+            }
+        }
+    }
+
+    /**
+     * returns the coordinates of the center of the grid
+     * based on the given coordinates.
+     *
+     * Example: if the given coordinates are in the top left grid
+     * the coordinates of the center of the top left grid are returned
+     *
+     * @param coordinates
+     * @return
+     */
+    private Vector2 coordinatesToGridCoodinates(Vector2 coordinates) {
+        float x = coordinates.x;
+        float y = coordinates.y;
+
+        if(x < CELL_HEIGHT && y < CELL_WIDTH) {
+            return gridCoordinates[0][0];
+        } else  if(x < CELL_HEIGHT && y > CELL_WIDTH * 2) {
+            return gridCoordinates[0][1];
+        }
     }
 
     @Override
@@ -60,27 +98,6 @@ public class MinMaxScreen extends Screen {
 
         Gdx.input.setInputProcessor(null);
     }
-
-//    @Override
-//    public void update(float delta) {
-//        super.update(delta);
-//
-//        for(int i = 0; i < 3; i++) {
-//            for(int j = 0; j < 3; j++) {
-//                if(grid[i][j] != CellOptions.EMPTY) {
-//                    float coordX = i * CELL_WIDTH + CELL_WIDTH/2f;
-//                    float coordY = i* CELL_HEIGHT - CELL_HEIGHT/2f;
-//
-//                    if(grid[i][j] == CellOptions.MAX) {
-//
-//                    } else {
-//
-//                    }
-//
-//                }
-//            }
-//        }
-//    }
 
     @Override
     protected void preDraw(SpriteBatch batch) {
@@ -134,7 +151,7 @@ public class MinMaxScreen extends Screen {
             public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
                 Vector3 mousePos = camera.unproject(new Vector3(screenX, screenY, 0));
-                System.out.println(String.format("Clicked at (%f, %f)", mousePos.x, mousePos.y));
+                System.out.printf("Clicked at (%f, %f)%n", mousePos.x, mousePos.y);
                 return false;
             }
 
@@ -158,10 +175,5 @@ public class MinMaxScreen extends Screen {
                 return false;
             }
         });
-    }
-
-    private enum TicTacToe {
-        CIRCLE,
-        CROSS
     }
 }
