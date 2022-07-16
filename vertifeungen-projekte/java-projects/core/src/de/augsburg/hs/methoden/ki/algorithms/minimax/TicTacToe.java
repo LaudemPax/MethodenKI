@@ -1,6 +1,6 @@
 package de.augsburg.hs.methoden.ki.algorithms.minimax;
 
-public enum CellOptions {
+public enum TicTacToe {
     MAX,
     MIN,
     EMPTY

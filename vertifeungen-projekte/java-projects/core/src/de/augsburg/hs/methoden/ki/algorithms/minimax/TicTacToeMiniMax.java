@@ -1,7 +1,5 @@
 package de.augsburg.hs.methoden.ki.algorithms.minimax;
 
-import com.badlogic.gdx.scenes.scene2d.ui.Cell;
-
 /***
  * Max is always X, Min is always O
  *
@@ -11,24 +9,24 @@ public class TicTacToeMiniMax {
     private final int MAX_WIN_SCORE = 10;
     private final int MIN_WIN_SCORE = -10;
 
-    public CellOptions[][] generateEmptyGrid() {
+    public TicTacToe[][] generateEmptyGrid() {
 
-        CellOptions[][] grid = new CellOptions[3][3];
+        TicTacToe[][] grid = new TicTacToe[3][3];
 
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                grid[j][i] = CellOptions.EMPTY;
+                grid[j][i] = TicTacToe.EMPTY;
             }
         }
 
         return grid;
     }
 
-    private boolean isGridFull(CellOptions[][] grid) {
+    private boolean isGridFull(TicTacToe[][] grid) {
         boolean isFull = true;
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++){
-                if(grid[j][i] == CellOptions.EMPTY){
+                if(grid[j][i] == TicTacToe.EMPTY){
                     isFull = false;
                     break;
                 }
@@ -38,14 +36,14 @@ public class TicTacToeMiniMax {
         return isFull;
     }
 
-    private int evaluateWinCondition(CellOptions[][] grid) {
+    private int evaluateWinCondition(TicTacToe[][] grid) {
 
         // check each row for win
         for(int row = 0; row < 3; row++){
             if(grid[row][0] == grid[row][1] && grid[row][1] == grid[row][2]){
-                if(grid[row][0] == CellOptions.MAX) {
+                if(grid[row][0] == TicTacToe.MAX) {
                     return MAX_WIN_SCORE;
-                } else if(grid[row][0] == CellOptions.MIN){
+                } else if(grid[row][0] == TicTacToe.MIN){
                     return MIN_WIN_SCORE;
                 }
             }
@@ -54,9 +52,9 @@ public class TicTacToeMiniMax {
         // check each column for win
         for(int column = 0; column < 3; column++){
             if(grid[0][column] == grid[1][column] && grid[1][column] == grid[2][column]){
-                if(grid[0][column] == CellOptions.MAX) {
+                if(grid[0][column] == TicTacToe.MAX) {
                     return MAX_WIN_SCORE;
-                } else if(grid[0][column] == CellOptions.MIN){
+                } else if(grid[0][column] == TicTacToe.MIN){
                     return MIN_WIN_SCORE;
                 }
             }
@@ -65,39 +63,39 @@ public class TicTacToeMiniMax {
         // check diagonals for win
         if (grid[0][0] == grid[1][1] && grid[1][1] == grid[2][2])
         {
-            if (grid[0][0] == CellOptions.MAX)
+            if (grid[0][0] == TicTacToe.MAX)
                 return +10;
-            else if (grid[0][0] == CellOptions.MIN)
+            else if (grid[0][0] == TicTacToe.MIN)
                 return -10;
         }
 
         if (grid[0][2] == grid[1][1] && grid[1][1] == grid[2][0])
         {
-            if (grid[0][2] == CellOptions.MAX)
+            if (grid[0][2] == TicTacToe.MAX)
                 return +10;
-            else if (grid[0][2] == CellOptions.MIN)
+            else if (grid[0][2] == TicTacToe.MIN)
                 return -10;
         }
 
         return 0;
     }
 
-    public Move findBestMove(CellOptions[][] grid) {
+    public TicTacToeMove findBestMove(TicTacToe[][] grid) {
         int bestVal = -1000;
-        Move bestMove = new Move(-1,-1);
+        TicTacToeMove bestMove = new TicTacToeMove(-1,-1);
 
         for(int i = 0; i < 3; i++) {
             for(int j = 0; i < 3; i++) {
-                if(grid[i][j] == CellOptions.EMPTY) {
+                if(grid[i][j] == TicTacToe.EMPTY) {
 
                     // Make the move
-                    grid[i][j] = CellOptions.MAX;
+                    grid[i][j] = TicTacToe.MAX;
 
                     // compute evalueation
                     int moveVal = minimax(grid, false);
 
                     // undo move
-                    grid[i][j] = CellOptions.EMPTY;
+                    grid[i][j] = TicTacToe.EMPTY;
 
                     if(moveVal > bestVal)
                     {
@@ -113,7 +111,7 @@ public class TicTacToeMiniMax {
         return bestMove;
     }
 
-    private int minimax(CellOptions[][] grid, boolean isMax) {
+    private int minimax(TicTacToe[][] grid, boolean isMax) {
 
         int score = evaluateWinCondition(grid);
 
@@ -137,16 +135,16 @@ public class TicTacToeMiniMax {
 
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < 3; j++) {
-                    if(grid[i][j] == CellOptions.EMPTY) {
+                    if(grid[i][j] == TicTacToe.EMPTY) {
 
                         // make the move
-                        grid[i][j] = CellOptions.MAX;
+                        grid[i][j] = TicTacToe.MAX;
 
                         // call recursively, change player
                         best = Math.max(best, minimax(grid, !isMax));
 
                         // undo the move
-                        grid[i][j] = CellOptions.EMPTY;
+                        grid[i][j] = TicTacToe.EMPTY;
                     }
                 }
             }
@@ -158,16 +156,16 @@ public class TicTacToeMiniMax {
 
             for(int i = 0; i < 3; i++) {
                 for(int j = 0; j < 3; j++) {
-                    if(grid[i][j] == CellOptions.EMPTY) {
+                    if(grid[i][j] == TicTacToe.EMPTY) {
 
                         // make the move
-                        grid[i][j] = CellOptions.MIN;
+                        grid[i][j] = TicTacToe.MIN;
 
                         // call recursively, change player
                         best = Math.min(best, minimax(grid, !isMax));
 
                         // undo the move
-                        grid[i][j] = CellOptions.EMPTY;
+                        grid[i][j] = TicTacToe.EMPTY;
                     }
                 }
             }
@@ -176,13 +174,5 @@ public class TicTacToeMiniMax {
         }
     }
 
-    public class Move {
-        public int row;
-        public int column;
 
-        public Move(int row, int column) {
-            this.row = row;
-            this.column = column;
-        }
-    }
 }

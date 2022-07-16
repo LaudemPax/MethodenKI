@@ -8,8 +8,11 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import de.augsburg.hs.methoden.ki.MainGame;
-import de.augsburg.hs.methoden.ki.algorithms.minimax.CellOptions;
+import de.augsburg.hs.methoden.ki.actors.minimax.CircleActor;
+import de.augsburg.hs.methoden.ki.actors.minimax.CrossActor;
+import de.augsburg.hs.methoden.ki.algorithms.minimax.TicTacToe;
 import de.augsburg.hs.methoden.ki.algorithms.minimax.TicTacToeMiniMax;
+import de.augsburg.hs.methoden.ki.algorithms.minimax.TicTacToeMove;
 import de.augsburg.hs.methoden.ki.engine.Screen;
 
 public class MinMaxScreen extends Screen {
@@ -24,11 +27,15 @@ public class MinMaxScreen extends Screen {
 
     private final int CELL_HEIGHT;
 
-    private CellOptions[][] grid;
+    private TicTacToe[][] grid;
 
     private final Vector2[][] gridCoordinates;
 
     private TicTacToeMiniMax miniMax;
+
+    private final TicTacToe PLAYER_MOVE_TYPE = TicTacToe.MIN;
+
+    private final TicTacToe AI_MOVE_TYPE = TicTacToe.MAX;
 
     public MinMaxScreen(MainGame game) {
         super(game);
@@ -56,8 +63,8 @@ public class MinMaxScreen extends Screen {
     private void generateGridCoordinates() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                float coordX = i * CELL_WIDTH + CELL_WIDTH / 2f;
-                float coordY = i * CELL_HEIGHT - CELL_HEIGHT / 2f;
+                float coordX = j * CELL_WIDTH + CELL_WIDTH / 2f;
+                float coordY = i * CELL_HEIGHT + CELL_HEIGHT / 2f;
 
                 gridCoordinates[i][j] = new Vector2(coordX, coordY);
             }
@@ -65,24 +72,27 @@ public class MinMaxScreen extends Screen {
     }
 
     /**
-     * returns the coordinates of the center of the grid
-     * based on the given coordinates.
+     * returns the grird position based on the given coordinates.
      *
-     * Example: if the given coordinates are in the top left grid
-     * the coordinates of the center of the top left grid are returned
+     * Example: if the given coordinates are within the top left grid
+     * then row = 2, column = 0 is returned
      *
-     * @param coordinates
+     * This is used to figure out which square was clicked by the user
+     *
+     * @param x, y
      * @return
      */
-    private Vector2 coordinatesToGridCoodinates(Vector2 coordinates) {
-        float x = coordinates.x;
-        float y = coordinates.y;
-
-        if(x < CELL_HEIGHT && y < CELL_WIDTH) {
-            return gridCoordinates[0][0];
-        } else  if(x < CELL_HEIGHT && y > CELL_WIDTH * 2) {
-            return gridCoordinates[0][1];
+    private TicTacToeMove coordinatesToTicTacToeMove(float x, float y) {
+        for(int i = 1; i < 4; i++) {
+            for(int j = 1; j < 4; j++) {
+                if(x < (CELL_WIDTH * j) && (y < CELL_HEIGHT * i)) {
+                    return new TicTacToeMove(i - 1, j - 1);
+                }
+            }
         }
+
+        // not found
+        return null;
     }
 
     @Override
@@ -130,6 +140,32 @@ public class MinMaxScreen extends Screen {
         shapeRenderer.end();
     }
 
+    /**
+     * Carries out a round of TicTacToe
+     */
+    private void executeGameRound(TicTacToeMove playerMove) {
+        doPlayerMove(playerMove);
+
+        TicTacToeMove aiMove = miniMax.findBestMove(grid);
+        doAiMove(aiMove);
+    }
+
+    private void doPlayerMove(TicTacToeMove move) {
+        if(grid [move.row][move.column] == TicTacToe.EMPTY) {
+            grid[move.row][move.column] = PLAYER_MOVE_TYPE;
+            Vector2 cellCoordinates = gridCoordinates[move.row][move.column];
+            addActor(new CrossActor(cellCoordinates));
+        }
+    }
+
+    private void doAiMove(TicTacToeMove move) {
+        if(grid [move.row][move.column] == TicTacToe.EMPTY) {
+            grid[move.row][move.column] = AI_MOVE_TYPE;
+            Vector2 cellCoordinates = gridCoordinates[move.row][move.column];
+            addActor(new CircleActor(cellCoordinates));
+        }
+    }
+
     private void setupInputProcessor() {
         Gdx.input.setInputProcessor(new InputProcessor() {
             @Override
@@ -152,6 +188,10 @@ public class MinMaxScreen extends Screen {
 
                 Vector3 mousePos = camera.unproject(new Vector3(screenX, screenY, 0));
                 System.out.printf("Clicked at (%f, %f)%n", mousePos.x, mousePos.y);
+                TicTacToeMove move = coordinatesToTicTacToeMove(mousePos.x, mousePos.y);
+                System.out.printf("Grid pos (row,col): (%d,%d)", move.row, move.column);
+                executeGameRound(move);
+
                 return false;
             }
 
