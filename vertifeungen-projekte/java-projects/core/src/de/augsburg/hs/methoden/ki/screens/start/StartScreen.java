@@ -10,6 +10,7 @@ import de.augsburg.hs.methoden.ki.engine.Screen;
 import de.augsburg.hs.methoden.ki.actors.startscreen.StartScreenButtonActor;
 import de.augsburg.hs.methoden.ki.screens.astar.AStarPathfindingScreen;
 import de.augsburg.hs.methoden.ki.screens.minmax.MinMaxScreen;
+import de.augsburg.hs.methoden.ki.screens.nqueens.NQueensScreen;
 
 import java.util.ArrayList;
 
@@ -30,7 +31,7 @@ public class StartScreen extends Screen {
         levelActors = new ArrayList<>();
         levelActors.add(new StartScreenButtonActor("Kapitel 3: A* Pfadsuche", new AStarPathfindingScreen(game)));
         levelActors.add(new StartScreenButtonActor("Kapitel 4: MinMax Algo", new MinMaxScreen(game)));
-        levelActors.add(new StartScreenButtonActor("Kapitel 5: Constraints", null));
+        levelActors.add(new StartScreenButtonActor("Kapitel 5: N-Queens", new NQueensScreen(game)));
 
         int screenWidth = Gdx.graphics.getWidth();
 

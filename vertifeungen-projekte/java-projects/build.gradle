@@ -64,6 +64,6 @@ project(":core") {
 
     dependencies {
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        
+        implementation group: 'org.choco-solver', name: 'choco-solver', version: '4.10.8'
     }
 }
