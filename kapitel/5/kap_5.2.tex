@@ -1,0 +1,26 @@
+\section{Vertiefungsprojekt: N-Damen Problem mittels Choco-Solver}
+
+Um besser zu verstehen, wie Constraint-Probleme mit konventionellen Programmiersprachen gelöst werden, wurde das N-Queen-Problem in Java implementiert.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/kap5/n-queens-impl.png}
+    \caption{N-Damen Implementierung mit n=4}
+    \label{fig:impl-n-damen}
+\end{figure}
+
+In diesem Programm wird das n-Damen-Problem für n=4 bis 27 unter Verwendung von Constraints gelöst. In diesem Programm würde das Drücken der Aufwärts- und Abwärtspfeiltasten den Wert von N entsprechend erhöhen oder verringern. Das Gitter aktualisiert sich dann selbst, um n x n beizubehalten, und der Choco-Cosntraintsslöser wird jedes Mal verwendet, wenn sich n ändert, um eine Lösung zu generieren. Das Programm funktioniert für Werte von n von 4 bis 27, aber da die Größe des Damenbildes nicht skaliert, ist es schwer zu sehen, wo genau eine Dame nach n=18 platziert wird.
+
+Die Tastensteuerungen wie folgt:
+\begin{itemize}
+    \item \textbf{Up Arrow Key:} Erhöht den Wert von N.
+    \item \textbf{Down Arrow Key:} Verringert den Wert von N.
+    \item \textbf{Escape-Taste:} Geht zurück zum Start-Screen.
+\end{itemize}
+
+Der relevante Code für das Programm befindet sich in den folgenden Packages:
+\begin{itemize}
+    \item \textbf{de.augsburg.hs.methoden.ki.algorithms.constraints:} Implementierung der Constraints mit Choco-Solver.
+    \item \textbf{de.augsburg.hs.methoden.ki.screens.minmax} Klasse für den N-Queen-Screen.
+    \item \textbf{de.augsburg.hs.methoden.ki.actors.nqueens:} Klassen für die Darstellung der Damen.
+\end{itemize}
