@@ -6,11 +6,13 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
+/**
+ * An actor is an abstraction for game objects managed by the engine
+ */
 public class Actor {
 
     protected Sprite sprite;
     protected Vector2 position;
-
     protected boolean isDrawCentered = false;
 
     public Actor() {

@@ -48,7 +48,6 @@ public class MinMaxScreen extends Screen {
         super(game);
 
         font = new BitmapFont();
-        font.setColor(new Color(1,0,0,1));
         font.getData().setScale(3);
 
         VIEWPORT_WIDTH = (int) camera.viewportWidth;
@@ -137,7 +136,15 @@ public class MinMaxScreen extends Screen {
         super.draw(batch);
 
         if(gameOverFlag) {
-            font.draw(batch, "GAME OVER", VIEWPORT_WIDTH/2f - 120, VIEWPORT_HEIGHT/2f + 20);
+            if(miniMax.evaluateWinCondition(grid) == TicTacToeMiniMax.MIN_WIN_SCORE){
+                // if player wins. Should be impossible though?
+                font.setColor(new Color(0,1,0,1));
+                font.draw(batch, "YOU WIN! :O", VIEWPORT_WIDTH/2f - 120, VIEWPORT_HEIGHT/2f + 20);
+            } else {
+                font.setColor(new Color(1,0,0,1));
+                font.draw(batch, "GAME OVER", VIEWPORT_WIDTH/2f - 120, VIEWPORT_HEIGHT/2f + 20);
+            }
+
         }
     }
 

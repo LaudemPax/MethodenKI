@@ -22,16 +22,23 @@ import de.augsburg.hs.methoden.ki.engine.Screen;
 
 import java.util.*;
 
+/**
+ * Screen for the A* pathfinding task
+ */
 public class AStarPathfindingScreen extends Screen {
 
+    /**
+     * Values for RGB are meant to be 0 to 1
+     */
     private final float bg_R = 150f / 255f;
     private final float bg_G = 190f / 255f;
     private final float bg_B = 37f / 255f;
 
     private final int CELL_SIZE = 20;
 
-    private int CELL_ROWS;
-    private int CELL_COLUMNS;
+    private final int CELL_ROWS;
+    private final int CELL_COLUMNS;
+
     private final ShapeRenderer shapeRenderer;
     private final BitmapFont font;
 
@@ -79,6 +86,9 @@ public class AStarPathfindingScreen extends Screen {
         Gdx.input.setInputProcessor(null);
     }
 
+    /**
+     * Generates a random pathfinding task
+     */
     private void generatePathfindingTask() {
         // create random graph of nodes
         generateGraph();
@@ -98,12 +108,18 @@ public class AStarPathfindingScreen extends Screen {
         addActor(new AStarTarget(targetNode.getCoordinates()));
     }
 
+    /**
+     * Resets the pathfinding task
+     */
     private void clearPathfindingTask() {
         actors.removeAll(actors);
         solvedRoute.removeAll(solvedRoute);
         noPathFlag = false;
     }
 
+    /**
+     * Generates the search graph
+     */
     private void generateGraph() {
         nodeSet = new HashSet<>();
         connections = new HashMap<>();
@@ -135,6 +151,7 @@ public class AStarPathfindingScreen extends Screen {
     protected void preDraw(SpriteBatch batch) {
         super.preDraw(batch);
 
+        // draws the generated terrain
         batch.end();
         drawGrid();
         drawTerrainCells();
@@ -145,6 +162,7 @@ public class AStarPathfindingScreen extends Screen {
     protected void draw(SpriteBatch batch) {
         super.draw(batch);
 
+        // if a solved route exists, draw it
         if(solvedRoute.size() > 0) {
             drawSolvedRoute();
         }
@@ -157,7 +175,7 @@ public class AStarPathfindingScreen extends Screen {
     }
 
     /***
-     * Draws the grid onto the background
+     * Draws the grid lines onto the background
      */
     private void drawGrid() {
         int screenWidth = Gdx.graphics.getWidth();
@@ -187,6 +205,9 @@ public class AStarPathfindingScreen extends Screen {
         Gdx.gl.glLineWidth(1);
     }
 
+    /**
+     * Helper function for drawing the solved route
+     */
     private void drawSolvedRoute() {
         batch.end();
 
@@ -211,6 +232,12 @@ public class AStarPathfindingScreen extends Screen {
         batch.begin();
     }
 
+    /**
+     *
+     * Helper function for drwaing the terrain cells.
+     * The darker the green square the higher the cost of traversing the cell.
+     *
+     */
     private void drawTerrainCells() {
         for(CellNode node : nodeSet) {
             shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
@@ -242,6 +269,12 @@ public class AStarPathfindingScreen extends Screen {
         return node;
     }
 
+    /**
+     * Generates the connection Id string by looking at
+     * the 8 surrounding nodes of the given node.
+     * @param node
+     * @return
+     */
     private Set<String> generateConnectionIdsForNode(CellNode node) {
 
         int nodeX = node.getNodeX();
@@ -280,8 +313,12 @@ public class AStarPathfindingScreen extends Screen {
         return connectionIds;
     }
 
+    /**
+     * Carries out the A* pathfinding
+     */
     private void solvePathfindingTask() {
 
+        // debugging print statements
         System.out.println("=========================================================");
         System.out.println("Solving for:");
         System.out.println(String.format("Start coordinates: (%f,%f)"
@@ -292,6 +329,7 @@ public class AStarPathfindingScreen extends Screen {
         System.out.println("Node connections: " + connections.size());
         System.out.println("=========================================================");
 
+        // instantiate scorers used for the algorithm
         CellNodeScorer nodeScorer = new CellNodeScorer();
         CellTargetScorer targetScorer = new CellTargetScorer();
         RouteFinder<CellNode> finder = new RouteFinder<>(cellNodeGraph, nodeScorer, targetScorer);

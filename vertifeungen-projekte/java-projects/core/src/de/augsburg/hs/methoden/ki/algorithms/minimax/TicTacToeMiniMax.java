@@ -6,8 +6,8 @@ package de.augsburg.hs.methoden.ki.algorithms.minimax;
  */
 public class TicTacToeMiniMax {
 
-    private final int MAX_WIN_SCORE = 10;
-    private final int MIN_WIN_SCORE = -10;
+    public static final int MAX_WIN_SCORE = 10;
+    public static final int MIN_WIN_SCORE = -10;
 
     public TicTacToe[][] generateEmptyGrid() {
 

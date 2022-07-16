@@ -10,6 +10,9 @@ import de.augsburg.hs.methoden.ki.MainGame;
 
 import java.util.ArrayList;
 
+/**
+ * Screens are game levels. Each game level should extend this class.
+ */
 public class Screen extends ScreenAdapter {
 
     protected MainGame game;
