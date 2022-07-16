@@ -27,6 +27,8 @@
 \usepackage{caption}
 \usepackage{float}
 
+\usepackage[sorting=none]{biblatex}
+
 % ----------------------------------------------------------------------
 % used for code examples
 \usepackage{listings}
@@ -86,6 +88,8 @@
 	captionpos=b
 }
 % ----------------------------------------------------------------------
+
+\addbibresource{literatur.bib}
 
 % Zeilenabstand nach Vorgabe - Falls gefordert
 %\setstretch{1,3} 
@@ -226,6 +230,7 @@
 \include{kapitel/kap_12.tex}
 \include{kapitel/kap_13.tex}
 \include{kapitel/kap_14.tex}
+\include{kapitel/kap_15.tex}
 
 % \include{einleitung}
 % \include{unternehmen}
@@ -256,9 +261,9 @@
 %  mit dem Befehl \nocite werden auch nicht zitierte Referenzen abgedruckt 
 % (normalerweise nicht erwünscht)
 % \nocite{*}
-\bibliographystyle{rialpha}
+%\bibliographystyle{rialpha}
 %Einbinden Bibtexdatei - Direkt aus JabRef generiert
-% \bibliography{literatur}
+%\bibliography{literatur}
 %% ++++++++++++++++++++++++++++++++++++++++++
 %% Index (optional)
 %% ++++++++++++++++++++++++++++++++++++++++++
@@ -266,4 +271,7 @@
 %\addcontentsline{toc}{chapter}{Index}
 %\printindex            % Index, Stichwortverzeichnis
 %}
+
+\printbibliography
+
 \end{document}

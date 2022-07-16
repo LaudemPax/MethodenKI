@@ -23,3 +23,14 @@
 - Chapter 11 sorta done -> Vertiefung no clue, maybe extend 11.4 at the end
 
 - Chapter 12 done (maybe add SVM at the end if got time)-> Vertiefung stuff with the tools presetented. KNIME etc
+
+# TODO
+
+- Add final image of start screen in chapter 15.1
+
+- See if wumpus qualifies as Vertiefung
+
+- Introduce the Vertiefungsprojects in the Bericht
+
+- Vertiefung of everything else oh god
+
