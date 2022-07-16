@@ -1,9 +1,9 @@
 package de.augsburg.hs.methoden.ki.actors.astar;
 
 import com.badlogic.gdx.math.Vector2;
-import de.augsburg.hs.methoden.ki.engine.AbstractActor;
+import de.augsburg.hs.methoden.ki.engine.Actor;
 
-public class AStarTarget extends AbstractActor {
+public class AStarTarget extends Actor {
 
     private final String SPRITE_FILE = "a-star/target.png";
 
@@ -11,9 +11,7 @@ public class AStarTarget extends AbstractActor {
         super(position);
 
         setDrawCentered(true);
-    }
-    @Override
-    protected void create() {
+
         loadSpriteFromAssets(SPRITE_FILE);
     }
 }

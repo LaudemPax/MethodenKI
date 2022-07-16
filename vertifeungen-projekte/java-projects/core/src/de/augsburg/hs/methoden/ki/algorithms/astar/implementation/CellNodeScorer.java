@@ -1,4 +1,4 @@
-package de.augsburg.hs.methoden.ki.screens.astar;
+package de.augsburg.hs.methoden.ki.algorithms.astar.implementation;
 
 import de.augsburg.hs.methoden.ki.algorithms.astar.Scorer;
 

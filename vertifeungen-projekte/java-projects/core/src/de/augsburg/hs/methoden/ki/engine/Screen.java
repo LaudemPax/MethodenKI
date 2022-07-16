@@ -6,12 +6,11 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
 import de.augsburg.hs.methoden.ki.MainGame;
 
 import java.util.ArrayList;
 
-public class AbstractScreen extends ScreenAdapter {
+public class Screen extends ScreenAdapter {
 
     protected MainGame game;
     protected SpriteBatch batch;
@@ -20,9 +19,9 @@ public class AbstractScreen extends ScreenAdapter {
 
     protected OrthographicCamera camera;
 
-    protected ArrayList<AbstractActor> actors;
+    protected ArrayList<Actor> actors;
 
-    public AbstractScreen(MainGame game) {
+    public Screen(MainGame game) {
         this.game = game;
         this.batch = game.getSpriteBatch();
         this.camera = game.getCamera();
@@ -39,7 +38,7 @@ public class AbstractScreen extends ScreenAdapter {
     }
 
     public void update(float delta) {
-        for(AbstractActor actor : actors) {
+        for(Actor actor : actors) {
             actor.update(delta);
         }
     }
@@ -54,7 +53,7 @@ public class AbstractScreen extends ScreenAdapter {
     }
 
     protected void draw(SpriteBatch batch) {
-        for(AbstractActor actor : actors) {
+        for(Actor actor : actors) {
             actor.draw(batch);
         }
     }
@@ -67,7 +66,7 @@ public class AbstractScreen extends ScreenAdapter {
         clearColor = color;
     }
 
-    public void addActor(AbstractActor actor) {
+    public void addActor(Actor actor) {
         actors.add(actor);
     }
 
@@ -75,7 +74,7 @@ public class AbstractScreen extends ScreenAdapter {
         actors.remove(i);
     }
 
-    public void removeActor(AbstractActor actor) {
+    public void removeActor(Actor actor) {
         actors.remove(actor);
     }
 }

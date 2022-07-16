@@ -15,11 +15,14 @@ import de.augsburg.hs.methoden.ki.actors.astar.AStarTarget;
 import de.augsburg.hs.methoden.ki.algorithms.astar.Graph;
 import de.augsburg.hs.methoden.ki.algorithms.astar.GraphNode;
 import de.augsburg.hs.methoden.ki.algorithms.astar.RouteFinder;
-import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
+import de.augsburg.hs.methoden.ki.algorithms.astar.implementation.CellNode;
+import de.augsburg.hs.methoden.ki.algorithms.astar.implementation.CellNodeScorer;
+import de.augsburg.hs.methoden.ki.algorithms.astar.implementation.CellTargetScorer;
+import de.augsburg.hs.methoden.ki.engine.Screen;
 
 import java.util.*;
 
-public class AStarPathfindingScreen extends AbstractScreen {
+public class AStarPathfindingScreen extends Screen {
 
     private final float bg_R = 150f / 255f;
     private final float bg_G = 190f / 255f;
@@ -146,6 +149,7 @@ public class AStarPathfindingScreen extends AbstractScreen {
             drawSolvedRoute();
         }
 
+        // display text if no path is found
         if(noPathFlag) {
             font.draw(batch, "No traversable route found!"
                     , 10, Gdx.graphics.getHeight() - 300);

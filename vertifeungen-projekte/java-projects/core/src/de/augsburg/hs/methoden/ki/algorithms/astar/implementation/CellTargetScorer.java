@@ -1,4 +1,4 @@
-package de.augsburg.hs.methoden.ki.screens.astar;
+package de.augsburg.hs.methoden.ki.algorithms.astar.implementation;
 
 import com.badlogic.gdx.math.Vector2;
 import de.augsburg.hs.methoden.ki.algorithms.astar.GraphNode;

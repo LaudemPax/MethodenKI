@@ -4,10 +4,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
-import de.augsburg.hs.methoden.ki.engine.AbstractActor;
+import de.augsburg.hs.methoden.ki.engine.Screen;
+import de.augsburg.hs.methoden.ki.engine.Actor;
 
-public class StartScreenButtonActor extends AbstractActor {
+public class StartScreenButtonActor extends Actor {
 
     private String levelName;
 
@@ -23,17 +23,14 @@ public class StartScreenButtonActor extends AbstractActor {
     private boolean setProjectionFlag = false;
     private BitmapFont font;
 
-    private AbstractScreen targetScreen;
+    private Screen targetScreen;
+
 
     private boolean onHoverFlag = false;
 
-    public StartScreenButtonActor(String levelName, AbstractScreen targetScreen){
+    public StartScreenButtonActor(String levelName, Screen targetScreen){
         this.levelName = levelName;
         this.targetScreen = targetScreen;
-    }
-
-    @Override
-    protected void create() {
         this.color = new Color(color_R, color_G, color_B, 1);
         this.shapeRenderer = new ShapeRenderer();
         this.font = new BitmapFont();
@@ -78,7 +75,7 @@ public class StartScreenButtonActor extends AbstractActor {
         this.onHoverFlag = hover;
     }
 
-    public AbstractScreen getTargetScreen() {
+    public Screen getTargetScreen() {
         return targetScreen;
     }
 }

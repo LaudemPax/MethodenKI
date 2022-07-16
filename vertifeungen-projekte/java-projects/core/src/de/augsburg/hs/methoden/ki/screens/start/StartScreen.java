@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import de.augsburg.hs.methoden.ki.MainGame;
-import de.augsburg.hs.methoden.ki.engine.AbstractScreen;
+import de.augsburg.hs.methoden.ki.engine.Screen;
 import de.augsburg.hs.methoden.ki.actors.startscreen.StartScreenButtonActor;
 import de.augsburg.hs.methoden.ki.screens.astar.AStarPathfindingScreen;
 import de.augsburg.hs.methoden.ki.screens.minmax.MinMaxScreen;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Start screen shows a few buttons which go to other screens when clicked
  *
  */
-public class StartScreen extends AbstractScreen {
+public class StartScreen extends Screen {
 
     private final int MARGIN = 20;
 
