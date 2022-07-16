@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import de.augsburg.hs.methoden.ki.MainGame;
-import de.augsburg.hs.methoden.ki.actors.astar.AStarAgent;
+import de.augsburg.hs.methoden.ki.actors.astar.AStarStart;
 import de.augsburg.hs.methoden.ki.actors.astar.AStarTarget;
 import de.augsburg.hs.methoden.ki.algorithms.astar.Graph;
 import de.augsburg.hs.methoden.ki.algorithms.astar.GraphNode;
@@ -102,7 +102,7 @@ public class AStarPathfindingScreen extends Screen {
 
 
         // add a pathfinder agent
-        addActor(new AStarAgent(startNode.getCoordinates()));
+        addActor(new AStarStart(startNode.getCoordinates()));
 
         // add a target
         addActor(new AStarTarget(targetNode.getCoordinates()));
