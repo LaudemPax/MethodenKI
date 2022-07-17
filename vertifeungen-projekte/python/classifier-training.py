@@ -3,7 +3,7 @@ import warnings
 import matplotlib.pyplot as pyplot
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.model_selection import train_test_split
-from sklearn import tree
+from sklearn import tree, metrics
 from sklearn.neighbors import KNeighborsClassifier
 
 
@@ -55,8 +55,6 @@ def build_kneighbors_classifier(x_train, y_train):
     return kneighbors_model
 
 def evaluate_model(model, x_test, y_test):
-    from sklearn import metrics
-
     # Predict Test Data 
     y_pred = model.predict(x_test)
 

@@ -1,1 +1,147 @@
-\section{Kernel-Verfahren und Support Vector Machines}
+\section{Vertiefung: Klassifikatoren Trainieren mit Python}
+
+Um den gesamten Prozess des maschinellen Lernens besser zu verstehen, wurde ein kleines Projekt zum Trainieren eines Klassifikators durchgeführt. Dieses Beispiel basiert auf einem Online-Artikel von Medium\cite{classification-online}. In diesem Beispielprojekt werden die üblichen Schritte zur Durchführung von maschinellem Lernen befolgt:
+\begin{enumerate}
+    \item Data-Preprocessing.
+    \item Aufteilen des Datensatzes in Trainings- und Testdatensätze.
+    \item Trainieren des Modells Trainieren der Modelle (eines mit einem Kneighbors-Algorithmus und eines mit einem Entscheidungsbaum).
+    \item Klassifikatoren auswerten
+\end{enumerate}
+
+In dieser Trainingsaufgabe wird das Modell mit einem Bankdatensatz von Kaggle\cite{kaggle-dataset} darauf trainiert, abhängig von einigen Attributen vorherzusagen, ob jemand eine Einzahlung tätigen wird oder nicht.
+
+\subsection{Data Pre-Processing}
+
+Im Vorverarbeitungsschritt entfällt die Spalte ``duration'', da diese laut Dokumentation erst verfügbar ist, nachdem die Label-Spalte bekannt ist. Danach werden die Daten skaliert, um zu vermeiden, dass Ausreißerdaten das Modell erheblich beeinträchtigen, und schließlich werden die Daten zur einfacheren Verarbeitung mit einer One-Hot-Codierung codiert.
+
+\begin{lstlisting}[language=python]
+# load dataset
+df_bank = pandas.read_csv('dataset/bank.csv')
+
+# drop duration column
+df_bank = df_bank.drop('duration', axis=1)
+
+# create a copy
+df_bank_ready = df_bank.copy()
+
+# scaling numberic data to avoid significant outlier presence
+scaler = StandardScaler()
+num_cols = ['age', 'balance', 'day', 'campaign', 'pdays', 'previous']
+df_bank_ready[num_cols] = scaler.fit_transform(df_bank[num_cols])
+
+# Encoding categorical data
+encoder = OneHotEncoder(sparse=False)
+cat_cols = ['job', 'marital', 'education', 'default', 'housing', 'loan', 'contact', 'month', 'poutcome']
+
+# Encode Categorical Data
+df_encoded = pandas.DataFrame(encoder.fit_transform(df_bank_ready[cat_cols]))
+df_encoded.columns = encoder.get_feature_names(cat_cols)
+
+# Replace Categotical Data with Encoded Data
+df_bank_ready = df_bank_ready.drop(cat_cols ,axis=1)
+df_bank_ready = pandas.concat([df_encoded, df_bank_ready], axis=1)
+
+# Encode target value
+df_bank_ready['deposit'] = df_bank_ready['deposit'].apply(lambda x: 1 if x == 'yes' else 0)
+\end{lstlisting}
+
+\subsection{Splitting the datasets}
+
+Die Daten werden in Trainings- und Testdatensätze aufgeteilt, wobei 80\% der Daten für das Training und 20\% für Tests verwendet werden.
+
+\begin{lstlisting}[language=python]
+# Select Features
+feature = df_bank_ready.drop('deposit', axis=1)
+
+# Select Target
+target = df_bank_ready['deposit']
+
+# Set Training and Testing Data
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(feature , target, 
+                                                    shuffle = True, 
+                                                    test_size=0.2, 
+                                                    random_state=1)
+
+\end{lstlisting}
+
+\subsection{Modelling and evaluation}
+
+Anschließend erfolgte die Modellierung der beiden Klassifikatortypen und die Auswertung erfolgte anhand einer Reihe von Metriken sowie einer Konfusionsmatrix.
+
+\begin{lstlisting}[language=python]
+# Evaluation function
+def evaluate_model(model, x_test, y_test):
+    from sklearn import metrics
+
+    # Predict Test Data 
+    y_pred = model.predict(x_test)
+
+    # Calculate accuracy, precision, recall, f1-score, and kappa score
+    acc = metrics.accuracy_score(y_test, y_pred)
+    prec = metrics.precision_score(y_test, y_pred)
+    rec = metrics.recall_score(y_test, y_pred)
+    f1 = metrics.f1_score(y_test, y_pred)
+    kappa = metrics.cohen_kappa_score(y_test, y_pred)
+
+    # Calculate area under curve (AUC)
+    y_pred_proba = model.predict_proba(x_test)[::,1]
+    fpr, tpr, _ = metrics.roc_curve(y_test, y_pred_proba)
+    auc = metrics.roc_auc_score(y_test, y_pred_proba)
+
+    # Display confussion matrix
+    cm = metrics.confusion_matrix(y_test, y_pred)
+
+    return {'acc': acc, 'prec': prec, 'rec': rec, 'f1': f1, 'kappa':kappa, 'fpr': fpr, 'tpr': tpr, 'auc': auc, 'cm': cm}
+
+# Model training: decision tree
+decision_tree_model = tree.DecisionTreeClassifier(random_state=0)
+decision_tree_model.fit(x_train, y_train)
+
+# Model training Kneighbors
+kneighbors_model = KNeighborsClassifier()
+kneighbors_model.fit(x_train, y_train)
+\end{lstlisting}
+
+\subsection{Ausführen des Projekts}
+
+Das Projekt (vertiefungen-projekte/python) kann ausgeführt werden, indem zuerst die erforderlichen Bibliotheken installiert werden:
+
+\begin{lstlisting}[language=bash]
+pip install -r requirements.txt 
+\end{lstlisting}
+
+Und danach läuft es einfach mit Python:
+
+\begin{lstlisting}[language=bash]
+classifier-training.py
+\end{lstlisting}
+
+Das Ausführen erzeugte die folgende Ausgabe:
+
+\begin{lstlisting}
+=====================================================
+Decision tree classifier
+=====================================================
+Accuracy: 0.6336766681594268
+Precision: 0.6215953307392996
+Recall: 0.598314606741573
+F1 Score: 0.6097328244274809
+Cohens Kappa Score: 0.2648219403033133
+Area Under Curve: 0.6322045136712157
+Confusion Matrix:
+    [[776 389]
+    [429 639]]
+=====================================================
+K nearest neighbors classifier
+=====================================================
+Accuracy: 0.6869682042095835
+Precision: 0.6981740064446831
+Recall: 0.6086142322097379
+F1 Score: 0.6503251625812906
+Cohens Kappa Score: 0.3693851405429406
+Area Under Curve: 0.7323909758724342
+Confusion Matrix:
+    [[884 281]
+    [418 650]]
+\end{lstlisting}
