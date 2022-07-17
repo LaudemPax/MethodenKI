@@ -1,5 +1,6 @@
 \section{Das Java-Projekt}
 
+\subsection{IntelliJ IDEA}
 Für die grafische Darstellung und die Verwaltung der Programmzustände wurde das Java Spieleentwicklungs-Framework LibGDX\cite{LibGdx} verwendet. Das Projekt wurde mit IntelliJ idea entwickelt und nutzt in hohem Maße das gradle build system. Das IntelliJ projekt kann wie folgt importiert werden:
 
 \lstinline{File -> import -> $project-root-folder -> build.gradle}
@@ -16,3 +17,11 @@ Nach dem Start des Programms wird der folgende Screen angezeigt:
 \end{figure}
 
 Durch Anklicken einer der Buttons wird der Benutzer zu dem entsprechenden Screen geführt.
+
+\subsection{Projekt Binary}
+
+Das Projekt wurde auch in eine Jar-Datei exportiert. Die Datei ``methoden-KI.jar'' enthält das aus dem IntelliJ IDEA Projekt kompilierte Programm und kann verwendet werden, falls das Projekt nicht ausgeführt werden kann.
+
+\begin{lstlisting}
+java -jar methoden-KI.jar
+\end{lstlisting}
