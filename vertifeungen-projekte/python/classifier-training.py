@@ -1,5 +1,4 @@
 import pandas
-import numpy as np
 import warnings
 import matplotlib.pyplot as pyplot
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
