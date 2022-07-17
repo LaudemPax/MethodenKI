@@ -1,0 +1,142 @@
+\section{Vertiefung: PDDL verstehen und ausführen}
+
+Das 1-dimensionale Rubiks-Cube-Problem von hakank.org\cite{pddl-hakank} wurde als Beispiel verwendet. In dieser Aufgabe sind die Zahlen 1 bis 6 in einer bestimmten Reihenfolge angegeben. Das Ziel der Aufgabe ist es, diese Zahlen in zunehmender Reihenfolge zu sortieren (also 1,2,3,4,5,6), wobei drei mögliche 4-stellige Drehungen verwendet werden können:-
+\begin{itemize}
+    \item \textbf{rot1:} (1,2,3,4),5,6 \(\rightarrow\) (4,3,2,1),5,6.
+    \item \textbf{rot2:} 1,(2,3,4,5),6 \(\rightarrow\) 1,(5,4,3,2),6
+    \item \textbf{rot3:} 1,2,(3,4,5,6) \(\rightarrow\) 1,2,(6,5,4,3)
+\end{itemize}
+
+Die Domäne und ein Beispielproblem wurden mit PDDL kodiert und ein Online-Planer\cite{pddl-online} wurde verwendet.
+
+\paragraph{Domain definition:}
+\begin{lstlisting}
+(define (domain rubik-1d)
+(:requirements :strips)
+(:predicates (pos1 ?v)
+                (pos2 ?v)
+                (pos3 ?v)
+                (pos4 ?v)
+                (pos5 ?v)
+                (pos6 ?v))
+
+;     _______                _______
+;    (1 2 3 4)5 6  --(rot0)->  (4 3 2 1)5 6
+;
+(:action rot0
+            :parameters (?v1 ?v2 ?v3 ?v4 ?v5 ?v6)
+            :precondition (and (pos1 ?v1) 
+                                (pos2 ?v2) 
+                                (pos3 ?v3) 
+                                (pos4 ?v4) 
+                                (pos5 ?v5) 
+                                (pos6 ?v6) 
+                                )
+            :effect  (and 
+                        (pos1 ?v4)              
+                        (pos2 ?v3)              
+                        (pos3 ?v2)              
+                        (pos4 ?v1)              
+                        (pos5 ?v5)              
+                        (pos6 ?v6)      
+                        (not (pos1 ?v1))
+                        (not (pos2 ?v2))
+                        (not (pos3 ?v3))
+                        (not (pos4 ?v4)))
+    ) 
+
+    ;
+    ;       _______                   _______
+    ;     1(2 3 4 5)6  --(rot1)->   1(5 4 3 2)6
+    ;
+(:action rot1
+            :parameters (?v1 ?v2 ?v3 ?v4 ?v5 ?v6)
+            :precondition (and (pos1 ?v1) 
+                                (pos2 ?v2) 
+                                (pos3 ?v3) 
+                                (pos4 ?v4) 
+                                (pos5 ?v5) 
+                                (pos6 ?v6) 
+                                )
+            :effect  (and 
+                        (pos1 ?v1)
+                        (pos2 ?v5)              
+                        (pos3 ?v4)              
+                        (pos4 ?v3)              
+                        (pos5 ?v2)
+                        (pos6 ?v6)
+                        (not (pos2 ?v2))
+                        (not (pos3 ?v3))
+                        (not (pos4 ?v4))
+                        (not (pos5 ?v5)))
+    ) 
+
+    ;
+    ;      _______                   _______
+    ;  1 2(3 4 5 6) --(rot2)->   1 2(6 5 4 3)
+    ;
+    (:action rot2
+            :parameters (?v1 ?v2 ?v3 ?v4 ?v5 ?v6)
+            :precondition (and (pos1 ?v1) 
+                                (pos2 ?v2) 
+                                (pos3 ?v3) 
+                                (pos4 ?v4) 
+                                (pos5 ?v5) 
+                                (pos6 ?v6) 
+                                )
+            :effect  (and 
+                        (pos1 ?v1)
+                        (pos2 ?v2)              
+                        (pos3 ?v6)              
+                        (pos4 ?v5)              
+                        (pos5 ?v4)              
+                        (pos6 ?v3)              
+                        (not (pos3 ?v3))
+                        (not (pos4 ?v4))
+                        (not (pos5 ?v5))
+                        (not (pos6 ?v6)))
+    ) 
+)
+\end{lstlisting}
+
+\paragraph{Problem definition:}
+\begin{lstlisting}
+(define (problem rubik-01)
+(:domain rubik-1d)
+(:objects v1 v2 v3 v4 v5 v6)
+(:init
+    (pos1 v1)
+    (pos2 v3)
+    (pos3 v2)
+    (pos4 v6)
+    (pos5 v5)
+    (pos6 v4)
+
+)
+(:goal (and 
+    (pos1 v1)
+    (pos2 v2)
+    (pos3 v3)    
+    (pos4 v4)    
+    (pos5 v5)    
+    (pos6 v6)    
+    ))
+;;;(:length (:serial 13) (:parallel 13))
+)
+\end{lstlisting}
+
+In diesem Beispielproblem sind die Zahlen zunächst wie folgt angeordnet: \(1,3,2,6,5,4\) und das Ziel ist es, die Zahlen in aufsteigender Reihenfolge zu ordnen. Wenn diese Domäne und dieses Problem durch den Online-Planer laufen, ergibt sich der folgende Plan:\\
+
+\begin{lstlisting}
+Plan:
+    (rot1 v1 v3 v2 v6 v5 v4)
+    (rot2 v1 v5 v6 v2 v3 v4)
+    (rot1 v1 v5 v4 v3 v2 v6)
+\end{lstlisting}
+
+Wenn wir die einzelnen Schritte des Plans prüfen, können wir feststellen, dass er das angestrebte Ziel tatsächlich erreicht:
+\begin{itemize}
+    \item \textbf{1. Schritt:} \(1,3,2,6,5,4 \rightarrow rot1 \rightarrow 1,5,6,2,3,4\)
+    \item \textbf{2. Schritt:} \(1,5,6,2,3,4 \rightarrow rot2 \rightarrow 1,5,4,3,2,6\)
+    \item \textbf{3. Schritt:} \(1,5,4,3,2,6\ \rightarrow rot1 \rightarrow 1,2,3,4,5,6\)
+\end{itemize}
