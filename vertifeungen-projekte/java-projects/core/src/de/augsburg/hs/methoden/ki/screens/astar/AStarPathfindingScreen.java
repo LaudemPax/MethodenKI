@@ -34,26 +34,40 @@ public class AStarPathfindingScreen extends Screen {
     private final float bg_G = 190f / 255f;
     private final float bg_B = 37f / 255f;
 
+    // size of a grid cell
     private final int CELL_SIZE = 20;
 
+    // no of rows in a grid
     private final int CELL_ROWS;
+
+    // no of columns in a grid
     private final int CELL_COLUMNS;
 
+    // used to draw lines on the screen
     private final ShapeRenderer shapeRenderer;
+
+    // used to draw text on the screen
     private final BitmapFont font;
 
+    // node representing the goal of the search
     private CellNode targetNode;
 
+    // node representing the start of the search
     private CellNode startNode;
 
+    // all nodes in the graph
     private HashSet<CellNode> nodeSet;
 
+    // all connections between nodes
     private HashMap<String, Set<String>> connections;
 
+    // the search graph
     private Graph cellNodeGraph;
 
+    // list containing the solved route of nodes
     private List<CellNode> solvedRoute;
 
+    // flag is true if no path is found
     private boolean noPathFlag = false;
 
     public AStarPathfindingScreen(MainGame game) {

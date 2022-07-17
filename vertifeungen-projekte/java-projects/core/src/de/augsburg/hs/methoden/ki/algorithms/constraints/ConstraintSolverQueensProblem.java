@@ -9,8 +9,6 @@ public class ConstraintSolverQueensProblem {
 
     private Model model;
 
-    private int nQueens;
-
     public int[] solve(int nQueens) {
 
         model = new Model(nQueens + "-queens problem");
