@@ -27,10 +27,3 @@
 # TODO
 
 - Add final image of start screen in chapter 15.1
-
-- See if wumpus qualifies as Vertiefung
-
-- Introduce the Vertiefungsprojects in the Bericht
-
-- Vertiefung of everything else oh god
-
