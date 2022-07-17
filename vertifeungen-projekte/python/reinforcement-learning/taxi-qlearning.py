@@ -10,10 +10,6 @@ alpha = 0.1
 gamma = 0.6
 epsilon = 0.1
 
-# For plotting metrics
-all_epochs = []
-all_penalties = []
-
 NUMBER_OF_EPISODES = 100000
 
 print("Begin training")
@@ -49,6 +45,10 @@ for i in range(1, (NUMBER_OF_EPISODES + 1)):
         print(f"Episode: {i}")
 
 print('Training done')
+
+# TRAINING
+# =================================================================
+# TESTING
 
 print('Running tests')
 total_penalties = 0
